@@ -21,8 +21,8 @@ class RegistroState extends ChangeNotifier {
   Future<void> insert() async {
     final registerStore = RegisterStore(
         name: _controllerName.text,
-        id: _controllerid.text,
-        cnpj: _controllercnpj.text,
+        id: int.parse(_controllerid.text),
+        cnpj: int.parse(_controllercnpj.text),
         autonomyLevelID: _controllerautonomyLevelID.text,
         password: _controllerpassword.text);
 
@@ -34,7 +34,9 @@ class RegistroState extends ChangeNotifier {
 }
 
 class register extends StatelessWidget {
-  register({Key? key, required String name}) : super(key: key);
+  register({
+    Key? key,
+  }) : super(key: key);
   final dropValue = ValueNotifier('');
   final dropOpcoes = [
     'loja Iniciante 74% - rede 25%',

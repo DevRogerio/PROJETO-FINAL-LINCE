@@ -23,7 +23,7 @@ class RegisterStoreTable {
       $id               INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       $cnpj             INTEGER NOT NULL,
       $name             TEXT NOT NULL,
-      $autonomyLevelID  INTEGER NOT NULL,
+      $autonomyLevelID  TEXT NOT NULL,
       $password         TEXT NOT NULL
     ); 
   ''';

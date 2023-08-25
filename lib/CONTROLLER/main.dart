@@ -1,4 +1,4 @@
-/*import 'package:carros_car/CONTROLLER/RegisterStore_repository.dart';
+import 'package:carros_car/CONTROLLER/RegisterStore_repository.dart';
 import 'package:carros_car/VIEW/Home.dart';
 import 'package:carros_car/VIEW/LoginPage.dart';
 
@@ -11,17 +11,15 @@ void main() {
   runApp(const MyApp());
 }
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: (LoginPage()),
+      home: register(),
       debugShowCheckedModeBanner: false,
       theme: style(),
     );
   }
 }
-*/
