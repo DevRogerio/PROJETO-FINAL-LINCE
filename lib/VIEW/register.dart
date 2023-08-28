@@ -4,6 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegistroState extends ChangeNotifier {
+  final dropValue = ValueNotifier('');
+  final dropOpcoes = [
+    'loja Iniciante 74% - rede 25%',
+    'loja Intermediario 79% - rede 20%',
+    'loja Avançado 84% - rede 15%',
+    'loja Especial 94% - rede 5%'
+  ];
   final controller = RegisterController();
   final _controllerName = TextEditingController();
   final _controllerid = TextEditingController();
@@ -94,7 +101,7 @@ class Register extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: cnpjController,
+                            controller: state._controllercnpj,
                             decoration: InputDecoration(
                               labelText: 'Documento(CNPJ com 14 digitos)',
                               border: OutlineInputBorder(
@@ -113,7 +120,7 @@ class Register extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: nomeLojaController,
+                            controller: state._controllerName,
                             decoration: InputDecoration(
                               labelText: 'Nome Da Loja',
                               border: OutlineInputBorder(
@@ -161,7 +168,7 @@ class Register extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: senhaController,
+                            controller: state._controllerpassword,
                             decoration: InputDecoration(
                               labelText: 'Senha',
                               border: OutlineInputBorder(
