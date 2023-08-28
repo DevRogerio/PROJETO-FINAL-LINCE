@@ -1,4 +1,4 @@
-import 'package:carros_car/CONTROLLER/RegisterStore_repository.dart';
+import 'package:carros_car/CONTROLLER/register_store_repository.dart';
 import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +33,8 @@ class RegistroState extends ChangeNotifier {
   }
 }
 
-class register extends StatelessWidget {
-  register({
+class Register extends StatelessWidget {
+  Register({
     Key? key,
   }) : super(key: key);
   final dropValue = ValueNotifier('');
@@ -46,19 +46,19 @@ class register extends StatelessWidget {
   ];
   var idController = TextEditingController();
 
-  var CNPJController = TextEditingController();
+  var cnpjController = TextEditingController();
   var nomeLojaController = TextEditingController();
   var nivelDeAutonomiaController = TextEditingController();
-  var SenhaController = TextEditingController();
+  var senhaController = TextEditingController();
 
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   void dispose() {
     idController.dispose();
-    CNPJController.dispose();
+    cnpjController.dispose();
     nomeLojaController.dispose();
     nivelDeAutonomiaController.dispose();
-    SenhaController.dispose();
+    senhaController.dispose();
   }
 
   @override
@@ -68,23 +68,23 @@ class register extends StatelessWidget {
       child: Consumer<RegistroState>(
         builder: (_, state, __) {
           return Scaffold(
-            backgroundColor: Color.fromARGB(255, 33, 7, 182),
+            backgroundColor: const Color.fromARGB(255, 33, 7, 182),
             appBar: AppBar(
-              backgroundColor: Color.fromARGB(235, 228, 14, 14),
-              title: Center(
+              backgroundColor: const Color.fromARGB(235, 228, 14, 14),
+              title: const Center(
                 child: (Text('Cadastre sua Loja')),
               ),
             ),
             body: Center(
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: SingleChildScrollView(
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             validator: (value) {
                               if (value!.length <= 14) {
@@ -94,7 +94,7 @@ class register extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: CNPJController,
+                            controller: cnpjController,
                             decoration: InputDecoration(
                               labelText: 'Documento(CNPJ com 14 digitos)',
                               border: OutlineInputBorder(
@@ -103,7 +103,7 @@ class register extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             validator: (value) {
                               if (value!.length < 2) {
@@ -122,7 +122,7 @@ class register extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: ValueListenableBuilder(
                             valueListenable: dropValue,
                             builder: ((context, String value, _) {
@@ -151,7 +151,7 @@ class register extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
                             validator: (value) {
                               if (value!.length < 5) {
@@ -161,7 +161,7 @@ class register extends StatelessWidget {
                               }
                               return null;
                             },
-                            controller: SenhaController,
+                            controller: senhaController,
                             decoration: InputDecoration(
                               labelText: 'Senha',
                               border: OutlineInputBorder(

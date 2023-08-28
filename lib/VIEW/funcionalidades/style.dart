@@ -4,9 +4,9 @@ ThemeData style() {
   ThemeData base = ThemeData.dark();
   return base.copyWith(
       primaryColor: Colors.black,
-      colorScheme: ColorScheme.dark(),
+      colorScheme: const ColorScheme.dark(),
 
       //Botao
       floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: Colors.red));
+          const FloatingActionButtonThemeData(backgroundColor: Colors.red));
 }

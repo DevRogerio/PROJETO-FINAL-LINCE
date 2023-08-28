@@ -1,4 +1,4 @@
-import 'package:carros_car/MODEL/RegisterStore.dart';
+import '../MODEL/RegisterStore.dart';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';

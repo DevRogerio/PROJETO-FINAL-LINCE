@@ -9,18 +9,18 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         //titulo do app
-        appBar: new BarraSuperior(),
+        appBar: BarraSuperior(),
 
         // Menu
-        drawer: new DrawerMenu(),
+        drawer: DrawerMenu(),
 
         //Corpo do app
         body: SingleChildScrollView(
           child: Column(
             children: [
-              new Container(
+              Container(
                 width: 150,
-                padding: EdgeInsets.all(25),
+                padding: const EdgeInsets.all(25),
                 child: Text('TESTE'),
                 color: Colors.blue,
                 height: 150,

@@ -10,10 +10,10 @@ class DrawerMenu extends StatelessWidget {
   final String email = 'rogeriocunhago@gmail.com';
   final String fotoPerfil = "img/perfil.jpg";
 
-  Text MostrarTitulo(String texto) {
+  Text mostrarTitulo(String texto) {
     return Text(
       texto,
-      style: TextStyle(fontSize: 18),
+      style: const TextStyle(fontSize: 18),
     );
   }
 
@@ -35,10 +35,10 @@ class DrawerMenu extends StatelessWidget {
           ),
           //home
           new ListTile(
-            title: MostrarTitulo('Home'),
-            subtitle: Text('Pagina Inicial'),
-            trailing: FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: FaIcon(FontAwesomeIcons.home),
+            title: mostrarTitulo('Home'),
+            subtitle: const Text('Pagina Inicial'),
+            trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+            leading: const FaIcon(FontAwesomeIcons.home),
             iconColor: Colors.purple.shade600,
 
             //ir para a Home
@@ -46,7 +46,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => const Home(),
                 ),
               );
             },
@@ -54,10 +54,10 @@ class DrawerMenu extends StatelessWidget {
 
           //Gerencia
           new ListTile(
-            title: MostrarTitulo('Gerenciar'),
-            subtitle: Text('Gerenciar Vendas'),
-            trailing: FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: FaIcon(FontAwesomeIcons.listCheck),
+            title: mostrarTitulo('Gerenciar'),
+            subtitle: const Text('Gerenciar Vendas'),
+            trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+            leading: const FaIcon(FontAwesomeIcons.listCheck),
             iconColor: Colors.red.shade900,
 
             //ir para a gerencia de vendas
@@ -65,7 +65,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => const Home(),
                 ),
               );
             },
@@ -73,10 +73,10 @@ class DrawerMenu extends StatelessWidget {
 
           //configurações
           new ListTile(
-            title: MostrarTitulo('Configurações'),
-            subtitle: Text('Fazer ajustes na conta'),
-            trailing: FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: FaIcon(FontAwesomeIcons.cogs),
+            title: mostrarTitulo('Configurações'),
+            subtitle: const Text('Fazer ajustes na conta'),
+            trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+            leading: const FaIcon(FontAwesomeIcons.cogs),
             iconColor: Colors.blue.shade900,
 
             //ir para a Configuraçoes
@@ -84,7 +84,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => const Home(),
                 ),
               );
             },
@@ -92,10 +92,10 @@ class DrawerMenu extends StatelessWidget {
 
           //logout
           new ListTile(
-            title: MostrarTitulo('Logout'),
-            subtitle: Text('Sair do aplicativo'),
-            trailing: FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: FaIcon(FontAwesomeIcons.signOut),
+            title: mostrarTitulo('Logout'),
+            subtitle: const Text('Sair do aplicativo'),
+            trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+            leading: const FaIcon(FontAwesomeIcons.signOut),
             iconColor: Colors.green.shade900,
 
             //ir para a pagina inicial
@@ -103,7 +103,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Home(),
+                  builder: (context) => const Home(),
                 ),
               );
             },

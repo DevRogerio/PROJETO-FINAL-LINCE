@@ -1,7 +1,7 @@
 class Sale {
   final int id;
-  final int Cpf;
-  final String Name;
+  final int cpf;
+  final String name;
   final DateTime soldWhen;
   final double priceSold;
   final double dealershipCut;
@@ -13,8 +13,8 @@ class Sale {
 
   Sale({
     required this.id,
-    required this.Cpf,
-    required this.Name,
+    required this.cpf,
+    required this.name,
     required this.soldWhen,
     required this.priceSold,
     required this.dealershipCut,

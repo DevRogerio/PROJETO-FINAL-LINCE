@@ -10,7 +10,7 @@ class BarraSuperior extends AppBar {
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
-                  icon: FaIcon(FontAwesomeIcons.bars),
+                  icon: const FaIcon(FontAwesomeIcons.bars),
                   //abrir o menu
                   onPressed: () => Scaffold.of(context).openDrawer(),
                 );

@@ -22,8 +22,8 @@ class SalesTable {
   static const String createTable = '''
     CREATE TABLE $tableName(
       $id             INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      $Cpf    INTEGER NOT NULL,
-      $Name   TEXT NOT NULL,
+      $cpf    INTEGER NOT NULL,
+      $name   TEXT NOT NULL,
       $soldWhen       TEXT NOT NULL,
       $priceSold      REAL NOT NULL,
       $dealershipCut  REAL NOT NULL,
@@ -37,8 +37,8 @@ class SalesTable {
 
   static const String tableName = 'sale';
   static const String id = 'id';
-  static const String Cpf = 'Cpf';
-  static const String Name = 'Name';
+  static const String cpf = 'Cpf';
+  static const String name = 'Name';
   static const String soldWhen = 'soldWhen';
   static const String priceSold = 'priceSold';
   static const String dealershipCut = 'dealershipCut';
@@ -52,8 +52,8 @@ class SalesTable {
     final map = <String, dynamic>{};
 
     map[SalesTable.id] = sale.id;
-    map[SalesTable.Cpf] = sale.Cpf;
-    map[SalesTable.Name] = sale.Name;
+    map[SalesTable.cpf] = sale.cpf;
+    map[SalesTable.name] = sale.name;
     map[SalesTable.soldWhen] = sale.soldWhen;
     map[SalesTable.priceSold] = sale.priceSold;
     map[SalesTable.dealershipCut] = sale.dealershipCut;
