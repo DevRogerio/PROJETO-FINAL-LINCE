@@ -34,14 +34,18 @@ class RegistroState extends ChangeNotifier {
     await load();
 
     controllerName.clear();
+    controllercnpj.clear();
+    controllerautonomyLevelID.clear();
+    controllerpassword.clear();
+
     notifyListeners();
   }
 
   Future<void> load() async {
-    final lista = await controller.select();
+    final list = await controller.select();
 
-    lista.clear();
-    lista.addAll(lista);
+    list.clear();
+    list.addAll(list);
 
     notifyListeners();
   }
@@ -100,14 +104,14 @@ class Register extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
-                            validator: (value) {
+                            /* validator: (value) {
                               if (value!.length <= 14) {
                                 return "O CNPJ é curto demais";
                               } else if (!value.contains('')) {
                                 return "Esse CNPJ parece estranho";
                               }
                               return null;
-                            },
+                            },*/
                             controller: state._controllercnpj,
                             decoration: InputDecoration(
                               labelText: 'Documento(CNPJ com 14 digitos)',
@@ -119,14 +123,14 @@ class Register extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
-                            validator: (value) {
+                            /*validator: (value) {
                               if (value!.length < 2) {
                                 return "O nome da loja é curto demais";
                               } else if (!value.contains('')) {
                                 return "nome invalido";
                               }
                               return null;
-                            },
+                            },*/
                             controller: state._controllerName,
                             decoration: InputDecoration(
                               labelText: 'Nome Da Loja',
@@ -167,14 +171,14 @@ class Register extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextFormField(
-                            validator: (value) {
+                            /*validator: (value) {
                               if (value!.length < 5) {
                                 return "Senha curta demais";
                               } else if (!value.contains('')) {
                                 return "Senha deve conter no minimo 5 caracteres";
                               }
                               return null;
-                            },
+                            },*/
                             controller: state._controllerpassword,
                             decoration: InputDecoration(
                               labelText: 'Senha',
@@ -212,10 +216,11 @@ class _ActionButton extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               await state.insert();
-              state._controllerName;
+
+              /*state._controllerName;
               state._controllerautonomyLevelID;
               state._controllercnpj;
-              state._controllerpassword;
+              state._controllerpassword;*/
             },
             child: const Text('cadastro'),
           )

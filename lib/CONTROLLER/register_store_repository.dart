@@ -80,6 +80,7 @@ class RegisterController {
     var list = <RegisterStore>[];
 
     for (final item in result) {
+      print(item);
       list.add(
         RegisterStore(
           id: item[RegisterStoreTable.id],

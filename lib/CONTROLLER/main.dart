@@ -1,5 +1,5 @@
-import 'package:carros_car/VIEW/Home.dart';
-import 'package:carros_car/VIEW/LoginPage.dart';
+//import 'package:carros_car/VIEW/Home.dart';
+//import 'package:carros_car/VIEW/LoginPage.dart';
 
 import 'package:carros_car/VIEW/funcionalidades/style.dart';
 import 'package:carros_car/VIEW/register.dart';

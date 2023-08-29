@@ -9,7 +9,7 @@ class RegisterStore {
     this.id,
     this.cnpj,
     required this.name,
-    required this.autonomyLevelID,
+    this.autonomyLevelID,
     required this.password,
   });
 }
