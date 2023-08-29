@@ -4,22 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class RegistroState extends ChangeNotifier {
-  final dropValue = ValueNotifier('');
-  final dropOpcoes = [
-    'loja Iniciante 74% - rede 25%',
-    'loja Intermediario 79% - rede 20%',
-    'loja Avançado 84% - rede 15%',
-    'loja Especial 94% - rede 5%'
-  ];
+  RegistroState() {
+    load();
+  }
+
   final controller = RegisterController();
   final _controllerName = TextEditingController();
-  final _controllerid = TextEditingController();
+  //final _controllerid = TextEditingController();
   final _controllercnpj = TextEditingController();
   final _controllerautonomyLevelID = TextEditingController();
   final _controllerpassword = TextEditingController();
 
   TextEditingController get controllerName => _controllerName;
-  TextEditingController get controllerid => _controllerid;
+  //TextEditingController get controllerid => _controllerid;
   TextEditingController get controllercnpj => _controllercnpj;
   TextEditingController get controllerautonomyLevelID =>
       _controllerautonomyLevelID;
@@ -28,14 +25,24 @@ class RegistroState extends ChangeNotifier {
   Future<void> insert() async {
     final registerStore = RegisterStore(
         name: _controllerName.text,
-        id: int.parse(_controllerid.text),
+        // id: int.parse(_controllerid.text),
         cnpj: int.parse(_controllercnpj.text),
         autonomyLevelID: _controllerautonomyLevelID.text,
         password: _controllerpassword.text);
 
     await controller.insert(registerStore);
+    await load();
 
     controllerName.clear();
+    notifyListeners();
+  }
+
+  Future<void> load() async {
+    final lista = await controller.select();
+
+    lista.clear();
+    lista.addAll(lista);
+
     notifyListeners();
   }
 }
@@ -51,22 +58,22 @@ class Register extends StatelessWidget {
     'loja Avançado 84% - rede 15%',
     'loja Especial 94% - rede 5%'
   ];
-  var idController = TextEditingController();
+  /*var idController = TextEditingController();
 
   var cnpjController = TextEditingController();
   var nomeLojaController = TextEditingController();
   var nivelDeAutonomiaController = TextEditingController();
-  var senhaController = TextEditingController();
+  var senhaController = TextEditingController();*/
 
   final _formKey = GlobalKey<FormState>();
 
-  void dispose() {
+  /* void dispose() {
     idController.dispose();
     cnpjController.dispose();
     nomeLojaController.dispose();
     nivelDeAutonomiaController.dispose();
     senhaController.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -205,6 +212,10 @@ class _ActionButton extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               await state.insert();
+              state._controllerName;
+              state._controllerautonomyLevelID;
+              state._controllercnpj;
+              state._controllerpassword;
             },
             child: const Text('cadastro'),
           )

@@ -59,4 +59,37 @@ class RegisterController {
 
     return;
   }
+
+  Future<void> delete(RegisterStore registerStore) async {
+    final database = await getDatabase();
+
+    database.delete(
+      RegisterStoreTable.tableName,
+      where: '${RegisterStoreTable.id} = ?',
+      whereArgs: [registerStore.id],
+    );
+  }
+
+  Future<List<RegisterStore>> select() async {
+    final database = await getDatabase();
+
+    final List<Map<String, dynamic>> result = await database.query(
+      RegisterStoreTable.tableName,
+    );
+
+    var list = <RegisterStore>[];
+
+    for (final item in result) {
+      list.add(
+        RegisterStore(
+          id: item[RegisterStoreTable.id],
+          autonomyLevelID: item[RegisterStoreTable.autonomyLevelID],
+          cnpj: item[RegisterStoreTable.cnpj],
+          name: item[RegisterStoreTable.name],
+          password: item[RegisterStoreTable.password],
+        ),
+      );
+    }
+    return list;
+  }
 }
