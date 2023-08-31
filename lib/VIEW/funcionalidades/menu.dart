@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_new
 
 import 'package:carros_car/VIEW/Home.dart';
+import 'package:carros_car/VIEW/register.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,7 +9,7 @@ class DrawerMenu extends StatelessWidget {
   //dados que vem do banco de dados
   final String usuario = 'Rogerio';
   final String email = 'rogeriocunhago@gmail.com';
-  final String fotoPerfil = "img/perfil.jpg";
+  //final String fotoPerfil = "img/perfil.jpg";
 
   Text mostrarTitulo(String texto) {
     return Text(
@@ -28,7 +29,7 @@ class DrawerMenu extends StatelessWidget {
             accountEmail: Text(email),
             currentAccountPicture: CircleAvatar(
               child: ClipRRect(
-                child: Image.asset(fotoPerfil),
+                // child: Image.asset(fotoPerfil),
                 borderRadius: BorderRadius.circular(40),
               ),
             ),
@@ -54,8 +55,8 @@ class DrawerMenu extends StatelessWidget {
 
           //Gerencia
           new ListTile(
-            title: mostrarTitulo('Gerenciar'),
-            subtitle: const Text('Gerenciar Vendas'),
+            title: mostrarTitulo('Lojas'),
+            subtitle: const Text('Cadastrar Lojas Parceiras'),
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
             leading: const FaIcon(FontAwesomeIcons.listCheck),
             iconColor: Colors.red.shade900,
@@ -65,7 +66,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Home(),
+                  builder: (context) => Register(),
                 ),
               );
             },
@@ -73,10 +74,10 @@ class DrawerMenu extends StatelessWidget {
 
           //configurações
           new ListTile(
-            title: mostrarTitulo('Configurações'),
-            subtitle: const Text('Fazer ajustes na conta'),
+            title: mostrarTitulo('Veiculos'),
+            subtitle: const Text('Cadastrar Veiculos'),
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: const FaIcon(FontAwesomeIcons.cogs),
+            leading: const FaIcon(FontAwesomeIcons.car),
             iconColor: Colors.blue.shade900,
 
             //ir para a Configuraçoes
@@ -92,10 +93,10 @@ class DrawerMenu extends StatelessWidget {
 
           //logout
           new ListTile(
-            title: mostrarTitulo('Logout'),
-            subtitle: const Text('Sair do aplicativo'),
+            title: mostrarTitulo('Vendas'),
+            subtitle: const Text('Registro de vendas'),
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-            leading: const FaIcon(FontAwesomeIcons.signOut),
+            leading: const FaIcon(FontAwesomeIcons.dollarSign),
             iconColor: Colors.green.shade900,
 
             //ir para a pagina inicial

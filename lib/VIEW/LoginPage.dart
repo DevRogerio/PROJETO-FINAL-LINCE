@@ -1,4 +1,4 @@
-/*import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   var loginController = TextEditingController();
@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: Center(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Form(
               //autovalidateMode: AutovalidateMode.always,
@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
                         if (value!.length < 5) {
@@ -43,7 +43,7 @@ class LoginPage extends StatelessWidget {
                       },
                       autovalidateMode: AutovalidateMode.always,
                       controller: loginController,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'E-mail',
                         border: OutlineInputBorder(
@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
                         if (value!.length < 5) {
@@ -63,7 +63,7 @@ class LoginPage extends StatelessWidget {
                       },
                       // autovalidateMode: AutovalidateMode.always,
                       controller: senhaController,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       decoration: InputDecoration(
                         labelText: 'Senha',
                         border: OutlineInputBorder(
@@ -89,25 +89,25 @@ class LoginPage extends StatelessWidget {
                                       onPressed: () {
                                         if (_formKey.currentState?.validate() ??
                                             false) {
-                                          print(
-                                              'login: ${loginController.text} senha:${senhaController.text}');
+                                          /* print(
+                                              'login: ${loginController.text} senha:${senhaController.text}');*/
                                         }
                                       },
-                                      child: Text('Login'),
+                                      child: const Text('Login'),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(20.0),
                                     child: ElevatedButton(
                                       onPressed: () {},
-                                      child: Text('Cadastrar'),
+                                      child: const Text('Cadastrar'),
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(20.0),
                                     child: ElevatedButton(
                                       onPressed: () {},
-                                      child: Text('Login ADM'),
+                                      child: const Text('Login ADM'),
                                     ),
                                   ),
                                 ],
@@ -127,4 +127,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-*/
