@@ -1,5 +1,6 @@
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
+import 'package:carros_car/VIEW/searchregister.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -66,8 +67,7 @@ class Home extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Home()),
+                              MaterialPageRoute(builder: (context) => search()),
                             );
                           },
                         );
