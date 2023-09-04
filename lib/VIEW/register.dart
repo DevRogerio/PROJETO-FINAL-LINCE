@@ -1,4 +1,5 @@
-import 'package:carros_car/CONTROLLER/register_store_repository.dart';
+import 'package:carros_car/CONTROLLER/database.dart';
+
 import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

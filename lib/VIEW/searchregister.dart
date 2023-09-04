@@ -1,4 +1,5 @@
-import 'package:carros_car/CONTROLLER/register_store_repository.dart';
+import 'package:carros_car/CONTROLLER/database.dart';
+
 import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
@@ -10,8 +11,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class search extends StatelessWidget {
   search({super.key});
 
-  final RegisterStoreTable registerStoreTable =
-      Register() as RegisterStoreTable;
+//  final  registerStoreTable =
+  //   Register()
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +31,25 @@ class search extends StatelessWidget {
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        // child: Image.asset(
-                        // "perfil.jpg",
-                        // width: 75,
-                        //height: 75,
-                        // fit: BoxFit.cover,
-                        //)
-                      ),
+                      //ClipRRect(
+                      // borderRadius: BorderRadius.circular(50),
+                      // child: Image.asset(
+                      //  "perfil.jpg",
+                      //  width: 75,
+                      //  height: 75,
+                      // fit: BoxFit.cover,
+                      // ),
+                      // ),
                       //nome loja
-                      Column(
+                      /* Column(
                         children: [
                           Text(
-                            registerStoreTable
-                                .insert(RegisterStore(name: "", password: "")),
-                            style: TextStyle(
-                                color: Colors.grey.shade700, fontSize: 24),
-                          )
-                        ],
-                      ),
+                                .insert((name: "", password: "")),
+                           style: TextStyle(
+                               color: Colors.grey.shade700, fontSize: 24),
+                         )
+                       ],
+                      ),*/
                       const SizedBox(
                         width: 15,
                       )
