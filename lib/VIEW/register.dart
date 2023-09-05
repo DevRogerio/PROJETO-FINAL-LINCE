@@ -1,6 +1,8 @@
 import 'package:carros_car/CONTROLLER/database.dart';
 
 import 'package:carros_car/MODEL/RegisterStore.dart';
+import 'package:carros_car/VIEW/searchregister.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +17,7 @@ class RegistroState extends ChangeNotifier {
   final _controllercnpj = TextEditingController();
   final _controllerautonomyLevelID = TextEditingController();
   final _controllerpassword = TextEditingController();
+  final _listUser = <RegisterStore>[];
 
   TextEditingController get controllerName => _controllerName;
   //TextEditingController get controllerid => _controllerid;
@@ -22,12 +25,13 @@ class RegistroState extends ChangeNotifier {
   TextEditingController get controllerautonomyLevelID =>
       _controllerautonomyLevelID;
   TextEditingController get controllerpassword => _controllerpassword;
+  List<RegisterStore> get listUser => _listUser;
 
   Future<void> insert() async {
     final registerStore = RegisterStore(
         name: _controllerName.text,
         // id: int.parse(_controllerid.text),
-        cnpj: int.parse(_controllercnpj.text),
+        cnpj: int.tryParse(_controllercnpj.text),
         autonomyLevelID: _controllerautonomyLevelID.text,
         password: _controllerpassword.text);
 
@@ -132,7 +136,7 @@ class Register extends StatelessWidget {
                               }
                               return null;
                             },*/
-                            controller: state._controllerName,
+                            controller: state.controllerName,
                             decoration: InputDecoration(
                               labelText: 'Nome Da Loja',
                               border: OutlineInputBorder(
@@ -217,11 +221,12 @@ class _ActionButton extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               await state.insert();
+              await state.load();
 
-              /*state._controllerName;
-              state._controllerautonomyLevelID;
-              state._controllercnpj;
-              state._controllerpassword;*/
+              /* state.controllerName.text;
+              state.controllerautonomyLevelID;
+              state.controllercnpj;
+              state.controllerpassword.text;*/
             },
             child: const Text('cadastro'),
           )

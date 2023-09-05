@@ -1,15 +1,15 @@
 class RegisterStore {
   final int? id;
   final int? cnpj;
-  final String name;
+  final String? name;
   final String? autonomyLevelID;
-  final String password;
+  final String? password;
 
   RegisterStore({
     this.id,
     this.cnpj,
-    required this.name,
+    this.name,
     this.autonomyLevelID,
-    required this.password,
+    this.password,
   });
 }

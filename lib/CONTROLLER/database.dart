@@ -30,7 +30,7 @@ class RegisterStoreTable {
       $name             TEXT NOT NULL,
       $autonomyLevelID  TEXT NOT NULL,
       $password         TEXT NOT NULL
-    ); 
+    ) 
   ''';
 
   static const String tableName = 'RegisterStore';
