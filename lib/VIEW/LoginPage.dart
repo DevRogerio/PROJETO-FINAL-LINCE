@@ -1,3 +1,4 @@
+import 'package:carros_car/VIEW/Home.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -14,13 +15,17 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 182, 141, 7),
+      //  appBar: BarraSuperior(),
+
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(235, 228, 14, 14),
         title: Center(
-          child: (Text('Anderson Carros')),
+          child: Text(
+            'Anderson Carros',
+            style: TextStyle(color: Colors.red.shade600, fontSize: 30),
+          ),
         ),
       ),
+
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -34,18 +39,19 @@ class LoginPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value!.length < 5) {
-                          return "esse e-mail é curto demais";
-                        } else if (!value.contains('@')) {
-                          return "esse e-mail parece estranho";
+                        if (value!.length < 3) {
+                          return "nome no minimo 3 letras";
                         }
+                        /*else if (!value.contains('@')) {
+                          return "esse nome parece estranho";
+                        }*/
                         return null;
                       },
-                      autovalidateMode: AutovalidateMode.always,
+                      //autovalidateMode: AutovalidateMode.always,
                       controller: loginController,
-                      style: const TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.red),
                       decoration: InputDecoration(
-                        labelText: 'E-mail',
+                        labelText: 'Nome',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(100),
                         ),
@@ -61,9 +67,9 @@ class LoginPage extends StatelessWidget {
                         }
                         return null;
                       },
-                      // autovalidateMode: AutovalidateMode.always,
+                      //autovalidateMode: AutovalidateMode.always,
                       controller: senhaController,
-                      style: const TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.red),
                       decoration: InputDecoration(
                         labelText: 'Senha',
                         border: OutlineInputBorder(
@@ -89,11 +95,16 @@ class LoginPage extends StatelessWidget {
                                       onPressed: () {
                                         if (_formKey.currentState?.validate() ??
                                             false) {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Home()));
                                           /* print(
                                               'login: ${loginController.text} senha:${senhaController.text}');*/
                                         }
                                       },
-                                      child: const Text('Login'),
+                                      child: const Text('Fazer Login'),
                                     ),
                                   ),
                                   Padding(
