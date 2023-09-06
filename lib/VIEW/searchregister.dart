@@ -23,17 +23,30 @@ class search extends StatelessWidget {
             drawer: DrawerMenu(),
             body: ListView.builder(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
-              itemCount: state.load().toString().length,
+              itemCount: state.listUser.length,
               //state.controller.select().toString().length,
               //registerStoreTable.toString().length,
               //state.load().toString().length,
               itemBuilder: (context, index) {
                 // final RegisterStore = state.controllercnpj.value.text.length;
-                final RegisterStoreTable = state.listUser.elementAt(index - 1);
-                return ListTile(
-                  leading: Text(RegisterStoreTable.id.toString()),
-                  title: Text(RegisterStoreTable.name.toString()),
-                  subtitle: Text(RegisterStoreTable.cnpj.toString()),
+                final RegisterStoreTable = state.listUser[index];
+                return Container(
+                  color: Colors.grey.shade900,
+                  padding: EdgeInsets.all(5),
+                  margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  child: ListTile(
+                    leading: Text(RegisterStoreTable.id.toString()),
+                    title: Text(RegisterStoreTable.name.toString()),
+                    subtitle: Text(RegisterStoreTable.cnpj.toString()),
+                    trailing: IconButton(
+                      icon: const FaIcon(
+                        FontAwesomeIcons.userEdit,
+                        color: Colors.red,
+                        size: 32,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ),
                 );
               },
             ),
@@ -43,66 +56,17 @@ class search extends StatelessWidget {
     );
   }
 }
+                
+                  
+                  
+        
 
-/*class _search extends StatelessWidget {
-  const _search({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final state = Provider.of<RegistroState>(context);
 
-    return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context, int index) {
-        final RegisterStore = state.insert(index);
 
-        return Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 8,
-          ),
-          child: Card(
-            child: InkWell(
-              onTap: () {},
-              child: ListTile(
-                trailing: IconButton(
-                    icon: const Icon(Icons.accessibility), onPressed: () {}),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}*/
+               
 
-/* return Container(
-                  color: Colors.grey.shade900,
-                  padding: EdgeInsets.all(20),
-                  margin: EdgeInsets.symmetric(horizontal: 45, vertical: 30),
-                  child: ListTile(
-                    // leading: Text(RegisterStore.length.toString()),
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        //nome loja
-                        Column(
-                          children: [
-                            //Text(RegisterStore..length.toString()),
-                            //Text(RegisterStoreTable.name.length.toString()),
-
-                            //  Text()
-                            // style: TextStyle(
-                            // color: Colors.grey.shade700, fontSize: 24),
-                            //  )
-                          ],
-                        ),
-                        SizedBox(
-                          width: 15,
-                        )
-                      ],
-                    ),
-                    trailing: IconButton(
+/*  IconButton(
                       icon: const FaIcon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.red,
@@ -111,6 +75,4 @@ class search extends StatelessWidget {
                       onPressed: () {
                         //
                       },
-                    ),
-                  ),
-                );*/
+                    )*/

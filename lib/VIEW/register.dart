@@ -1,15 +1,20 @@
 import 'package:carros_car/CONTROLLER/database.dart';
 
 import 'package:carros_car/MODEL/RegisterStore.dart';
-import 'package:carros_car/VIEW/searchregister.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'funcionalidades/AppBar.dart';
+import 'funcionalidades/menu.dart';
 
 class RegistroState extends ChangeNotifier {
   RegistroState() {
     load();
   }
+  String RegisterStoreName = 'nome';
+
+  int? RegisterStorecnpj;
 
   final controller = RegisterController();
   final _controllerName = TextEditingController();
@@ -29,11 +34,11 @@ class RegistroState extends ChangeNotifier {
 
   Future<void> insert() async {
     final registerStore = RegisterStore(
-        name: _controllerName.text,
+        name: controllerName.text,
         // id: int.parse(_controllerid.text),
-        cnpj: int.tryParse(_controllercnpj.text),
-        autonomyLevelID: _controllerautonomyLevelID.text,
-        password: _controllerpassword.text);
+        cnpj: int.parse(controllercnpj.text),
+        autonomyLevelID: controllerautonomyLevelID.text,
+        password: controllerpassword.text);
 
     await controller.insert(registerStore);
     await load();
@@ -48,12 +53,34 @@ class RegistroState extends ChangeNotifier {
 
   Future<void> load() async {
     final list = await controller.select();
-
-    list.clear();
-    list.addAll(list);
+    listUser.clear();
+    listUser.addAll(list);
 
     notifyListeners();
   }
+
+  /* Future<dynamic> getUser(String username) async {
+    final database = await getDatabase();
+    final List<Map<String, dynamic>> result = await database.query(
+      RegisterStoreTable.tableName,
+    );
+
+    if (result.isEmpty) {
+      final item = result.first;
+      RegisterStorecnpj = item[RegisterStoreTable.cnpj];
+      RegisterStoreName = item[RegisterStoreTable.name];
+
+      return RegisterStore(
+        id: item[RegisterStoreTable.id],
+        cnpj: item[RegisterStoreTable.cnpj],
+        name: item[RegisterStoreTable.name],
+        password: item[RegisterStoreTable.password],
+      );
+    }
+
+    notifyListeners();
+    return null;
+  }*/
 }
 
 class Register extends StatelessWidget {
@@ -90,110 +117,115 @@ class Register extends StatelessWidget {
       create: (context) => RegistroState(),
       child: Consumer<RegistroState>(
         builder: (_, state, __) {
-          return Scaffold(
-            backgroundColor: const Color.fromARGB(255, 33, 7, 182),
-            appBar: AppBar(
-              backgroundColor: const Color.fromARGB(235, 228, 14, 14),
-              title: const Center(
-                child: (Text('Cadastre sua Loja')),
-              ),
-            ),
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            /* validator: (value) {
-                              if (value!.length <= 14) {
-                                return "O CNPJ é curto demais";
-                              } else if (!value.contains('')) {
-                                return "Esse CNPJ parece estranho";
-                              }
-                              return null;
-                            },*/
-                            controller: state._controllercnpj,
-                            decoration: InputDecoration(
-                              labelText: 'Documento(CNPJ com 14 digitos)',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
+          return Center(
+            child: Scaffold(
+              appBar: BarraSuperior(),
+              drawer: DrawerMenu(),
+              /*backgroundColor: Color.fromARGB(61, 49, 31, 31),
+              appBar: AppBar(
+                backgroundColor: Color.fromARGB(207, 243, 9, 9),
+                title: Center(
+                  child: (Text('Cadastre sua Loja')),
+                ),
+              ),*/
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              /* validator: (value) {
+                                if (value!.length <= 14) {
+                                  return "O CNPJ é curto demais";
+                                } else if (!value.contains('')) {
+                                  return "Esse CNPJ parece estranho";
+                                }
+                                return null;
+                              },*/
+                              controller: state._controllercnpj,
+                              decoration: InputDecoration(
+                                labelText: 'Documento(CNPJ com 14 digitos)',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            /*validator: (value) {
-                              if (value!.length < 2) {
-                                return "O nome da loja é curto demais";
-                              } else if (!value.contains('')) {
-                                return "nome invalido";
-                              }
-                              return null;
-                            },*/
-                            controller: state.controllerName,
-                            decoration: InputDecoration(
-                              labelText: 'Nome Da Loja',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              /*validator: (value) {
+                                if (value!.length < 2) {
+                                  return "O nome da loja é curto demais";
+                                } else if (!value.contains('')) {
+                                  return "nome invalido";
+                                }
+                                return null;
+                              },*/
+                              controller: state.controllerName,
+                              decoration: InputDecoration(
+                                labelText: 'Nome Da Loja',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: ValueListenableBuilder(
-                            valueListenable: dropValue,
-                            builder: ((context, String value, _) {
-                              return DropdownButtonFormField<String>(
-                                icon: const Icon(Icons.drive_eta),
-                                hint:
-                                    const Text('Escolha o Nivel de Autonomia'),
-                                decoration: InputDecoration(
-                                    label: const Text('Nivel de Autonomia'),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    )),
-                                value: (value.isEmpty) ? null : value,
-                                onChanged: (escolha) =>
-                                    dropValue.value = escolha.toString(),
-                                items: dropOpcoes
-                                    .map(
-                                      (op) => DropdownMenuItem(
-                                        value: op,
-                                        child: Text(op),
-                                      ),
-                                    )
-                                    .toList(),
-                              );
-                            }),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            /*validator: (value) {
-                              if (value!.length < 5) {
-                                return "Senha curta demais";
-                              } else if (!value.contains('')) {
-                                return "Senha deve conter no minimo 5 caracteres";
-                              }
-                              return null;
-                            },*/
-                            controller: state._controllerpassword,
-                            decoration: InputDecoration(
-                              labelText: 'Senha',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100)),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ValueListenableBuilder(
+                              valueListenable: dropValue,
+                              builder: ((context, String value, _) {
+                                return DropdownButtonFormField<String>(
+                                  icon: const Icon(Icons.drive_eta),
+                                  hint: const Text(
+                                      'Escolha o Nivel de Autonomia'),
+                                  decoration: InputDecoration(
+                                      label: const Text('Nivel de Autonomia'),
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                      )),
+                                  value: (value.isEmpty) ? null : value,
+                                  onChanged: (escolha) =>
+                                      dropValue.value = escolha.toString(),
+                                  items: dropOpcoes
+                                      .map(
+                                        (op) => DropdownMenuItem(
+                                          value: op,
+                                          child: Text(op),
+                                        ),
+                                      )
+                                      .toList(),
+                                );
+                              }),
                             ),
                           ),
-                        ),
-                        const _ActionButton(),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              /*validator: (value) {
+                                if (value!.length < 5) {
+                                  return "Senha curta demais";
+                                } else if (!value.contains('')) {
+                                  return "Senha deve conter no minimo 5 caracteres";
+                                }
+                                return null;
+                              },*/
+                              controller: state._controllerpassword,
+                              decoration: InputDecoration(
+                                labelText: 'Senha',
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
+                            ),
+                          ),
+                          const _ActionButton(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -221,7 +253,7 @@ class _ActionButton extends StatelessWidget {
           ElevatedButton(
             onPressed: () async {
               await state.insert();
-              await state.load();
+              //await state.load();
 
               /* state.controllerName.text;
               state.controllerautonomyLevelID;
