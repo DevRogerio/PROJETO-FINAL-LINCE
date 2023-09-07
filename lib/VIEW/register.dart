@@ -51,6 +51,13 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> delete(RegisterStore registerStore) async {
+    await controller.delete(registerStore);
+    await load();
+
+    notifyListeners();
+  }
+
   Future<void> load() async {
     final list = await controller.select();
     listUser.clear();

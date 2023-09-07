@@ -38,13 +38,29 @@ class search extends StatelessWidget {
                     leading: Text(RegisterStoreTable.id.toString()),
                     title: Text(RegisterStoreTable.name.toString()),
                     subtitle: Text(RegisterStoreTable.cnpj.toString()),
-                    trailing: IconButton(
-                      icon: const FaIcon(
-                        FontAwesomeIcons.userEdit,
-                        color: Colors.red,
-                        size: 32,
+                    trailing: IntrinsicWidth(
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () async {
+                              //
+                            },
+                            icon: const Icon(
+                              Icons.edit,
+                              size: 20,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              state.delete(RegisterStoreTable);
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              size: 20,
+                            ),
+                          ),
+                        ],
                       ),
-                      onPressed: () {},
                     ),
                   ),
                 );
@@ -56,23 +72,3 @@ class search extends StatelessWidget {
     );
   }
 }
-                
-                  
-                  
-        
-
-
-
-
-               
-
-/*  IconButton(
-                      icon: const FaIcon(
-                        FontAwesomeIcons.chevronRight,
-                        color: Colors.red,
-                        size: 32,
-                      ),
-                      onPressed: () {
-                        //
-                      },
-                    )*/

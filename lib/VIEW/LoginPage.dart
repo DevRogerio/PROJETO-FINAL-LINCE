@@ -28,7 +28,7 @@ class LoginPage extends StatelessWidget {
 
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(30),
           child: SingleChildScrollView(
             child: Form(
               //autovalidateMode: AutovalidateMode.always,
@@ -79,53 +79,56 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(50.0),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        if (_formKey.currentState?.validate() ??
-                                            false) {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      Home()));
-                                          /* print(
-                                              'login: ${loginController.text} senha:${senhaController.text}');*/
-                                        }
-                                      },
-                                      child: const Text('Fazer Login'),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(30.0),
+                      child: Center(
+                        child: Column(
+                          children: [
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          if (_formKey.currentState
+                                                  ?.validate() ??
+                                              false) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const Home()));
+                                            /* print(
+                                                  'login: ${loginController.text} senha:${senhaController.text}');*/
+                                          }
+                                        },
+                                        child: const Text('Fazer Login'),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text('Cadastrar'),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text('Cadastrar'),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text('Login ADM'),
+                                    Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: const Text('Login ADM'),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

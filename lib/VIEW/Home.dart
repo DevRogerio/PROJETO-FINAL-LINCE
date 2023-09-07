@@ -1,4 +1,3 @@
-import 'package:carros_car/VIEW/LoginPage.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
 import 'package:carros_car/VIEW/searchregister.dart';

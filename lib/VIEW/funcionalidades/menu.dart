@@ -39,7 +39,9 @@ class DrawerMenu extends StatelessWidget {
           new ListTile(
             title: mostrarTitulo('Home'),
             subtitle: const Text('Pagina Inicial'),
+            // ignore: deprecated_member_use
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+            // ignore: deprecated_member_use
             leading: const FaIcon(FontAwesomeIcons.home),
             iconColor: Colors.purple.shade600,
 
@@ -58,6 +60,7 @@ class DrawerMenu extends StatelessWidget {
           new ListTile(
             title: mostrarTitulo('Lojas'),
             subtitle: const Text('Cadastrar Lojas Parceiras'),
+            // ignore: deprecated_member_use
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
             leading: const FaIcon(FontAwesomeIcons.listCheck),
             iconColor: Colors.red.shade900,
@@ -77,6 +80,7 @@ class DrawerMenu extends StatelessWidget {
           new ListTile(
             title: mostrarTitulo('Veiculos'),
             subtitle: const Text('Cadastrar Veiculos'),
+            // ignore: deprecated_member_use
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
             leading: const FaIcon(FontAwesomeIcons.car),
             iconColor: Colors.blue.shade900,
@@ -96,6 +100,7 @@ class DrawerMenu extends StatelessWidget {
           new ListTile(
             title: mostrarTitulo('Vendas'),
             subtitle: const Text('Registro de vendas'),
+            // ignore: deprecated_member_use
             trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
             leading: const FaIcon(FontAwesomeIcons.dollarSign),
             iconColor: Colors.green.shade900,
