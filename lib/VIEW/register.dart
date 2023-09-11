@@ -16,6 +16,8 @@ class RegistroState extends ChangeNotifier {
 
   int? RegisterStorecnpj;
 
+  RegisterStore? _registeratual;
+
   final controller = RegisterController();
   final _controllerName = TextEditingController();
   //final _controllerid = TextEditingController();
@@ -30,6 +32,7 @@ class RegistroState extends ChangeNotifier {
   TextEditingController get controllerautonomyLevelID =>
       _controllerautonomyLevelID;
   TextEditingController get controllerpassword => _controllerpassword;
+  RegisterStore? get registeratual => _registeratual;
   List<RegisterStore> get listUser => _listUser;
 
   Future<void> insert() async {
@@ -66,28 +69,28 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
-  /* Future<dynamic> getUser(String username) async {
-    final database = await getDatabase();
-    final List<Map<String, dynamic>> result = await database.query(
-      RegisterStoreTable.tableName,
-    );
+  void editSearch(RegisterStore registerStore) {
+    _controllerName.text = registerStore.name ?? '';
+    //_controllercnpj.text = registerStore.cnpj.toString();
 
-    if (result.isEmpty) {
-      final item = result.first;
-      RegisterStorecnpj = item[RegisterStoreTable.cnpj];
-      RegisterStoreName = item[RegisterStoreTable.name];
+    _registeratual = RegisterStore(
+        name: registerStore.name,
+        cnpj: registerStore.cnpj,
+        id: registerStore.id);
+  }
 
-      return RegisterStore(
-        id: item[RegisterStoreTable.id],
-        cnpj: item[RegisterStoreTable.cnpj],
-        name: item[RegisterStoreTable.name],
-        password: item[RegisterStoreTable.password],
-      );
-    }
+  Future<void> updateRegister() async {
+    final registroEditado = RegisterStore(
+        id: _registeratual?.id,
+        name: controllerName.text,
+        cnpj: controllercnpj.toString().length);
+    await controller.update(registroEditado);
+    _registeratual = null;
+    _controllerName.clear();
+    _controllercnpj.clear();
 
-    notifyListeners();
-    return null;
-  }*/
+    await load();
+  }
 }
 
 class Register extends StatelessWidget {

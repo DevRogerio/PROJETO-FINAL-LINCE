@@ -93,6 +93,8 @@ class LoginPage extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(10.0),
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.red.shade900),
                                         onPressed: () {
                                           if (_formKey.currentState
                                                   ?.validate() ??
@@ -112,6 +114,8 @@ class LoginPage extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(20.0),
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.red.shade900),
                                         onPressed: () {},
                                         child: const Text('Cadastrar'),
                                       ),
@@ -119,6 +123,8 @@ class LoginPage extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.all(20.0),
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: Colors.red.shade900),
                                         onPressed: () {},
                                         child: const Text('Login ADM'),
                                       ),

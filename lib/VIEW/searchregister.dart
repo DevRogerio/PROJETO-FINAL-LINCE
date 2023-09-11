@@ -1,5 +1,6 @@
 import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:carros_car/CONTROLLER/database.dart';
+import 'package:carros_car/VIEW/editperfilsearch.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
 import 'package:carros_car/VIEW/register.dart';
@@ -33,7 +34,7 @@ class search extends StatelessWidget {
                 return Container(
                   color: Colors.red.shade900,
                   padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+                  margin: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                   child: ListTile(
                     leading: Text(RegisterStoreTable.id.toString()),
                     title: Text(RegisterStoreTable.name.toString()),
@@ -41,7 +42,7 @@ class search extends StatelessWidget {
                     trailing: IntrinsicWidth(
                       child: Row(
                         children: [
-                          IconButton(
+                          /* IconButton(
                             onPressed: () async {
                               //
                             },
@@ -49,14 +50,28 @@ class search extends StatelessWidget {
                               Icons.edit,
                               size: 20,
                             ),
-                          ),
+                          ),*/
                           IconButton(
                             onPressed: () async {
                               state.delete(RegisterStoreTable);
                             },
                             icon: const Icon(
                               Icons.delete,
-                              size: 20,
+                              size: 25,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => editperfilsearch()),
+                              );
+                            },
+                            icon: const Icon(
+                              FontAwesomeIcons.chevronCircleRight,
+                              color: Colors.black,
+                              size: 35,
                             ),
                           ),
                         ],
