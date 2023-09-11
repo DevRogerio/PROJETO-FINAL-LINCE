@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class BarraSuperior extends AppBar {
   BarraSuperior()
       : super(
+            backgroundColor: Colors.black,
             automaticallyImplyLeading:
                 false, //esconder o icone original do menu
             centerTitle: true,

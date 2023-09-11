@@ -24,6 +24,7 @@ class Home extends StatelessWidget {
               height: 25,
             ),
             Container(
+              // color: Colors.blue.shade800,
               alignment: Alignment.center,
               padding: const EdgeInsets.all(25),
               child: Column(

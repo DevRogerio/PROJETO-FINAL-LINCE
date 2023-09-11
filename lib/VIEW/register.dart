@@ -258,6 +258,7 @@ class _ActionButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
+            style: ElevatedButton.styleFrom(primary: Colors.red.shade900),
             onPressed: () async {
               await state.insert();
               //await state.load();

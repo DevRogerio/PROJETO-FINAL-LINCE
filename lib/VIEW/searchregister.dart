@@ -31,7 +31,7 @@ class search extends StatelessWidget {
                 // final RegisterStore = state.controllercnpj.value.text.length;
                 final RegisterStoreTable = state.listUser[index];
                 return Container(
-                  color: Colors.grey.shade900,
+                  color: Colors.red.shade900,
                   padding: EdgeInsets.all(5),
                   margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                   child: ListTile(

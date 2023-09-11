@@ -5,6 +5,8 @@ ThemeData style() {
   return base.copyWith(
       primaryColor: Colors.black,
       colorScheme: const ColorScheme.dark(),
+      /*  textSelectionTheme:
+          TextSelectionThemeData(cursorColor: Colors.red.shade900),*/
 
       //Botao
       floatingActionButtonTheme:
