@@ -98,6 +98,19 @@ class RegisterController {
     }
     return list;
   }
+
+  Future<void> update(RegisterStore registerStore) async {
+    final database = await getDatabase();
+
+    var map = RegisterStoreTable.toMap(registerStore);
+
+    await database.update(
+      RegisterStoreTable.tableName,
+      map,
+      where: '${RegisterStoreTable.id} = ?',
+      whereArgs: [registerStore.id],
+    );
+  }
 }
 
 class RegistrationTable {
