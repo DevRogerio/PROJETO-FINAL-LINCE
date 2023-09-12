@@ -16,14 +16,13 @@ class RegistroState extends ChangeNotifier {
 
   int? RegisterStorecnpj;
 
-  RegisterStore? _registeratual;
-
   final controller = RegisterController();
   final _controllerName = TextEditingController();
   //final _controllerid = TextEditingController();
   final _controllercnpj = TextEditingController();
   final _controllerautonomyLevelID = TextEditingController();
   final _controllerpassword = TextEditingController();
+  RegisterStore? _registeratual;
   final _listUser = <RegisterStore>[];
 
   TextEditingController get controllerName => _controllerName;
@@ -70,22 +69,32 @@ class RegistroState extends ChangeNotifier {
   }
 
   void editSearch(RegisterStore registerStore) {
-    _controllerName.text = registerStore.name ?? '';
-    //_controllercnpj.text = registerStore.cnpj.toString();
+    _controllerName.text = registerStore.name;
+    _controllercnpj.text = registerStore.cnpj.toString();
 
     _registeratual = RegisterStore(
         name: registerStore.name,
         cnpj: registerStore.cnpj,
+        password: registerStore.password,
+        autonomyLevelID: registerStore.autonomyLevelID,
         id: registerStore.id);
+    //print(_registeratual?.id);
+    //print(_registeratual?.cnpj);
+    //print(_registeratual?.name);
   }
 
   Future<void> updateRegister() async {
     final registroEditado = RegisterStore(
         id: _registeratual?.id,
         name: controllerName.text,
+        password: controllerpassword.text,
+        autonomyLevelID: controllerautonomyLevelID.text,
         cnpj: controllercnpj.toString().length);
+
     await controller.update(registroEditado);
     _registeratual = null;
+    _controllerpassword.clear();
+    _controllerautonomyLevelID.clear();
     _controllerName.clear();
     _controllercnpj.clear();
 

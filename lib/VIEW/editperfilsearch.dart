@@ -2,9 +2,12 @@ import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
 import 'package:carros_car/VIEW/register.dart';
+import 'package:carros_car/VIEW/searchregister.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
+import '../CONTROLLER/database.dart';
 
 // ignore: camel_case_types
 class editperfilsearch extends StatelessWidget {
@@ -50,14 +53,19 @@ class editperfilsearch extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             primary: Colors.red.shade900),
                         onPressed: () async {
-                          //await state.updateRegister();
+                          // await state.updateRegister();
                           //await state.load();
                           //  await state.insert();
+
                           if (state.registeratual != null) {
                             await state.updateRegister();
                           } else {
                             await state.insert();
                           }
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => search()),
+                          );
                         },
                         child: Text('atualizar'),
                       )
