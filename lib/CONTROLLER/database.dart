@@ -104,8 +104,12 @@ class RegisterController {
 
     var map = RegisterStoreTable.toMap(registerStore);
 
-    await database.update(RegisterStoreTable.tableName, map,
-        where: '${RegisterStoreTable.id} = ?', whereArgs: [registerStore.id]);
+    await database.update(
+      RegisterStoreTable.tableName,
+      map,
+      where: '${RegisterStoreTable.id} = ?',
+      whereArgs: [registerStore.id],
+    );
   }
 }
 

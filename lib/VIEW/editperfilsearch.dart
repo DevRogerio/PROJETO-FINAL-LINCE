@@ -14,78 +14,65 @@ class editperfilsearch extends StatelessWidget {
   const editperfilsearch({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => RegistroState(),
-      child: Consumer<RegistroState>(
-        builder: (_, state, __) {
-          return Scaffold(
-            appBar: BarraSuperior(),
-            drawer: DrawerMenu(),
-            body: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: state.controllerName,
-                        decoration: const InputDecoration(
-                          hintText: 'Alterar nome',
-                        ),
-                        validator: (value) {
-                          if ((value ?? '').isEmpty) {
-                            return 'não pode estar vazio';
-                          }
-                          return null;
-                        },
+    return Consumer<RegistroState>(
+      builder: (_, state, __) {
+        return Scaffold(
+          appBar: BarraSuperior(),
+          drawer: DrawerMenu(),
+          body: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: state.controllerName,
+                      decoration: const InputDecoration(
+                        hintText: 'Alterar nome',
                       ),
-                      TextFormField(
-                        controller: state.controllercnpj,
-                        decoration: const InputDecoration(
-                          hintText: 'Alterar CNPJ',
-                        ),
+                      validator: (value) {
+                        if ((value ?? '').isEmpty) {
+                          return 'não pode estar vazio';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      controller: state.controllercnpj,
+                      decoration: const InputDecoration(
+                        hintText: 'Alterar CNPJ',
                       ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.red.shade900),
-                        onPressed: () async {
-                          print(state.registeratual);
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.red.shade900),
+                      onPressed: () async {
+                        //print(state.registeratual);
 
-                          //state.editSearch;
-                          //await state.updateRegister();
-                          //await state.load();
-                          //await state.insert();
-
-                          if (state.registeratual != null) {
-                            await state.updateRegister();
-                          } else {
-                            await state.insert();
-                            state.editSearch;
-                          }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => search()),
-                          );
-                        },
-                        child: Text('atualizar'),
-                      )
-                    ],
-                  ),
+                        if (state.registeratual != null) {
+                          state.editSearch;
+                          await state.update();
+                        } else {
+                          await state.insert();
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => search()),
+                        );
+                      },
+                      child: Text('atualizar'),
+                    )
+                  ],
                 ),
               ),
             ),
-
-            /* floatingActionButton: FloatingActionButton(
-        child: const Text('atualizar'),
-        onPressed: () {},
-      ),*/
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

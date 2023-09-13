@@ -36,11 +36,12 @@ class RegistroState extends ChangeNotifier {
 
   Future<void> insert() async {
     final registerStore = RegisterStore(
-        name: controllerName.text,
-        // id: int.parse(_controllerid.text),
-        cnpj: int.parse(controllercnpj.text),
-        autonomyLevelID: controllerautonomyLevelID.text,
-        password: controllerpassword.text);
+      name: controllerName.text,
+      // id: int.parse(_controllerid.text),
+      cnpj: int.parse(controllercnpj.text),
+      autonomyLevelID: controllerautonomyLevelID.text,
+      password: controllerpassword.text,
+    );
 
     await controller.insert(registerStore);
     await load();
@@ -69,8 +70,8 @@ class RegistroState extends ChangeNotifier {
   }
 
   void editSearch(RegisterStore registerStore) {
-    _controllerName.text = registerStore.name ?? '';
-    _controllercnpj.text = registerStore.cnpj.toString() ?? '';
+    _controllerName.text = registerStore.name;
+    _controllercnpj.text = registerStore.cnpj.toString();
 
     _registeratual = RegisterStore(
         name: registerStore.name,
@@ -78,18 +79,18 @@ class RegistroState extends ChangeNotifier {
         password: registerStore.password,
         autonomyLevelID: registerStore.autonomyLevelID,
         id: registerStore.id);
-    //print(_registeratual?.id);
-    //print(_registeratual?.cnpj);
-    //print(_registeratual?.name);
+    print(_registeratual?.id);
+    print(_registeratual?.cnpj);
+    print(_registeratual?.name);
   }
 
-  Future<void> updateRegister() async {
+  Future<void> update() async {
     final registroEditado = RegisterStore(
         id: _registeratual?.id,
         name: controllerName.text,
         password: controllerpassword.text,
         autonomyLevelID: controllerautonomyLevelID.text,
-        cnpj: controllercnpj.toString().length);
+        cnpj: /* _registeratual!.cnpj);*/ int.parse(controllercnpj.text));
 
     await controller.update(registroEditado);
     _registeratual = null;

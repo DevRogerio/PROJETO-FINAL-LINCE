@@ -61,13 +61,19 @@ class search extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {
+                            onPressed: () async {
                               // state.updateRegister();
+
                               state.editSearch(RegisterStoreTable);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => editperfilsearch()),
+                                  builder: (context) =>
+                                      ChangeNotifierProvider.value(
+                                    value: state,
+                                    child: editperfilsearch(),
+                                  ),
+                                ),
                               );
                             },
                             icon: const Icon(
