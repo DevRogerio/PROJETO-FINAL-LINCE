@@ -62,8 +62,8 @@ class search extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              //state.updateRegister();
-                              // state.editSearch(RegisterStoreTable);
+                              // state.updateRegister();
+                              state.editSearch(RegisterStoreTable);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

@@ -53,14 +53,18 @@ class editperfilsearch extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                             primary: Colors.red.shade900),
                         onPressed: () async {
-                          // await state.updateRegister();
+                          print(state.registeratual);
+
+                          //state.editSearch;
+                          //await state.updateRegister();
                           //await state.load();
-                          //  await state.insert();
+                          //await state.insert();
 
                           if (state.registeratual != null) {
                             await state.updateRegister();
                           } else {
                             await state.insert();
+                            state.editSearch;
                           }
                           Navigator.push(
                             context,

@@ -69,8 +69,8 @@ class RegistroState extends ChangeNotifier {
   }
 
   void editSearch(RegisterStore registerStore) {
-    _controllerName.text = registerStore.name;
-    _controllercnpj.text = registerStore.cnpj.toString();
+    _controllerName.text = registerStore.name ?? '';
+    _controllercnpj.text = registerStore.cnpj.toString() ?? '';
 
     _registeratual = RegisterStore(
         name: registerStore.name,
