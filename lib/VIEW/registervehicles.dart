@@ -7,8 +7,11 @@ import 'funcionalidades/AppBar.dart';
 import 'funcionalidades/menu.dart';
 
 class RegistroStateVeiculos extends ChangeNotifier {
-  String? registrationVehiclespricePaid;
-  int? registrationVehiclespurchasedWhen;
+  RegistroStateVeiculos() {
+    load();
+  }
+  //String? registrationVehiclespricePaid;
+  //String? registrationVehiclespurchasedWhen;
   final controller = RegistrationVehiclesController();
   final _controllermodel = TextEditingController();
   final _controllerplate = TextEditingController();
@@ -19,6 +22,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
   final _controllerdealershipId = TextEditingController();
+  final _listvehicles = <RegistrationVehicles>[];
 
   TextEditingController get controllermodel => _controllermodel;
   TextEditingController get controllerplate => _controllerplate;
@@ -29,20 +33,49 @@ class RegistroStateVeiculos extends ChangeNotifier {
   TextEditingController get controllerpricePaid => _controllerpricePaid;
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
   TextEditingController get controllerdealershipId => _controllerdealershipId;
-
-  get key => null;
+  List<RegistrationVehicles> get listvehicles => _listvehicles;
 
   Future<void> insert() async {
     final registrationVehicles = RegistrationVehicles(
-        model: controllermodel.text,
-        plate: controllerplate.text,
-        brand: controllerbrand.text,
-        builtYear: int.parse(controllerbuiltYear.text),
-        vehicleYear: int.parse(controllervehicleYear.text),
-        vehiclephoto: controllervehiclephoto.text,
-        // pricePaid: controllerpricePaid.text,
-        // purchasedWhen: int.parse(controllerpurchasedWhen.text),
-        dealershipId: int.parse(controllerdealershipId.text));
+      model: controllermodel.text,
+      plate: controllerplate.text,
+      brand: controllerbrand.text,
+      builtYear: int.parse(controllerbuiltYear.text),
+      vehicleYear: int.parse(controllervehicleYear.text),
+      vehiclephoto: controllervehiclephoto.text,
+      pricePaid: double.parse(controllerpricePaid as String),
+      purchasedWhen: DateTime(controllerpurchasedWhen as int),
+      dealershipId: int.parse(controllerdealershipId.text),
+    );
+
+    await controller.insert(registrationVehicles);
+    await load();
+
+    controllermodel.clear();
+    controllerplate.clear();
+    controllerbrand.clear();
+    controllerbuiltYear.clear();
+    controllervehiclephoto.clear();
+    controllerpricePaid.clear();
+    controllerpurchasedWhen.clear();
+    controllerdealershipId.clear();
+
+    notifyListeners();
+  }
+
+  Future<void> delete(RegistrationVehicles registrationVehicles) async {
+    await controller.delete(registrationVehicles);
+    await load();
+
+    notifyListeners();
+  }
+
+  Future<void> load() async {
+    final list = await controller.select();
+    listvehicles.clear();
+    listvehicles.addAll(list);
+
+    notifyListeners();
   }
 }
 
@@ -70,7 +103,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
-                              //controller: state.
+                              controller: state._controllermodel,
                               decoration: InputDecoration(
                                 labelText: 'Modelo',
                                 border: OutlineInputBorder(
@@ -81,7 +114,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
-                              //  controller: state.controllerName,
+                              controller: state._controllerplate,
                               decoration: InputDecoration(
                                 labelText: 'N*Placa',
                                 border: OutlineInputBorder(
@@ -92,6 +125,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state._controllerbrand,
                               decoration: InputDecoration(
                                 labelText: 'marca',
                                 border: OutlineInputBorder(
@@ -102,6 +136,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state._controllerbuiltYear,
                               decoration: InputDecoration(
                                 labelText: 'ano de fabricação',
                                 border: OutlineInputBorder(
@@ -112,6 +147,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state._controllervehicleYear,
                               decoration: InputDecoration(
                                 labelText: 'ano do veículo',
                                 border: OutlineInputBorder(
@@ -122,6 +158,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state._controllervehiclephoto,
                               decoration: InputDecoration(
                                 labelText: 'foto do veículo',
                                 border: OutlineInputBorder(
@@ -132,6 +169,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state.controllerpricePaid,
                               decoration: InputDecoration(
                                 labelText: 'preço pago pela loja',
                                 border: OutlineInputBorder(
@@ -142,6 +180,7 @@ class RegisterVehicles extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
+                              controller: state.controllerpurchasedWhen,
                               decoration: InputDecoration(
                                 labelText: 'data da compra',
                                 border: OutlineInputBorder(
@@ -180,7 +219,7 @@ class _ActionButton extends StatelessWidget {
             style:
                 ElevatedButton.styleFrom(backgroundColor: Colors.red.shade900),
             onPressed: () async {
-              //await state.insert();
+              await state.insert();
             },
             child: const Text('cadastro'),
           )

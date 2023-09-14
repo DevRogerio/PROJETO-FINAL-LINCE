@@ -1,13 +1,13 @@
 //import 'package:carros_car/MODEL/RegisterStore.dart';
 //import 'package:carros_car/CONTROLLER/database.dart';
-import 'package:carros_car/VIEW/editperfilsearch.dart';
-import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
-import 'package:carros_car/VIEW/funcionalidades/menu.dart';
-import 'package:carros_car/VIEW/register.dart';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
+import 'editperfilsearch.dart';
+import 'funcionalidades/AppBar.dart';
+import 'funcionalidades/menu.dart';
+import 'register.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});

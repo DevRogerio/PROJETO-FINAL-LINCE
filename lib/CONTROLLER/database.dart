@@ -124,9 +124,9 @@ class RegistrationTable {
       $vehicleYear    INTEGER NOT NULL,
       $photo          TEXT NOT NULL,
       $pricePaid      REAL NOT NULL,
-      $purchasedWhen  INTEGER NOT NULL,
+      $purchasedWhen  TEXT NOT NULL,
       $dealershipId   INTEGER NOT NULL
-    );
+    )
   ''';
 
   static const String tableName = 'registrationVehicles';
@@ -167,6 +167,57 @@ class RegistrationVehiclesController {
     await database.insert(RegistrationTable.tableName, map);
 
     return;
+  }
+
+  Future<void> delete(RegistrationVehicles registrationVehicles) async {
+    final database = await getDatabase();
+
+    database.delete(
+      RegistrationTable.tableName,
+      where: '${RegistrationTable.id} = ?',
+      whereArgs: [registrationVehicles.id],
+    );
+  }
+
+  Future<List<RegistrationVehicles>> select() async {
+    final database = await getDatabase();
+
+    final List<Map<String, dynamic>> result = await database.query(
+      RegistrationTable.tableName,
+    );
+
+    var list = <RegistrationVehicles>[];
+
+    for (final item in result) {
+      //print(item);
+      list.add(
+        RegistrationVehicles(
+          id: item[RegistrationTable.id],
+          model: item[RegistrationTable.model],
+          brand: item[RegistrationTable.brand],
+          builtYear: item[RegistrationTable.builtYear],
+          purchasedWhen: item[RegistrationTable.purchasedWhen],
+          pricePaid: item[RegistrationTable.pricePaid],
+          plate: item[RegistrationTable.plate],
+          vehiclephoto: item[RegistrationTable.photo],
+          dealershipId: item[RegistrationTable.dealershipId],
+        ),
+      );
+    }
+    return list;
+  }
+
+  Future<void> update(RegistrationVehicles registrationVehicles) async {
+    final database = await getDatabase();
+
+    var map = RegistrationTable.toMap(registrationVehicles);
+
+    await database.update(
+      RegisterStoreTable.tableName,
+      map,
+      where: '${RegisterStoreTable.id} = ?',
+      whereArgs: [registrationVehicles.id],
+    );
   }
 }
 

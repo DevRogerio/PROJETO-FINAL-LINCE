@@ -1,9 +1,9 @@
-import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
-import 'package:carros_car/VIEW/funcionalidades/menu.dart';
-import 'package:carros_car/VIEW/registervehicles.dart';
-import 'package:carros_car/VIEW/searchregister.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'funcionalidades/AppBar.dart';
+import 'funcionalidades/menu.dart';
+import 'searchregister.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
