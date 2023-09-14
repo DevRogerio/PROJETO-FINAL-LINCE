@@ -1,5 +1,5 @@
-import 'package:carros_car/MODEL/RegisterStore.dart';
-import 'package:carros_car/CONTROLLER/database.dart';
+//import 'package:carros_car/MODEL/RegisterStore.dart';
+//import 'package:carros_car/CONTROLLER/database.dart';
 import 'package:carros_car/VIEW/editperfilsearch.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
@@ -9,8 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class search extends StatelessWidget {
-  search({super.key});
+class Search extends StatelessWidget {
+  const Search({super.key});
   // final registerStoreTable = RegisterStore;
 
   @override
@@ -21,7 +21,7 @@ class search extends StatelessWidget {
         builder: (_, state, __) {
           return Scaffold(
             appBar: BarraSuperior(),
-            drawer: DrawerMenu(),
+            drawer: const DrawerMenu(),
             body: ListView.builder(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
               itemCount: state.listUser.length,
@@ -33,8 +33,9 @@ class search extends StatelessWidget {
                 final RegisterStoreTable = state.listUser[index];
                 return Container(
                   color: Colors.red.shade900,
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                  padding: const EdgeInsets.all(5),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                   child: ListTile(
                     leading: Text(RegisterStoreTable.id.toString()),
                     title: Text(RegisterStoreTable.name.toString()),
@@ -71,12 +72,13 @@ class search extends StatelessWidget {
                                   builder: (context) =>
                                       ChangeNotifierProvider.value(
                                     value: state,
-                                    child: editperfilsearch(),
+                                    child: const editperfilsearch(),
                                   ),
                                 ),
                               );
                             },
                             icon: const Icon(
+                              // ignore: deprecated_member_use
                               FontAwesomeIcons.chevronCircleRight,
                               color: Colors.black,
                               size: 35,

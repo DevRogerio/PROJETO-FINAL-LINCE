@@ -1,13 +1,13 @@
-import 'package:carros_car/MODEL/RegisterStore.dart';
+//import 'package:carros_car/MODEL/RegisterStore.dart';
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
 import 'package:carros_car/VIEW/register.dart';
 import 'package:carros_car/VIEW/searchregister.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../CONTROLLER/database.dart';
+//import '../CONTROLLER/database.dart';
 
 // ignore: camel_case_types
 class editperfilsearch extends StatelessWidget {
@@ -18,7 +18,7 @@ class editperfilsearch extends StatelessWidget {
       builder: (_, state, __) {
         return Scaffold(
           appBar: BarraSuperior(),
-          drawer: DrawerMenu(),
+          drawer: const DrawerMenu(),
           body: Padding(
             padding: const EdgeInsets.all(8),
             child: Card(
@@ -44,12 +44,12 @@ class editperfilsearch extends StatelessWidget {
                         hintText: 'Alterar CNPJ',
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          primary: Colors.red.shade900),
+                          backgroundColor: Colors.red.shade900),
                       onPressed: () async {
                         //print(state.registeratual);
 
@@ -61,10 +61,11 @@ class editperfilsearch extends StatelessWidget {
                         }
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => search()),
+                          MaterialPageRoute(
+                              builder: (context) => const Search()),
                         );
                       },
-                      child: Text('atualizar'),
+                      child: const Text('atualizar'),
                     )
                   ],
                 ),

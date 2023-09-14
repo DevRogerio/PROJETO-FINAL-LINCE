@@ -124,7 +124,7 @@ class RegistrationTable {
       $vehicleYear    INTEGER NOT NULL,
       $photo          TEXT NOT NULL,
       $pricePaid      REAL NOT NULL,
-      $purchasedWhen  TEXT NOT NULL,
+      $purchasedWhen  INTEGER NOT NULL,
       $dealershipId   INTEGER NOT NULL
     );
   ''';

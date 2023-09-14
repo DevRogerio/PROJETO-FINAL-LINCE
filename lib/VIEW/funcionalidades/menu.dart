@@ -3,6 +3,7 @@
 import 'package:carros_car/VIEW/Home.dart';
 
 import 'package:carros_car/VIEW/register.dart';
+import 'package:carros_car/VIEW/registervehicles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,6 +11,8 @@ class DrawerMenu extends StatelessWidget {
   //dados que vem do banco de dados
   final String usuario = 'Rogerio';
   final String email = 'rogeriocunhago@gmail.com';
+
+  const DrawerMenu({super.key});
   //final String fotoPerfil = "img/perfil.jpg";
 
   Text mostrarTitulo(String texto) {
@@ -90,7 +93,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Home(),
+                  builder: (context) => RegisterVehicles(),
                 ),
               );
             },

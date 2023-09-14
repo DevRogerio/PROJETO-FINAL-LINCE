@@ -1,5 +1,6 @@
 import 'package:carros_car/VIEW/funcionalidades/AppBar.dart';
 import 'package:carros_car/VIEW/funcionalidades/menu.dart';
+import 'package:carros_car/VIEW/registervehicles.dart';
 import 'package:carros_car/VIEW/searchregister.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +15,7 @@ class Home extends StatelessWidget {
       appBar: BarraSuperior(),
 
       // Menu
-      drawer: DrawerMenu(),
+      drawer: const DrawerMenu(),
 
       //Corpo do app
       body: SingleChildScrollView(
@@ -42,6 +43,16 @@ class Home extends StatelessWidget {
                   Builder(
                     builder: (BuildContext context) {
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            // ignore: deprecated_member_use
+                            primary: Colors.red.shade900),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Search()),
+                          );
+                        },
                         child: Container(
                           width: 300,
                           padding: const EdgeInsets.all(16),
@@ -62,15 +73,6 @@ class Home extends StatelessWidget {
                             ],
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                            // ignore: deprecated_member_use
-                            primary: Colors.red.shade900),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => search()),
-                          );
-                        },
                       );
                     },
                   ),
@@ -80,6 +82,16 @@ class Home extends StatelessWidget {
                   Builder(
                     builder: (BuildContext context) {
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            // ignore: deprecated_member_use
+                            primary: Colors.blue.shade900),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()),
+                          );
+                        },
                         child: Container(
                           width: 300,
                           padding: const EdgeInsets.all(16),
@@ -100,16 +112,6 @@ class Home extends StatelessWidget {
                             ],
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                            // ignore: deprecated_member_use
-                            primary: Colors.blue.shade900),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()),
-                          );
-                        },
                       );
                     },
                   ),
@@ -120,6 +122,16 @@ class Home extends StatelessWidget {
                   Builder(
                     builder: (BuildContext context) {
                       return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            // ignore: deprecated_member_use
+                            primary: Colors.green.shade900),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()),
+                          );
+                        },
                         child: Container(
                           width: 300,
                           padding: const EdgeInsets.all(16),
@@ -140,16 +152,6 @@ class Home extends StatelessWidget {
                             ],
                           ),
                         ),
-                        style: ElevatedButton.styleFrom(
-                            // ignore: deprecated_member_use
-                            primary: Colors.green.shade900),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home()),
-                          );
-                        },
                       );
                     },
                   ),

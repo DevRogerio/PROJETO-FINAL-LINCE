@@ -12,9 +12,9 @@ class RegistroState extends ChangeNotifier {
   RegistroState() {
     load();
   }
-  String RegisterStoreName = 'nome';
+  String registerStoreName = 'nome';
 
-  int? RegisterStorecnpj;
+  int? registerStorecnpj;
 
   final controller = RegisterController();
   final _controllerName = TextEditingController();
@@ -79,9 +79,9 @@ class RegistroState extends ChangeNotifier {
         password: registerStore.password,
         autonomyLevelID: registerStore.autonomyLevelID,
         id: registerStore.id);
-    print(_registeratual?.id);
-    print(_registeratual?.cnpj);
-    print(_registeratual?.name);
+    // print(_registeratual?.id);
+    //  print(_registeratual?.cnpj);
+    // print(_registeratual?.name);
   }
 
   Future<void> update() async {
@@ -140,14 +140,7 @@ class Register extends StatelessWidget {
           return Center(
             child: Scaffold(
               appBar: BarraSuperior(),
-              drawer: DrawerMenu(),
-              /*backgroundColor: Color.fromARGB(61, 49, 31, 31),
-              appBar: AppBar(
-                backgroundColor: Color.fromARGB(207, 243, 9, 9),
-                title: Center(
-                  child: (Text('Cadastre sua Loja')),
-                ),
-              ),*/
+              drawer: const DrawerMenu(),
               body: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
@@ -271,15 +264,10 @@ class _ActionButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            style: ElevatedButton.styleFrom(primary: Colors.red.shade900),
+            style:
+                ElevatedButton.styleFrom(backgroundColor: Colors.red.shade900),
             onPressed: () async {
               await state.insert();
-              //await state.load();
-
-              /* state.controllerName.text;
-              state.controllerautonomyLevelID;
-              state.controllercnpj;
-              state.controllerpassword.text;*/
             },
             child: const Text('cadastro'),
           )
