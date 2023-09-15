@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'funcionalidades/AppBar.dart';
 import 'funcionalidades/menu.dart';
 import 'searchregister.dart';
+import 'searchvehicles.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -89,7 +90,7 @@ class Home extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Home()),
+                                builder: (context) => Searchvehicles()),
                           );
                         },
                         child: Container(

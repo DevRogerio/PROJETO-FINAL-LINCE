@@ -22,6 +22,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
   final _controllerdealershipId = TextEditingController();
+  RegisterVehicles? _registeratual;
   final _listvehicles = <RegistrationVehicles>[];
 
   TextEditingController get controllermodel => _controllermodel;
@@ -33,6 +34,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   TextEditingController get controllerpricePaid => _controllerpricePaid;
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
   TextEditingController get controllerdealershipId => _controllerdealershipId;
+  RegisterVehicles? get registeratual => _registeratual;
   List<RegistrationVehicles> get listvehicles => _listvehicles;
 
   Future<void> insert() async {
@@ -43,9 +45,11 @@ class RegistroStateVeiculos extends ChangeNotifier {
       builtYear: int.parse(controllerbuiltYear.text),
       vehicleYear: int.parse(controllervehicleYear.text),
       vehiclephoto: controllervehiclephoto.text,
-      pricePaid: double.parse(controllerpricePaid as String),
-      purchasedWhen: DateTime(controllerpurchasedWhen as int),
-      dealershipId: int.parse(controllerdealershipId.text),
+      pricePaid: controllerpricePaid
+          .text, //double.parse(controllerpricePaid as String),
+      purchasedWhen: controllerpurchasedWhen
+          .text, //DateTime(controllerpurchasedWhen as int),
+      dealershipId: 1,
     );
 
     await controller.insert(registrationVehicles);
@@ -58,6 +62,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllervehiclephoto.clear();
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
+    controllervehicleYear.clear();
     controllerdealershipId.clear();
 
     notifyListeners();
@@ -76,6 +81,43 @@ class RegistroStateVeiculos extends ChangeNotifier {
     listvehicles.addAll(list);
 
     notifyListeners();
+  }
+
+  void editSearch(RegistrationVehicles registrationVehicles) {
+    _controllermodel.text = registrationVehicles.model;
+    _controllerbrand.text = registrationVehicles.brand;
+
+    /* _registeratual = RegistrationVehicles(
+      model: registrationVehicles.model,
+      brand: registrationVehicles.brand,
+      plate: registrationVehicles.plate,
+      builtYear: registrationVehicles.builtYear,
+      vehiclephoto: registrationVehicles.vehiclephoto,
+      pricePaid: registrationVehicles.pricePaid,
+      purchasedWhen: registrationVehicles.purchasedWhen,
+      vehicleYear: registrationVehicles.vehicleYear,
+      dealershipId: registrationVehicles.dealershipId,
+    );*/
+    //  id: registrationVehicles.id) as RegisterVehicles?;
+
+    // print(_registeratual?.id);
+    //  print(_registeratual?.cnpj);
+    // print(_registeratual?.name);
+  }
+
+  Future<void> update() async {
+    final registroEditado = RegistrationVehicles(
+      // dealershipId: _registeratual?,
+      model: controllermodel.text,
+      brand: controllerbrand.text,
+    );
+
+    await controller.update(registroEditado);
+    _registeratual = null;
+    _controllermodel.clear();
+    _controllermodel.clear();
+
+    await load();
   }
 }
 

@@ -2,7 +2,7 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../MODEL/RegisterStore.dart';
-import 'package:carros_car/MODEL/RegistrationVehicles.dart';
+import '../MODEL/RegistrationVehicles.dart';
 import '../MODEL/sales.dart';
 
 Future<Database> getDatabase() async {
@@ -123,9 +123,10 @@ class RegistrationTable {
       $builtYear      INTEGER NOT NULL,
       $vehicleYear    INTEGER NOT NULL,
       $photo          TEXT NOT NULL,
-      $pricePaid      REAL NOT NULL,
+      $pricePaid      TEXT NOT NULL,
       $purchasedWhen  TEXT NOT NULL,
       $dealershipId   INTEGER NOT NULL
+      
     )
   ''';
 
@@ -139,7 +140,7 @@ class RegistrationTable {
   static const String photo = 'photo';
   static const String pricePaid = 'pricePaid';
   static const String purchasedWhen = 'purchasedWhen';
-  static const String dealershipId = 'dealershipId';
+  static const String dealershipId = 'dealershipId ';
 
   static Map<String, dynamic> toMap(RegistrationVehicles registrationVehicles) {
     final map = <String, dynamic>{};
@@ -157,6 +158,8 @@ class RegistrationTable {
 
     return map;
   }
+
+  insert(RegistrationVehicles registrationVehicles) {}
 }
 
 class RegistrationVehiclesController {
@@ -200,7 +203,6 @@ class RegistrationVehiclesController {
           pricePaid: item[RegistrationTable.pricePaid],
           plate: item[RegistrationTable.plate],
           vehiclephoto: item[RegistrationTable.photo],
-          dealershipId: item[RegistrationTable.dealershipId],
         ),
       );
     }
@@ -213,9 +215,9 @@ class RegistrationVehiclesController {
     var map = RegistrationTable.toMap(registrationVehicles);
 
     await database.update(
-      RegisterStoreTable.tableName,
+      RegistrationTable.tableName,
       map,
-      where: '${RegisterStoreTable.id} = ?',
+      where: '${RegistrationTable.id} = ?',
       whereArgs: [registrationVehicles.id],
     );
   }
@@ -233,7 +235,7 @@ class SalesTable {
       $businessCut    REAL NOT NULL,
       $safetyCut      REAL NOT NULL,
       $vehicleId      INTERGER NOT NULL,
-      $dealershipId   INTEGER NOT NULL,
+     
       $userId         INTEGER NOT NULL
     );
   ''';
@@ -248,7 +250,7 @@ class SalesTable {
   static const String businessCut = 'businessCut';
   static const String safetyCut = 'safetyCut';
   static const String vehicleId = 'vehicleId';
-  static const String dealershipId = 'dealershipId';
+  // static const String dealershipId = 'dealershipId';
   static const String userId = 'userId';
 
   static Map<String, dynamic> toMap(Sale sale) {
@@ -263,7 +265,7 @@ class SalesTable {
     map[SalesTable.businessCut] = sale.businessCut;
     map[SalesTable.safetyCut] = sale.safetyCut;
     map[SalesTable.vehicleId] = sale.vehicleId;
-    map[SalesTable.dealershipId] = sale.dealershipId;
+    // map[SalesTable.dealershipId] = sale.dealershipId;
     map[SalesTable.userId] = sale.userId;
 
     return map;

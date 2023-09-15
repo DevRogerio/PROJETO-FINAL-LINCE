@@ -1,19 +1,19 @@
 class RegistrationVehicles {
   final int? id;
-  final String? model;
+  final String model;
   final String? plate;
-  final String? brand;
+  final String brand;
   final int? builtYear;
   final int? vehicleYear;
   final String? vehiclephoto;
-  final double? pricePaid;
-  final DateTime? purchasedWhen;
+  final String? pricePaid;
+  final String? purchasedWhen;
   final int? dealershipId;
 
   RegistrationVehicles({
     this.id,
-    this.model,
-    this.brand,
+    required this.model,
+    required this.brand,
     this.builtYear,
     this.plate,
     this.vehicleYear,

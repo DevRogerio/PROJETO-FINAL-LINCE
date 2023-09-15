@@ -1,10 +1,8 @@
-import 'package:carros_car/CONTROLLER/database.dart';
-
-import 'package:carros_car/MODEL/RegisterStore.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../CONTROLLER/database.dart';
+import '../MODEL/RegisterStore.dart';
 import 'funcionalidades/AppBar.dart';
 import 'funcionalidades/menu.dart';
 

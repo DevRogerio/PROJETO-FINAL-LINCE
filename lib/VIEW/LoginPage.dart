@@ -1,9 +1,13 @@
-import 'package:carros_car/VIEW/Home.dart';
 import 'package:flutter/material.dart';
 
+import 'Home.dart';
+
+// ignore: public_member_api_docs
 class LoginPage extends StatelessWidget {
-  var loginController = TextEditingController();
-  var senhaController = TextEditingController();
+  // ignore: public_member_api_docs
+  TextEditingController loginController = TextEditingController();
+
+  TextEditingController senhaController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 

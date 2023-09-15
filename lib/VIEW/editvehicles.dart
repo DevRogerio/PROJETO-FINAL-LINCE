@@ -1,21 +1,16 @@
-//import 'package:carros_car/MODEL/RegisterStore.dart';
+import 'package:carros_car/VIEW/searchvehicles.dart';
 import 'package:flutter/material.dart';
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'funcionalidades/AppBar.dart';
 import 'funcionalidades/menu.dart';
-import 'register.dart';
-import 'searchregister.dart';
+import 'registervehicles.dart';
 
-//import '../CONTROLLER/database.dart';
-
-// ignore: camel_case_types
-class editperfilsearch extends StatelessWidget {
-  const editperfilsearch({Key? key}) : super(key: key);
+class editvehicles extends StatelessWidget {
+  const editvehicles({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<RegistroState>(
+    return Consumer<RegistroStateVeiculos>(
       builder: (_, state, __) {
         return Scaffold(
           appBar: BarraSuperior(),
@@ -28,9 +23,9 @@ class editperfilsearch extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: state.controllerName,
+                      controller: state.controllermodel,
                       decoration: const InputDecoration(
-                        hintText: 'Alterar nome',
+                        hintText: 'Alterar modelo',
                       ),
                       validator: (value) {
                         if ((value ?? '').isEmpty) {
@@ -40,9 +35,9 @@ class editperfilsearch extends StatelessWidget {
                       },
                     ),
                     TextFormField(
-                      controller: state.controllercnpj,
+                      controller: state.controllerbrand,
                       decoration: const InputDecoration(
-                        hintText: 'Alterar CNPJ',
+                        hintText: 'Alterar marca',
                       ),
                     ),
                     const SizedBox(
@@ -63,7 +58,7 @@ class editperfilsearch extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Search()),
+                              builder: (context) => const Searchvehicles()),
                         );
                       },
                       child: const Text('atualizar'),
