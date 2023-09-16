@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:flutter/material.dart';
-import '../CONTROLLER/database.dart';
-import '../MODEL/RegistrationVehicles.dart';
-import 'funcionalidades/AppBar.dart';
-import 'funcionalidades/menu.dart';
+
+import '../MODEL/registration_vehicles.dart';
+import '../controllers/database.dart';
+import 'utils/app_bar.dart';
+import 'utils/menu.dart';
+
 
 class RegistroStateVeiculos extends ChangeNotifier {
   RegistroStateVeiculos() {
@@ -122,6 +123,8 @@ class RegistroStateVeiculos extends ChangeNotifier {
 }
 
 class RegisterVehicles extends StatelessWidget {
+  RegisterVehicles({super.key});
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -246,7 +249,7 @@ class RegisterVehicles extends StatelessWidget {
 }
 
 class _ActionButton extends StatelessWidget {
-  const _ActionButton({Key? key});
+  const _ActionButton();
 
   @override
   Widget build(BuildContext context) {

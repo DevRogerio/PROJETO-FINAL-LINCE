@@ -1,13 +1,13 @@
-import 'package:carros_car/VIEW/searchvehicles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'funcionalidades/AppBar.dart';
-import 'funcionalidades/menu.dart';
-import 'registervehicles.dart';
+import 'register_vehicles.dart';
+import 'search_vehicles.dart';
+import 'utils/app_bar.dart';
+import 'utils/menu.dart';
 
-class editvehicles extends StatelessWidget {
-  const editvehicles({Key? key}) : super(key: key);
+class EditVehicles extends StatelessWidget {
+  const EditVehicles({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Consumer<RegistroStateVeiculos>(
@@ -58,7 +58,7 @@ class editvehicles extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Searchvehicles()),
+                              builder: (context) => const SearchVehicles()),
                         );
                       },
                       child: const Text('atualizar'),

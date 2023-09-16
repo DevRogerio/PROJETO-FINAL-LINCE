@@ -1,8 +1,8 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../MODEL/RegisterStore.dart';
-import '../MODEL/RegistrationVehicles.dart';
+import '../MODEL/register_store.dart';
+import '../MODEL/registration_vehicles.dart';
 import '../MODEL/sales.dart';
 
 Future<Database> getDatabase() async {

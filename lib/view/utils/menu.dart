@@ -1,11 +1,11 @@
 // ignore_for_file: unnecessary_new
 
-import 'package:carros_car/VIEW/Home.dart';
-
-import 'package:carros_car/VIEW/register.dart';
-import 'package:carros_car/VIEW/registervehicles.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../home.dart';
+import '../register.dart';
+import '../register_vehicles.dart';
 
 class DrawerMenu extends StatelessWidget {
   //dados que vem do banco de dados

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'funcionalidades/AppBar.dart';
-import 'funcionalidades/menu.dart';
-import 'searchregister.dart';
-import 'searchvehicles.dart';
+import 'search_register.dart';
+import 'search_vehicles.dart';
+import 'utils/app_bar.dart';
+import 'utils/menu.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Olá Anderson, o que vamos fazer?",
+                    'Olá Anderson, o que vamos fazer?',
                     style: TextStyle(
                       color: Colors.grey.shade300,
                       fontSize: 24,
@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
 
                   //botao ver lojas
                   Builder(
-                    builder: (BuildContext context) {
+                    builder: (context) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             // ignore: deprecated_member_use
@@ -67,7 +67,7 @@ class Home extends StatelessWidget {
                                 size: 24,
                               ),
                               Text(
-                                "Buscar Lojas",
+                                'Buscar Lojas',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 24),
                               )
@@ -81,7 +81,7 @@ class Home extends StatelessWidget {
 
                   //botao ver veiculos
                   Builder(
-                    builder: (BuildContext context) {
+                    builder: (context) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             // ignore: deprecated_member_use
@@ -90,7 +90,8 @@ class Home extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Searchvehicles()),
+                              builder: (context) => const SearchVehicles(),
+                            ),
                           );
                         },
                         child: Container(
@@ -106,7 +107,7 @@ class Home extends StatelessWidget {
                                 size: 24,
                               ),
                               Text(
-                                "Buscar Veiculos",
+                                'Buscar Veiculos',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 24),
                               )
@@ -121,7 +122,7 @@ class Home extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   Builder(
-                    builder: (BuildContext context) {
+                    builder: (context) {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             // ignore: deprecated_member_use
@@ -146,7 +147,7 @@ class Home extends StatelessWidget {
                                 size: 24,
                               ),
                               Text(
-                                "Vendas Realizadas",
+                                'Vendas Realizadas',
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 24),
                               )

@@ -1,10 +1,8 @@
-//import 'package:carros_car/VIEW/register.dart';
+
 
 import 'package:flutter/material.dart';
-
-import '../VIEW/Home.dart';
-//import '../VIEW/LoginPage.dart';
-import '../VIEW/funcionalidades/style.dart';
+import '../VIEW/login_page.dart';
+import '../view/utils/style.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
+      home: LoginPage(),
       debugShowCheckedModeBanner: false,
       theme: style(),
     );

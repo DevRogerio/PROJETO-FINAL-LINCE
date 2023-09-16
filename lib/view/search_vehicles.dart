@@ -1,45 +1,46 @@
-//import 'package:carros_car/MODEL/RegisterStore.dart';
-//import 'package:carros_car/CONTROLLER/database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'editperfilsearch.dart';
-import 'funcionalidades/AppBar.dart';
-import 'funcionalidades/menu.dart';
-import 'register.dart';
+import 'edit_vehicles.dart';
+import 'register_vehicles.dart';
+import 'utils/app_bar.dart';
+import 'utils/menu.dart';
 
-class Search extends StatelessWidget {
-  const Search({super.key});
+/// Screen of Vehicles
+class SearchVehicles extends StatelessWidget {
+  /// Class of Vehicles
+  const SearchVehicles({super.key});
+
   // final registerStoreTable = RegisterStore;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => RegistroState(),
-      child: Consumer<RegistroState>(
+      create: (context) => RegistroStateVeiculos(),
+      child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: ListView.builder(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
-              itemCount: state.listUser.length,
+              itemCount: state.listvehicles.length,
               //state.controller.select().toString().length,
               //registerStoreTable.toString().length,
               //state.load().toString().length,
               itemBuilder: (context, index) {
                 // final RegisterStore = state.controllercnpj.value.text.length;
-                final RegisterStoreTable = state.listUser[index];
+                final registrationTable = state.listvehicles[index];
                 return Container(
                   color: Colors.red.shade900,
                   padding: const EdgeInsets.all(5),
                   margin:
                       const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                   child: ListTile(
-                    leading: Text(RegisterStoreTable.id.toString()),
-                    title: Text(RegisterStoreTable.name.toString()),
-                    subtitle: Text(RegisterStoreTable.cnpj.toString()),
+                    leading: Text(registrationTable.id.toString()),
+                    title: Text(registrationTable.model.toString()),
+                    subtitle: Text(registrationTable.plate.toString()),
                     trailing: IntrinsicWidth(
                       child: Row(
                         children: [
@@ -54,7 +55,7 @@ class Search extends StatelessWidget {
                           ),*/
                           IconButton(
                             onPressed: () async {
-                              state.delete(RegisterStoreTable);
+                              state.delete(registrationTable);
                             },
                             icon: const Icon(
                               Icons.delete,
@@ -65,14 +66,14 @@ class Search extends StatelessWidget {
                             onPressed: () async {
                               // state.updateRegister();
 
-                              state.editSearch(RegisterStoreTable);
+                              state.editSearch(registrationTable);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       ChangeNotifierProvider.value(
                                     value: state,
-                                    child: const editperfilsearch(),
+                                    child: const EditVehicles(),
                                   ),
                                 ),
                               );
