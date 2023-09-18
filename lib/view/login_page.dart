@@ -25,109 +25,139 @@ class LoginPage extends StatelessWidget {
               ),
             ),
 
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(30),
-                child: SingleChildScrollView(
-                  child: Form(
-                    key: state.formKey,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.length < 3) {
-                                return 'nome no minimo 3 letras';
-                              }
+            body: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+                Colors.black,
+                Colors.black,
+                Colors.black,
+                Colors.red.shade900,
+                Colors.red.shade800,
+                Colors.black,
+              ])),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: state.formKey,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.length < 3) {
+                                  return 'nome no minimo 3 letras';
+                                }
 
-                              return null;
-                            },
-                            //autovalidateMode: AutovalidateMode.always,
-                            controller: state.controllerName,
-                            style: const TextStyle(color: Colors.red),
-                            decoration: InputDecoration(
-                              labelText: 'Nome',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100),
+                                return null;
+                              },
+                              //autovalidateMode: AutovalidateMode.always,
+                              controller: state.controllerName,
+                              style: const TextStyle(color: Colors.red),
+                              decoration: InputDecoration(
+                                labelText: 'Nome',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value!.length < 3) {
-                                return 'A senha deve conter pelo menos 3 caracteres';
-                              }
-                              return null;
-                            },
-                            //autovalidateMode: AutovalidateMode.always,
-                            controller: state.controllerPassword,
-                            style: const TextStyle(color: Colors.red),
-                            decoration: InputDecoration(
-                              labelText: 'Senha',
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(100),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value!.length < 3) {
+                                  return 'A senha deve conter pelo menos 3 caracteres';
+                                }
+                                return null;
+                              },
+                              //autovalidateMode: AutovalidateMode.always,
+                              controller: state.controllerPassword,
+                              style: const TextStyle(color: Colors.red),
+                              decoration: InputDecoration(
+                                labelText: 'Senha',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
                               ),
+                              obscureText: true,
                             ),
-                            obscureText: true,
                           ),
-                        ),
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                  backgroundColor:
-                                                      Colors.red.shade900),
-                                              onPressed: () async {
-                                                final name =
-                                                    state.controllerName.text;
-                                                final password = state
-                                                    .controllerPassword.text;
-                                                final userLogin = await state
-                                                    .getRegisterStore(name);
-                                                if (state.formKey.currentState!
-                                                    .validate()) {
-                                                  if (userLogin != null &&
-                                                      userLogin.password ==
-                                                          password &&
-                                                      context.mounted) {
-                                                    await Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const Home(),
-                                                      ),
-                                                    );
-                                                  }
-                                                }
-                                              },
-                                              child: const Text('Fazer Login'),
+                          Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(30.0),
+                              child: Center(
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 200,
                                             ),
-                                          ),
-                                        ],
+                                            Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.red
+                                                                  .shade900),
+                                                  onPressed: () async {
+                                                    final name = state
+                                                        .controllerName.text;
+                                                    final password = state
+                                                        .controllerPassword
+                                                        .text;
+                                                    final userLogin =
+                                                        await state
+                                                            .getRegisterStore(
+                                                                name);
+                                                    if (state
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                      if (userLogin != null &&
+                                                          userLogin.password ==
+                                                              password &&
+                                                          context.mounted) {
+                                                        await Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const Home(),
+                                                          ),
+                                                        );
+                                                      }
+                                                    }
+                                                  },
+                                                  child: const Text(
+                                                    ' Login',
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

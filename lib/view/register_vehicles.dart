@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 import '../MODEL/registration_vehicles.dart';
 import '../controllers/database.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
-
 
 class RegistroStateVeiculos extends ChangeNotifier {
   RegistroStateVeiculos() {
@@ -14,6 +15,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   //String? registrationVehiclespricePaid;
   //String? registrationVehiclespurchasedWhen;
   final controller = RegistrationVehiclesController();
+
   final _controllermodel = TextEditingController();
   final _controllerplate = TextEditingController();
   final _controllerbrand = TextEditingController();
@@ -22,7 +24,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllervehiclephoto = TextEditingController();
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
-  final _controllerdealershipId = TextEditingController();
+  // final _controllerdealershipId = TextEditingController();
   RegisterVehicles? _registeratual;
   final _listvehicles = <RegistrationVehicles>[];
 
@@ -34,24 +36,23 @@ class RegistroStateVeiculos extends ChangeNotifier {
   TextEditingController get controllervehiclephoto => _controllervehiclephoto;
   TextEditingController get controllerpricePaid => _controllerpricePaid;
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
-  TextEditingController get controllerdealershipId => _controllerdealershipId;
+  // TextEditingController get controllerdealershipId => _controllerdealershipId;
   RegisterVehicles? get registeratual => _registeratual;
   List<RegistrationVehicles> get listvehicles => _listvehicles;
 
   Future<void> insert() async {
     final registrationVehicles = RegistrationVehicles(
-      model: controllermodel.text,
-      plate: controllerplate.text,
-      brand: controllerbrand.text,
-      builtYear: int.parse(controllerbuiltYear.text),
-      vehicleYear: int.parse(controllervehicleYear.text),
-      vehiclephoto: controllervehiclephoto.text,
-      pricePaid: controllerpricePaid
-          .text, //double.parse(controllerpricePaid as String),
-      purchasedWhen: controllerpurchasedWhen
-          .text, //DateTime(controllerpurchasedWhen as int),
-      dealershipId: 1,
-    );
+        model: controllermodel.text,
+        plate: controllerplate.text,
+        brand: controllerbrand.text,
+        builtYear: int.parse(controllerbuiltYear.text),
+        vehicleYear: int.parse(controllervehicleYear.text),
+        vehiclephoto: controllervehiclephoto.text,
+        pricePaid: double.parse(controllerpricePaid.text),
+        purchasedWhen:
+            DateFormat('dd/MM/yyyy').parse(controllerpurchasedWhen.text)
+        // dealershipId: 1,
+        );
 
     await controller.insert(registrationVehicles);
     await load();
@@ -64,7 +65,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
-    controllerdealershipId.clear();
+    // controllerdealershipId.clear();
 
     notifyListeners();
   }
@@ -85,20 +86,27 @@ class RegistroStateVeiculos extends ChangeNotifier {
   }
 
   void editSearch(RegistrationVehicles registrationVehicles) {
-    _controllermodel.text = registrationVehicles.model;
-    _controllerbrand.text = registrationVehicles.brand;
+    _controllermodel.text = registrationVehicles.model!;
+    _controllerbrand.text = registrationVehicles.brand!;
+    _controllerplate.text = registrationVehicles.plate!;
+    _controllerbuiltYear.text = registrationVehicles.builtYear.toString();
+    _controllervehicleYear.text = registrationVehicles.vehicleYear.toString();
+    _controllervehiclephoto.text = registrationVehicles.vehiclephoto!;
+    _controllerpricePaid.text = registrationVehicles.pricePaid.toString();
+    _controllerpurchasedWhen.text =
+        registrationVehicles.purchasedWhen.toString();
 
-    /* _registeratual = RegistrationVehicles(
+    _registeratual = RegistrationVehicles(
       model: registrationVehicles.model,
       brand: registrationVehicles.brand,
       plate: registrationVehicles.plate,
-      builtYear: registrationVehicles.builtYear,
+      builtYear: int.parse(controllerbuiltYear.text),
       vehiclephoto: registrationVehicles.vehiclephoto,
-      pricePaid: registrationVehicles.pricePaid,
-      purchasedWhen: registrationVehicles.purchasedWhen,
-      vehicleYear: registrationVehicles.vehicleYear,
-      dealershipId: registrationVehicles.dealershipId,
-    );*/
+      pricePaid: double.parse(controllerpricePaid.text),
+      purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
+      vehicleYear: int.parse(controllervehicleYear.text),
+      // dealershipId: registrationVehicles.dealershipId,
+    ) as RegisterVehicles?;
     //  id: registrationVehicles.id) as RegisterVehicles?;
 
     // print(_registeratual?.id);
@@ -110,13 +118,25 @@ class RegistroStateVeiculos extends ChangeNotifier {
     final registroEditado = RegistrationVehicles(
       // dealershipId: _registeratual?,
       model: controllermodel.text,
+      plate: controllerplate.text,
       brand: controllerbrand.text,
+      builtYear: int.parse(controllerbuiltYear.text),
+      vehicleYear: int.parse(controllervehicleYear.text),
+      vehiclephoto: controllervehiclephoto.text,
+      pricePaid: double.parse(controllerpricePaid.text),
+      purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
     );
 
     await controller.update(registroEditado);
     _registeratual = null;
-    _controllermodel.clear();
-    _controllermodel.clear();
+    controllermodel.clear();
+    controllerplate.clear();
+    controllerbrand.clear();
+    controllerbuiltYear.clear();
+    controllervehiclephoto.clear();
+    controllerpricePaid.clear();
+    controllerpurchasedWhen.clear();
+    controllervehicleYear.clear();
 
     await load();
   }
@@ -226,6 +246,9 @@ class RegisterVehicles extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               controller: state.controllerpurchasedWhen,
+                              inputFormatters: [
+                                MaskTextInputFormatter(mask: '##/##/####')
+                              ],
                               decoration: InputDecoration(
                                 labelText: 'data da compra',
                                 border: OutlineInputBorder(

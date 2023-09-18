@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -30,7 +31,7 @@ class RegisterStoreTable {
       $name             TEXT NOT NULL,
       $autonomyLevelID  TEXT NOT NULL,
       $password         TEXT NOT NULL
-    ) 
+    ); 
   ''';
 
   static const String tableName = 'RegisterStore';
@@ -123,11 +124,11 @@ class RegistrationTable {
       $builtYear      INTEGER NOT NULL,
       $vehicleYear    INTEGER NOT NULL,
       $photo          TEXT NOT NULL,
-      $pricePaid      TEXT NOT NULL,
-      $purchasedWhen  TEXT NOT NULL,
-      $dealershipId   INTEGER NOT NULL
+      $pricePaid      REAL NOT NULL,
+      $purchasedWhen  TEXT NOT NULL
       
-    )
+      
+    );
   ''';
 
   static const String tableName = 'registrationVehicles';
@@ -140,7 +141,6 @@ class RegistrationTable {
   static const String photo = 'photo';
   static const String pricePaid = 'pricePaid';
   static const String purchasedWhen = 'purchasedWhen';
-  static const String dealershipId = 'dealershipId ';
 
   static Map<String, dynamic> toMap(RegistrationVehicles registrationVehicles) {
     final map = <String, dynamic>{};
@@ -153,8 +153,8 @@ class RegistrationTable {
     map[RegistrationTable.vehicleYear] = registrationVehicles.vehicleYear;
     map[RegistrationTable.photo] = registrationVehicles.vehiclephoto;
     map[RegistrationTable.pricePaid] = registrationVehicles.pricePaid;
-    map[RegistrationTable.purchasedWhen] = registrationVehicles.purchasedWhen;
-    map[RegistrationTable.dealershipId] = registrationVehicles.dealershipId;
+    map[RegistrationTable.purchasedWhen] =
+        DateFormat('yyyy-MM-dd').format(registrationVehicles.purchasedWhen!);
 
     return map;
   }
@@ -199,7 +199,8 @@ class RegistrationVehiclesController {
           model: item[RegistrationTable.model],
           brand: item[RegistrationTable.brand],
           builtYear: item[RegistrationTable.builtYear],
-          purchasedWhen: item[RegistrationTable.purchasedWhen],
+          purchasedWhen: DateFormat('yyyy-MM-dd')
+              .parse(item[RegistrationTable.purchasedWhen]),
           pricePaid: item[RegistrationTable.pricePaid],
           plate: item[RegistrationTable.plate],
           vehiclephoto: item[RegistrationTable.photo],

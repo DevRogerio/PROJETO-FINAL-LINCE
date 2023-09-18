@@ -19,7 +19,6 @@ class EditPerfilSearch extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Card(
               child: Padding(
-
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -56,6 +55,7 @@ class EditPerfilSearch extends StatelessWidget {
                         } else {
                           await state.insert();
                         }
+
                         Navigator.push(
                           context,
                           MaterialPageRoute(
