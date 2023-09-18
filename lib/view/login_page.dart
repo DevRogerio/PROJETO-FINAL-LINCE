@@ -40,9 +40,7 @@ class LoginPage extends StatelessWidget {
                               if (value!.length < 3) {
                                 return 'nome no minimo 3 letras';
                               }
-                              /*else if (!value.contains('@')) {
-                          return "esse nome parece estranho";
-                        }*/
+
                               return null;
                             },
                             //autovalidateMode: AutovalidateMode.always,
@@ -61,7 +59,7 @@ class LoginPage extends StatelessWidget {
                           child: TextFormField(
                             validator: (value) {
                               if (value!.length < 3) {
-                                return 'A senha deve conter pelo menos 5 caracteres';
+                                return 'A senha deve conter pelo menos 3 caracteres';
                               }
                               return null;
                             },
@@ -105,16 +103,15 @@ class LoginPage extends StatelessWidget {
                                                     .validate()) {
                                                   if (userLogin != null &&
                                                       userLogin.password ==
-                                                          password) {
-                                                    if (context.mounted) {
-                                                      await Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              const Home(),
-                                                        ),
-                                                      );
-                                                    }
+                                                          password &&
+                                                      context.mounted) {
+                                                    await Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Home(),
+                                                      ),
+                                                    );
                                                   }
                                                 }
                                               },

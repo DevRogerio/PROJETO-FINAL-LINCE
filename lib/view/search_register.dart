@@ -39,7 +39,7 @@ class Search extends StatelessWidget {
                   child: ListTile(
                     leading: Text(registerStoreTable.id.toString()),
                     title: Text(registerStoreTable.name.toString()),
-                    subtitle: Text(registerStoreTable.cnpj.toString()),
+                    subtitle: Text(registerStoreTable.password.toString()),
                     trailing: IntrinsicWidth(
                       child: Row(
                         children: [
