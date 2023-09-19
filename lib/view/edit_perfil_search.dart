@@ -35,7 +35,7 @@ class EditPerfilSearch extends StatelessWidget {
                       },
                     ),
                     TextFormField(
-                      controller: state.controllerCNPJ,
+                      controller: state.controllerPassword,
                       decoration: const InputDecoration(
                         hintText: 'Alterar CNPJ',
                       ),

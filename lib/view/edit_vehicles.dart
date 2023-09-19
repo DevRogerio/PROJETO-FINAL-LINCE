@@ -23,7 +23,7 @@ class EditVehicles extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: state.controllermodel,
+                      controller: state.controllerModel,
                       decoration: const InputDecoration(
                         hintText: 'Alterar modelo',
                       ),
@@ -50,7 +50,7 @@ class EditVehicles extends StatelessWidget {
                         //print(state.registeratual);
 
                         if (state.registeratual != null) {
-                          state.editSearch;
+                          state.editSearchVehicles;
                           await state.update();
                         } else {
                           await state.insert();

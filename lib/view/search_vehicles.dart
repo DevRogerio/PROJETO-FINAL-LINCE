@@ -40,7 +40,9 @@ class SearchVehicles extends StatelessWidget {
                   child: ListTile(
                     leading: Text(registrationTable.id.toString()),
                     title: Text(registrationTable.model.toString()),
-                    subtitle: Text(registrationTable.plate.toString()),
+                    subtitle: Text(
+                      registrationTable.vehiclephoto.toString(),
+                    ),
                     trailing: IntrinsicWidth(
                       child: Row(
                         children: [
@@ -66,7 +68,7 @@ class SearchVehicles extends StatelessWidget {
                             onPressed: () async {
                               // state.updateRegister();
 
-                              state.editSearch(registrationTable);
+                              state.editSearchVehicles(registrationTable);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

@@ -2,7 +2,7 @@ class RegistrationVehicles {
   final int? id;
   final String model;
   final String plate;
-  final String? brand;
+  final String brand;
   final int? builtYear;
   final int? vehicleYear;
   final String? vehiclephoto;
@@ -13,7 +13,7 @@ class RegistrationVehicles {
   RegistrationVehicles({
     this.id,
     required this.model,
-    this.brand,
+    required this.brand,
     this.builtYear,
     required this.plate,
     this.vehicleYear,

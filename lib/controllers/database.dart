@@ -137,7 +137,7 @@ class RegistrationTable {
   static const String plate = 'plate';
   static const String brand = 'brand';
   static const String builtYear = 'builtYear';
-  static const String vehicleYear = 'modelYear';
+  static const String vehicleYear = 'vehicleYear';
   static const String photo = 'photo';
   static const String pricePaid = 'pricePaid';
   static const String purchasedWhen = 'purchasedWhen';
@@ -204,6 +204,7 @@ class RegistrationVehiclesController {
           pricePaid: item[RegistrationTable.pricePaid],
           plate: item[RegistrationTable.plate],
           vehiclephoto: item[RegistrationTable.photo],
+          vehicleYear: item[RegistrationTable.vehicleYear],
         ),
       );
     }
