@@ -1,4 +1,10 @@
+//import 'dart:developer';
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +13,7 @@ import '../MODEL/registration_vehicles.dart';
 import '../controllers/database.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
+import 'utils/small_button.dart';
 
 class RegistroStateVeiculos extends ChangeNotifier {
   RegistroStateVeiculos() {
@@ -21,24 +28,26 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllerbrand = TextEditingController();
   final _controllerbuiltYear = TextEditingController();
   final _controllervehicleYear = TextEditingController();
-  final _controllervehiclephoto = TextEditingController();
+  // final _controllervehiclephoto = TextEditingController();
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
   // final _controllerdealershipId = TextEditingController();
   RegisterVehicles? _registeratual;
   final _listvehicles = <RegistrationVehicles>[];
+  String? _controllervehiclephoto;
 
   TextEditingController get controllermodel => _controllermodel;
   TextEditingController get controllerplate => _controllerplate;
   TextEditingController get controllerbrand => _controllerbrand;
   TextEditingController get controllerbuiltYear => _controllerbuiltYear;
   TextEditingController get controllervehicleYear => _controllervehicleYear;
-  TextEditingController get controllervehiclephoto => _controllervehiclephoto;
+  // TextEditingController get controllervehiclephoto => _controllervehiclephoto;
   TextEditingController get controllerpricePaid => _controllerpricePaid;
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
   // TextEditingController get controllerdealershipId => _controllerdealershipId;
   RegisterVehicles? get registeratual => _registeratual;
   List<RegistrationVehicles> get listvehicles => _listvehicles;
+  String? get controllervehiclephoto => _controllervehiclephoto;
 
   Future<void> insert() async {
     final registrationVehicles = RegistrationVehicles(
@@ -47,7 +56,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
         brand: controllerbrand.text,
         builtYear: int.parse(controllerbuiltYear.text),
         vehicleYear: int.parse(controllervehicleYear.text),
-        vehiclephoto: controllervehiclephoto.text,
+        vehiclephoto: controllervehiclephoto,
         pricePaid: double.parse(controllerpricePaid.text),
         purchasedWhen:
             DateFormat('dd/MM/yyyy').parse(controllerpurchasedWhen.text)
@@ -61,7 +70,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerplate.clear();
     controllerbrand.clear();
     controllerbuiltYear.clear();
-    controllervehiclephoto.clear();
+    //controllervehiclephoto.clear();
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
@@ -91,7 +100,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     _controllerplate.text = registrationVehicles.plate!;
     _controllerbuiltYear.text = registrationVehicles.builtYear.toString();
     _controllervehicleYear.text = registrationVehicles.vehicleYear.toString();
-    _controllervehiclephoto.text = registrationVehicles.vehiclephoto!;
+    _controllervehiclephoto = registrationVehicles.vehiclephoto!;
     _controllerpricePaid.text = registrationVehicles.pricePaid.toString();
     _controllerpurchasedWhen.text =
         registrationVehicles.purchasedWhen.toString();
@@ -122,7 +131,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
       brand: controllerbrand.text,
       builtYear: int.parse(controllerbuiltYear.text),
       vehicleYear: int.parse(controllervehicleYear.text),
-      vehiclephoto: controllervehiclephoto.text,
+      vehiclephoto: controllervehiclephoto,
       pricePaid: double.parse(controllerpricePaid.text),
       purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
     );
@@ -133,12 +142,30 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerplate.clear();
     controllerbrand.clear();
     controllerbuiltYear.clear();
-    controllervehiclephoto.clear();
+    // controllervehiclephoto.clear();
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
 
     await load();
+  }
+
+  Future pickImage() async {
+    {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+
+      _controllervehiclephoto = image.path;
+    }
+  }
+
+  Future takePhoto() async {
+    {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+      if (image == null) return;
+
+      _controllervehiclephoto = image.path;
+    }
   }
 }
 
@@ -221,16 +248,32 @@ class RegisterVehicles extends StatelessWidget {
                             ),
                           ),
                           Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 8,
+                            ),
+                            child: state.controllervehiclephoto != null
+                                ? const _PhotosList()
+                                : Container(),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              top: 8,
+                              bottom: 8,
+                            ),
+                            child: _ChooseOrTakePhoto(),
+                          ),
+                          /* Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
-                              controller: state._controllervehiclephoto,
+                              controller: state._controllervehiclephoto != null ? const _PhotosList()
                               decoration: InputDecoration(
                                 labelText: 'foto do veículo',
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(100)),
                               ),
                             ),
-                          ),
+                          ),*/
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
@@ -293,6 +336,56 @@ class _ActionButton extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class _PhotosList extends StatelessWidget {
+  const _PhotosList();
+
+  @override
+  Widget build(BuildContext context) {
+    final state = Provider.of<RegistroStateVeiculos>(context, listen: true);
+    return SingleChildScrollView(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).focusColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Image.file(
+                File(state.controllervehiclephoto!),
+                height: MediaQuery.of(context).size.height / 10,
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ChooseOrTakePhoto extends StatelessWidget {
+  const _ChooseOrTakePhoto();
+
+  @override
+  Widget build(BuildContext context) {
+    final state = Provider.of<RegistroStateVeiculos>(context, listen: true);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        AppSmallButton(
+          onPressed: state.pickImage,
+          text: 'Galeria',
+        ),
+        AppSmallButton(
+          onPressed: state.takePhoto,
+          text: 'Câmera',
+        )
+      ],
     );
   }
 }
