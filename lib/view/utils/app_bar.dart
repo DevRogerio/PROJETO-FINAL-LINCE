@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+///
 class BarraSuperior extends AppBar {
+  ///
   BarraSuperior({super.key})
       : super(
             backgroundColor: Colors.black,

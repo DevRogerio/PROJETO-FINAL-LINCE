@@ -50,6 +50,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   String? get controllervehiclephoto => _controllervehiclephoto;
 
   Future<void> insert() async {
+    print(controllervehiclephoto);
     final registrationVehicles = RegistrationVehicles(
         model: controllerModel.text,
         plate: controllerplate.text,

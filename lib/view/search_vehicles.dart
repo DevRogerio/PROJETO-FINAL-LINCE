@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -26,11 +28,7 @@ class SearchVehicles extends StatelessWidget {
             body: ListView.builder(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
               itemCount: state.listvehicles.length,
-              //state.controller.select().toString().length,
-              //registerStoreTable.toString().length,
-              //state.load().toString().length,
               itemBuilder: (context, index) {
-                // final RegisterStore = state.controllercnpj.value.text.length;
                 final registrationTable = state.listvehicles[index];
                 return Container(
                   color: Colors.red.shade900,
@@ -38,11 +36,14 @@ class SearchVehicles extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                   child: ListTile(
-                    leading: Text(registrationTable.id.toString()),
+                    leading: Image.file(
+                      File(registrationTable.vehiclephoto!),
+                    ), //Text(registrationTable.id.toString()),
                     title: Text(registrationTable.model.toString()),
-                    subtitle: Text(
-                      registrationTable.vehiclephoto.toString(),
-                    ),
+                    subtitle: /* Image.file(
+                      File(registrationTable.vehiclephoto!),
+                    ),*/
+                        Text(registrationTable.id.toString()),
                     trailing: IntrinsicWidth(
                       child: Row(
                         children: [
