@@ -22,7 +22,7 @@ class AppSmallButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
-        //backgroundColor: accentColor,
+        backgroundColor: Colors.red.shade900,
         foregroundColor: Colors.white,
       ),
       child: Text(text ?? ''),

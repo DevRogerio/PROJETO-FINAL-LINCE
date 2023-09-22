@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
                             child: TextFormField(
                               validator: (value) {
                                 if (value!.length < 3) {
-                                  return 'A senha deve conter pelo menos 3 caracteres';
+                                  return 'Minimo 3 letras';
                                 }
                                 return null;
                               },
@@ -96,7 +96,7 @@ class LoginPage extends StatelessWidget {
                                         padding: const EdgeInsets.all(5.0),
                                         child: Column(
                                           children: [
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 200,
                                             ),
                                             Container(

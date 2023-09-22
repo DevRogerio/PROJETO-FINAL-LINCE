@@ -11,7 +11,9 @@ import 'package:provider/provider.dart';
 
 import '../MODEL/registration_vehicles.dart';
 import '../controllers/database.dart';
+import '../controllers/fipe_api.dart';
 import 'utils/app_bar.dart';
+import 'utils/autocomplete_.dart';
 import 'utils/menu.dart';
 import 'utils/small_button.dart';
 
@@ -41,16 +43,64 @@ class RegistroStateVeiculos extends ChangeNotifier {
   TextEditingController get controllerbrand => _controllerbrand;
   TextEditingController get controllerbuiltYear => _controllerbuiltYear;
   TextEditingController get controllervehicleYear => _controllervehicleYear;
-  // TextEditingController get controllervehiclephoto => _controllervehiclephoto;
+
   TextEditingController get controllerpricePaid => _controllerpricePaid;
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
-  // TextEditingController get controllerdealershipId => _controllerdealershipId;
+
   RegistrationVehicles? get registeratual => _registeratual;
   List<RegistrationVehicles> get listvehicles => _listvehicles;
   String? get controllervehiclephoto => _controllervehiclephoto;
 
+  final modelFieldFocusNode = FocusNode();
+  final allBrands = <String>[];
+  final allModels = <String>[];
+
+  void init(RegistrationVehicles registrationVehicles) async {
+    //  _loggedUser = user;
+
+    final result = await getBrandNames();
+
+    allBrands.addAll(result ?? []);
+
+    modelFieldFocusNode.addListener(
+      () async {
+        if (modelFieldFocusNode.hasFocus) {
+          final result = await getModelsByBrand(controllerbrand.text);
+          allModels.addAll(result!);
+          notifyListeners();
+        }
+      },
+    );
+  }
+
+  Future<List<String>?> getBrandNames() async {
+    final brandsList = await getCarBrands();
+
+    final brandNames = <String>[];
+
+    if (brandsList != null) {
+      for (final item in brandsList) {
+        brandNames.add(item.name!);
+      }
+    }
+    return brandNames;
+  }
+
+  Future<List<String>?> getModelsByBrand(String brand) async {
+    final modelsList = await getCarModel(brand);
+
+    final modelNames = <String>[];
+
+    if (modelsList != null) {
+      for (final item in modelsList) {
+        modelNames.add(item.name!);
+      }
+    }
+    return modelNames;
+  }
+
   Future<void> insert() async {
-    print(controllervehiclephoto);
+    (controllervehiclephoto);
     final registrationVehicles = RegistrationVehicles(
         model: controllerModel.text,
         plate: controllerplate.text,
@@ -191,112 +241,116 @@ class RegisterVehicles extends StatelessWidget {
             child: Scaffold(
               appBar: BarraSuperior(),
               drawer: const DrawerMenu(),
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: SingleChildScrollView(
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerModel,
-                              decoration: InputDecoration(
-                                labelText: 'Modelo',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
+              body: Container(
+                decoration: const BoxDecoration(
+                    gradient:
+                        LinearGradient(begin: Alignment.topCenter, colors: [
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                ])),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                top: 8,
+                                bottom: 8,
+                              ),
+                              child: _BrandTextField(),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                top: 8,
+                                bottom: 8,
+                              ),
+                              child: _ModelTextField(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: state._controllerplate,
+                                decoration: InputDecoration(
+                                  labelText: 'N*Placa',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerplate,
-                              decoration: InputDecoration(
-                                labelText: 'N*Placa',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: state._controllerbuiltYear,
+                                decoration: InputDecoration(
+                                  labelText: 'ano de fabricação',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerbrand,
-                              decoration: InputDecoration(
-                                labelText: 'marca',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: state._controllervehicleYear,
+                                decoration: InputDecoration(
+                                  labelText: 'ano do veículo',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerbuiltYear,
-                              decoration: InputDecoration(
-                                labelText: 'ano de fabricação',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8,
+                                bottom: 8,
+                              ),
+                              child: state.controllervehiclephoto != null
+                                  ? const _PhotosList()
+                                  : Container(),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                top: 8,
+                                bottom: 8,
+                              ),
+                              child: _ChooseOrTakePhoto(),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: state.controllerpricePaid,
+                                decoration: InputDecoration(
+                                  labelText: 'preço pago pela loja',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllervehicleYear,
-                              decoration: InputDecoration(
-                                labelText: 'ano do veículo',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextFormField(
+                                controller: state.controllerpurchasedWhen,
+                                inputFormatters: [
+                                  MaskTextInputFormatter(mask: '##/##/####')
+                                ],
+                                decoration: InputDecoration(
+                                  labelText: 'data da compra',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100)),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: state.controllervehiclephoto != null
-                                ? const _PhotosList()
-                                : Container(),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: _ChooseOrTakePhoto(),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state.controllerpricePaid,
-                              decoration: InputDecoration(
-                                labelText: 'preço pago pela loja',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state.controllerpurchasedWhen,
-                              inputFormatters: [
-                                MaskTextInputFormatter(mask: '##/##/####')
-                              ],
-                              decoration: InputDecoration(
-                                labelText: 'data da compra',
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(100)),
-                              ),
-                            ),
-                          ),
-                          const _ActionButton(),
-                        ],
+                            const _ActionButton(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -382,6 +436,49 @@ class _ChooseOrTakePhoto extends StatelessWidget {
           text: 'Câmera',
         )
       ],
+    );
+  }
+}
+
+class _BrandTextField extends StatelessWidget {
+  const _BrandTextField();
+
+  String? validator(String? value) {
+    if (value!.isEmpty) {
+      return "Please inform the vehicle's brand";
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = Provider.of<RegistroStateVeiculos>(context, listen: true);
+    return AppTextFieldAutoComplete(
+      controller: state.controllerbrand,
+      validator: validator,
+      suggestions: state.allBrands,
+    );
+  }
+}
+
+class _ModelTextField extends StatelessWidget {
+  const _ModelTextField();
+
+  String? validator(String? value) {
+    if (value!.isEmpty) {
+      return "Please inform the vehicle's model";
+    }
+    return null;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final state = Provider.of<RegistroStateVeiculos>(context, listen: true);
+    return AppTextFieldAutoComplete(
+      controller: state.controllerModel,
+      validator: validator,
+      focusNode: state.modelFieldFocusNode,
+      suggestions: state.allModels,
     );
   }
 }

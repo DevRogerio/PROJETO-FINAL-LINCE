@@ -151,82 +151,108 @@ class Register extends StatelessWidget {
             child: Scaffold(
               appBar: BarraSuperior(),
               drawer: const DrawerMenu(),
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: SingleChildScrollView(
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerCNPJ,
-                              decoration: InputDecoration(
-                                labelText: 'Documento(CNPJ com 14 digitos)',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state.controllerName,
-                              decoration: InputDecoration(
-                                labelText: 'Nome Da Loja',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ValueListenableBuilder(
-                              valueListenable: dropValue,
-                              builder: ((context, value, _) {
-                                return DropdownButtonFormField<String>(
-                                  icon: const Icon(Icons.drive_eta),
-                                  hint: const Text(
-                                      'Escolha o Nivel de Autonomia'),
+              body: Container(
+                decoration: const BoxDecoration(
+                    gradient:
+                        LinearGradient(begin: Alignment.topCenter, colors: [
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                  Colors.black,
+                ])),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  colors: [
+                                Colors.black,
+                                Colors.black,
+                                Colors.black,
+                                Colors.black,
+                                Colors.black,
+                                Colors.black,
+                              ])),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state._controllerCNPJ,
                                   decoration: InputDecoration(
-                                      label: const Text('Nivel de Autonomia'),
-                                      border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100),
-                                      )),
-                                  value: (value.isEmpty) ? null : value,
-                                  onChanged: (escolha) =>
-                                      dropValue.value = escolha.toString(),
-                                  items: dropOpcoes
-                                      .map(
-                                        (op) => DropdownMenuItem(
-                                          value: op,
-                                          child: Text(op),
-                                        ),
-                                      )
-                                      .toList(),
-                                );
-                              }),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
-                              controller: state._controllerPassword,
-                              decoration: InputDecoration(
-                                labelText: 'Senha',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(100),
+                                    labelText: 'Documento(CNPJ com 14 digitos)',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllerName,
+                                  decoration: InputDecoration(
+                                    labelText: 'Nome Da Loja',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ValueListenableBuilder(
+                                  valueListenable: dropValue,
+                                  builder: ((context, value, _) {
+                                    return DropdownButtonFormField<String>(
+                                      icon: const Icon(Icons.drive_eta),
+                                      hint: const Text(
+                                          'Escolha o Nivel de Autonomia'),
+                                      decoration: InputDecoration(
+                                          label:
+                                              const Text('Nivel de Autonomia'),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                          )),
+                                      value: (value.isEmpty) ? null : value,
+                                      onChanged: (escolha) =>
+                                          dropValue.value = escolha.toString(),
+                                      items: dropOpcoes
+                                          .map(
+                                            (op) => DropdownMenuItem(
+                                              value: op,
+                                              child: Text(op),
+                                            ),
+                                          )
+                                          .toList(),
+                                    );
+                                  }),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state._controllerPassword,
+                                  decoration: InputDecoration(
+                                    labelText: 'Senha',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const _ActionButton(),
+                            ],
                           ),
-                          const _ActionButton(),
-                        ],
+                        ),
                       ),
                     ),
                   ),

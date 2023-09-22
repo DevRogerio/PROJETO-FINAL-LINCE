@@ -11,7 +11,7 @@ class BarraSuperior extends AppBar {
                 false, //esconder o icone original do menu
             centerTitle: true,
             leading: Builder(
-              builder: (BuildContext context) {
+              builder: (context) {
                 return IconButton(
                   icon: const FaIcon(FontAwesomeIcons.bars),
                   //abrir o menu

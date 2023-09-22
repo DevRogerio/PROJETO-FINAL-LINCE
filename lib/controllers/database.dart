@@ -52,8 +52,6 @@ class RegisterStoreTable {
 
     return map;
   }
-
-  insert(RegisterStore registerStore) {}
 }
 
 class RegisterController {
@@ -86,7 +84,6 @@ class RegisterController {
     var list = <RegisterStore>[];
 
     for (final item in result) {
-      //print(item);
       list.add(
         RegisterStore(
           id: item[RegisterStoreTable.id],
@@ -158,8 +155,6 @@ class RegistrationTable {
 
     return map;
   }
-
-  insert(RegistrationVehicles registrationVehicles) {}
 }
 
 class RegistrationVehiclesController {
@@ -192,7 +187,6 @@ class RegistrationVehiclesController {
     var list = <RegistrationVehicles>[];
 
     for (final item in result) {
-      //print(item);
       list.add(
         RegistrationVehicles(
           id: item[RegistrationTable.id],
