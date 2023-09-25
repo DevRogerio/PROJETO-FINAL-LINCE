@@ -16,55 +16,105 @@ class EditVehicles extends StatelessWidget {
         return Scaffold(
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: state.controllerModel,
-                      decoration: const InputDecoration(
-                        hintText: 'Alterar modelo',
-                      ),
-                      validator: (value) {
-                        if ((value ?? '').isEmpty) {
-                          return 'não pode estar vazio';
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: state.controllerbrand,
-                      decoration: const InputDecoration(
-                        hintText: 'Alterar marca',
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red.shade900),
-                      onPressed: () async {
-                        //print(state.registeratual);
+          body: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+            ])),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Card(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: state.controllerbrand,
+                          decoration: const InputDecoration(
+                            label: Text('Marca'),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                          validator: (value) {
+                            if ((value ?? '').isEmpty) {
+                              return 'não pode estar vazio';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: state.controllerModel,
+                          decoration: const InputDecoration(
+                            label: Text('Modelo '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerplate,
+                          decoration: const InputDecoration(
+                            label: Text('Placa '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerbuiltYear,
+                          decoration: const InputDecoration(
+                            label: Text('Ano de fabricação '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllervehicleYear,
+                          decoration: const InputDecoration(
+                            label: Text('Ano do veículo'),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerpricePaid,
+                          decoration: const InputDecoration(
+                            label: Text('Preço '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerpurchasedWhen,
+                          decoration: const InputDecoration(
+                            label: Text('Data da compra'),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade900),
+                          onPressed: () async {
+                            //print(state.registeratual);
 
-                        if (state.registeratual != null) {
-                          state.editSearchVehicles;
-                          await state.update();
-                        } else {
-                          await state.insert();
-                        }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SearchVehicles()),
-                        );
-                      },
-                      child: const Text('atualizar'),
-                    )
-                  ],
+                            if (state.registeratual != null) {
+                              state.editSearchVehicles;
+                              await state.update();
+                            } else {
+                              await state.insert();
+                            }
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SearchVehicles(),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('atualizar'),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),

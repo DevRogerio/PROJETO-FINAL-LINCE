@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../view/home.dart';
 import '../view/utils/style.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 

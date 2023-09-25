@@ -26,7 +26,7 @@ class AppTextFieldAutoComplete extends StatelessWidget {
       decoration: const InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(20),
+            Radius.circular(100),
           ),
         ),
       ),

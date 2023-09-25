@@ -19,6 +19,7 @@ import 'utils/small_button.dart';
 
 class RegistroStateVeiculos extends ChangeNotifier {
   RegistroStateVeiculos() {
+    init();
     load();
   }
   //String? registrationVehiclespricePaid;
@@ -55,7 +56,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final allBrands = <String>[];
   final allModels = <String>[];
 
-  void init(RegistrationVehicles registrationVehicles) async {
+  void init() async {
     //  _loggedUser = user;
 
     final result = await getBrandNames();

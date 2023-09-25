@@ -56,11 +56,14 @@ class EditPerfilSearch extends StatelessWidget {
                           await state.insert();
                         }
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Search()),
-                        );
+                        if (context.mounted) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Search(),
+                            ),
+                          );
+                        }
                       },
                       child: const Text('atualizar'),
                     )

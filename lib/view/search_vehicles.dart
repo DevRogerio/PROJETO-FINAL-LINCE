@@ -53,7 +53,7 @@ class SearchVehicles extends StatelessWidget {
                       subtitle: /* Image.file(
                         File(registrationTable.vehiclephoto!),
                       ),*/
-                          Text(registrationTable.id.toString()),
+                          Text(registrationTable.brand.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
