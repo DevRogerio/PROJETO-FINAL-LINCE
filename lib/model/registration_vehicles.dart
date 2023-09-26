@@ -8,7 +8,6 @@ class RegistrationVehicles {
   final String? vehiclephoto;
   final double? pricePaid;
   final DateTime? purchasedWhen;
-  // final int dealershipId;
 
   RegistrationVehicles({
     this.id,
@@ -20,6 +19,5 @@ class RegistrationVehicles {
     this.vehiclephoto,
     this.pricePaid,
     this.purchasedWhen,
-    // required  this.dealershipId,
   });
 }

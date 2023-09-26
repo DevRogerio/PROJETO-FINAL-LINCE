@@ -223,15 +223,14 @@ class SalesTable {
   static const String createTable = '''
     CREATE TABLE $tableName(
       $id             INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      $cpf    INTEGER NOT NULL,
-      $name   TEXT NOT NULL,
+      $cpf            INTEGER NOT NULL,
+      $name           TEXT NOT NULL,
       $soldWhen       TEXT NOT NULL,
       $priceSold      REAL NOT NULL,
       $dealershipCut  REAL NOT NULL,
       $businessCut    REAL NOT NULL,
       $safetyCut      REAL NOT NULL,
       $vehicleId      INTERGER NOT NULL,
-     
       $userId         INTEGER NOT NULL
     );
   ''';
@@ -239,14 +238,14 @@ class SalesTable {
   static const String tableName = 'sale';
   static const String id = 'id';
   static const String cpf = 'Cpf';
-  static const String name = 'Name';
+  static const String name = 'name';
   static const String soldWhen = 'soldWhen';
   static const String priceSold = 'priceSold';
   static const String dealershipCut = 'dealershipCut';
   static const String businessCut = 'businessCut';
   static const String safetyCut = 'safetyCut';
   static const String vehicleId = 'vehicleId';
-  // static const String dealershipId = 'dealershipId';
+
   static const String userId = 'userId';
 
   static Map<String, dynamic> toMap(Sale sale) {
@@ -261,7 +260,7 @@ class SalesTable {
     map[SalesTable.businessCut] = sale.businessCut;
     map[SalesTable.safetyCut] = sale.safetyCut;
     map[SalesTable.vehicleId] = sale.vehicleId;
-    // map[SalesTable.dealershipId] = sale.dealershipId;
+
     map[SalesTable.userId] = sale.userId;
 
     return map;
@@ -276,5 +275,56 @@ class SaleController {
     await database.insert(SalesTable.tableName, map);
 
     return;
+  }
+
+  Future<void> delete(Sale sale) async {
+    final database = await getDatabase();
+
+    database.delete(
+      SalesTable.tableName,
+      where: '${SalesTable.id} = ?',
+      whereArgs: [sale.id],
+    );
+  }
+
+  Future<List<Sale>> select() async {
+    final database = await getDatabase();
+
+    final List<Map<String, dynamic>> result = await database.query(
+      SalesTable.tableName,
+    );
+
+    var list = <Sale>[];
+
+    for (final item in result) {
+      list.add(
+        Sale(
+          id: item[SalesTable.id],
+          cpf: item[SalesTable.cpf],
+          name: item[SalesTable.name],
+          soldWhen: DateFormat('yyyy-MM-dd').parse(item[SalesTable.soldWhen]),
+          priceSold: item[SalesTable.priceSold],
+          dealershipCut: item[SalesTable.dealershipCut],
+          businessCut: item[SalesTable.businessCut],
+          safetyCut: item[SalesTable.safetyCut],
+          vehicleId: item[SalesTable.vehicleId],
+          userId: item[SalesTable.userId],
+        ),
+      );
+    }
+    return list;
+  }
+
+  Future<void> update(Sale sale) async {
+    final database = await getDatabase();
+
+    var map = SalesTable.toMap(sale);
+
+    await database.update(
+      SalesTable.tableName,
+      map,
+      where: '${SalesTable.id} = ?',
+      whereArgs: [sale.id],
+    );
   }
 }

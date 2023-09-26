@@ -67,7 +67,6 @@ Future<List<BrandEndpoint>?> getCarBrands() async {
     final response = await http.get(uri);
 
     final decodeResult = jsonDecode(response.body);
-    print(response.body);
 
     final result = <BrandEndpoint>[];
 
