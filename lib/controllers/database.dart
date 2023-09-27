@@ -254,7 +254,7 @@ class SalesTable {
     map[SalesTable.id] = sale.id;
     map[SalesTable.cpf] = sale.cpf;
     map[SalesTable.name] = sale.name;
-    map[SalesTable.soldWhen] = sale.soldWhen;
+    map[SalesTable.soldWhen] = DateFormat('yyyy-MM-dd').format(sale.soldWhen!);
     map[SalesTable.priceSold] = sale.priceSold;
     map[SalesTable.dealershipCut] = sale.dealershipCut;
     map[SalesTable.businessCut] = sale.businessCut;

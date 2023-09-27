@@ -57,8 +57,6 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final allModels = <String>[];
 
   void init() async {
-    //  _loggedUser = user;
-
     final result = await getBrandNames();
 
     allBrands.addAll(result ?? []);
