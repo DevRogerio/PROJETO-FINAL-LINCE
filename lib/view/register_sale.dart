@@ -1,16 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-
+import '../MODEL/sales.dart';
 import '../controllers/database.dart';
-import '../model/sales.dart';
+//import '../model/sales.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
 
 class RegistroStateSale extends ChangeNotifier {
   RegistroStateSale() {
-    load();
+    unawaited(load());
   }
 
   // String registerStoreName = 'nome';
@@ -94,7 +96,7 @@ class RegistroStateSale extends ChangeNotifier {
   }
 
   void editSearch(Sale sale) {
-    _controllername.text = sale.name!;
+    _controllername.text = sale.name.toString();
     _controllercpf.text = sale.cpf.toString();
     _controllersoldWhen.text = sale.soldWhen.toString();
     _controllerdealershipCut.text = sale.dealershipCut.toString();
@@ -371,7 +373,7 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<Sale>(context);
+    final state = Provider.of<RegistroStateSale>(context);
 
     return Padding(
       padding: const EdgeInsets.all(24),

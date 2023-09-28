@@ -1,5 +1,6 @@
 //import 'dart:developer';
 
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ import 'utils/small_button.dart';
 class RegistroStateVeiculos extends ChangeNotifier {
   RegistroStateVeiculos() {
     init();
-    load();
+    unawaited(load());
   }
   //String? registrationVehiclespricePaid;
   //String? registrationVehiclespurchasedWhen;

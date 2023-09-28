@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -29,6 +31,7 @@ class EditVehicles extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Card(
+                color: Colors.black,
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8),
@@ -89,6 +92,17 @@ class EditVehicles extends StatelessWidget {
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        FormField(builder: (field) {
+                          return Container(
+                            height: 600,
+                            child: Image.file(
+                              File(state.controllervehiclephoto!),
+                            ),
+                          );
+                        }),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
@@ -102,7 +116,7 @@ class EditVehicles extends StatelessWidget {
                               await state.insert();
                             }
                             if (context.mounted) {
-                              Navigator.push(
+                              await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const SearchVehicles(),

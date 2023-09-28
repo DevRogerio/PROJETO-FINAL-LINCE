@@ -67,7 +67,7 @@ class RegisterController {
   Future<void> delete(RegisterStore registerStore) async {
     final database = await getDatabase();
 
-    database.delete(
+    await database.delete(
       RegisterStoreTable.tableName,
       where: '${RegisterStoreTable.id} = ?',
       whereArgs: [registerStore.id],
@@ -170,7 +170,7 @@ class RegistrationVehiclesController {
   Future<void> delete(RegistrationVehicles registrationVehicles) async {
     final database = await getDatabase();
 
-    database.delete(
+    await database.delete(
       RegistrationTable.tableName,
       where: '${RegistrationTable.id} = ?',
       whereArgs: [registrationVehicles.id],
@@ -280,7 +280,7 @@ class SaleController {
   Future<void> delete(Sale sale) async {
     final database = await getDatabase();
 
-    database.delete(
+    await database.delete(
       SalesTable.tableName,
       where: '${SalesTable.id} = ?',
       whereArgs: [sale.id],

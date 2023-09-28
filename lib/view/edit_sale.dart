@@ -1,10 +1,10 @@
-import 'package:carros_car/view/utils/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'register_sale.dart';
 import 'search_sale.dart';
 import 'utils/app_bar.dart';
+import 'utils/menu.dart';
 
 class EditSaleSearch extends StatelessWidget {
   const EditSaleSearch({Key? key}) : super(key: key);
@@ -57,7 +57,7 @@ class EditSaleSearch extends StatelessWidget {
                         }
 
                         if (context.mounted) {
-                          Navigator.push(
+                          await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const SearchSale(),

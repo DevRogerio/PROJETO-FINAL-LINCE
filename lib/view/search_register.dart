@@ -64,7 +64,7 @@ class Search extends StatelessWidget {
                             ),*/
                             IconButton(
                               onPressed: () async {
-                                state.delete(registerStoreTable);
+                                await state.delete(registerStoreTable);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -76,7 +76,7 @@ class Search extends StatelessWidget {
                                 // state.updateRegister();
 
                                 state.editSearch(registerStoreTable);
-                                Navigator.push(
+                                await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>

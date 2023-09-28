@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../home.dart';
 import '../register.dart';
+import '../register_sale.dart';
 import '../register_vehicles.dart';
 
 class DrawerMenu extends StatelessWidget {
@@ -68,8 +69,8 @@ class DrawerMenu extends StatelessWidget {
               iconColor: Colors.red.shade900,
 
               //ir para a Home
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const Home(),
@@ -88,8 +89,8 @@ class DrawerMenu extends StatelessWidget {
               iconColor: Colors.red.shade900,
 
               //ir para a gerencia de vendas
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => Register(),
@@ -108,8 +109,8 @@ class DrawerMenu extends StatelessWidget {
               iconColor: Colors.red.shade900,
 
               //ir para a Configuraçoes
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => RegisterVehicles(),
@@ -128,11 +129,11 @@ class DrawerMenu extends StatelessWidget {
               iconColor: Colors.red.shade900,
 
               //ir para a pagina inicial
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Home(),
+                    builder: (context) => RegisterSale(),
                   ),
                 );
               },

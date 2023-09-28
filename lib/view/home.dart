@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'search_register.dart';
+import 'search_sale.dart';
 import 'search_vehicles.dart';
 import 'utils/app_bar.dart';
 import 'utils/carousel.dart';
@@ -70,8 +71,8 @@ class Home extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               // ignore: deprecated_member_use
                               primary: Colors.red.shade900),
-                          onPressed: () {
-                            Navigator.push(
+                          onPressed: () async {
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => const Search()),
@@ -109,8 +110,8 @@ class Home extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               // ignore: deprecated_member_use
                               primary: Colors.red.shade900),
-                          onPressed: () {
-                            Navigator.push(
+                          onPressed: () async {
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const SearchVehicles(),
@@ -150,11 +151,11 @@ class Home extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               // ignore: deprecated_member_use
                               primary: Colors.red.shade900),
-                          onPressed: () {
-                            Navigator.push(
+                          onPressed: () async {
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Home()),
+                                  builder: (context) => const SearchSale()),
                             );
                           },
                           child: Container(

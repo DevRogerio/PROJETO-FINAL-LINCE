@@ -68,7 +68,7 @@ class SearchVehicles extends StatelessWidget {
                             ),*/
                             IconButton(
                               onPressed: () async {
-                                state.delete(registrationTable);
+                                await state.delete(registrationTable);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -80,7 +80,7 @@ class SearchVehicles extends StatelessWidget {
                                 // state.updateRegister();
 
                                 state.editSearchVehicles(registrationTable);
-                                Navigator.push(
+                                await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>

@@ -37,7 +37,6 @@ class SearchSale extends StatelessWidget {
                 //registerStoreTable.toString().length,
                 //state.load().toString().length,
                 itemBuilder: (context, index) {
-                  // final RegisterStore = state.controllercnpj.value.text.length;
                   final SalesTable = state.listUser[index];
                   return Container(
                     color: Colors.red.shade900,
@@ -62,7 +61,7 @@ class SearchSale extends StatelessWidget {
                             ),*/
                             IconButton(
                               onPressed: () async {
-                                state.delete(SalesTable);
+                                await state.delete(SalesTable);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -74,7 +73,7 @@ class SearchSale extends StatelessWidget {
                                 // state.updateRegister();
 
                                 state.editSearch(SalesTable);
-                                Navigator.push(
+                                await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>

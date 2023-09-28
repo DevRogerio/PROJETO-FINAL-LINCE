@@ -1,14 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../MODEL/register_store.dart';
 import '../controllers/database.dart';
 import 'utils/app_bar.dart';
+
 import 'utils/menu.dart';
 
 class RegistroState extends ChangeNotifier {
   RegistroState() {
-    load();
+    unawaited(load());
   }
 
   String registerStoreName = 'nome';
