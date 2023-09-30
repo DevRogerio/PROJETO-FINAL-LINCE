@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'register_sale.dart';
 import 'register_vehicles.dart';
 import 'search_vehicles.dart';
 import 'utils/app_bar.dart';
@@ -96,7 +97,7 @@ class EditVehicles extends StatelessWidget {
                           height: 25,
                         ),
                         FormField(builder: (field) {
-                          return Container(
+                          return SizedBox(
                             height: 600,
                             child: Image.file(
                               File(state.controllervehiclephoto!),
@@ -125,7 +126,22 @@ class EditVehicles extends StatelessWidget {
                             }
                           },
                           child: const Text('atualizar'),
-                        )
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade900),
+                          onPressed: () async {
+                            if (context.mounted) {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterSale(),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('Vender Carro'),
+                        ),
                       ],
                     ),
                   ),

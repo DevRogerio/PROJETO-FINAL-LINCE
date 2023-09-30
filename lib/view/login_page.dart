@@ -26,13 +26,13 @@ class LoginPage extends StatelessWidget {
             ),
 
             body: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(begin: Alignment.topCenter, colors: [
                 Colors.black,
                 Colors.black,
                 Colors.black,
-                Colors.red.shade900,
-                Colors.red.shade800,
+                Colors.black,
+                Colors.black,
                 Colors.black,
               ])),
               child: Center(
@@ -97,7 +97,7 @@ class LoginPage extends StatelessWidget {
                                         child: Column(
                                           children: [
                                             const SizedBox(
-                                              height: 200,
+                                              height: 50,
                                             ),
                                             Container(
                                               width: double.infinity,
@@ -107,7 +107,7 @@ class LoginPage extends StatelessWidget {
                                               ),
                                               child: Padding(
                                                 padding:
-                                                    const EdgeInsets.all(10.0),
+                                                    const EdgeInsets.all(20.0),
                                                 child: ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
@@ -146,6 +146,12 @@ class LoginPage extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: 250,
+                                              width: 500,
+                                              child: Image.asset(
+                                                  'assets/img/logo.png'),
                                             ),
                                           ],
                                         ),

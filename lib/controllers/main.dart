@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../view/home.dart';
+import '../view/login_page.dart';
 import '../view/utils/style.dart';
 
 void main() async {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Home(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
       theme: style(),
     );
