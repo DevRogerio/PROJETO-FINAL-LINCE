@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import '../MODEL/register_store.dart';
 import '../MODEL/sales.dart';
 import '../controllers/database.dart';
 //import '../model/sales.dart';
@@ -14,6 +15,7 @@ class RegistroStateSale extends ChangeNotifier {
   RegistroStateSale() {
     unawaited(load());
   }
+  late RegisterStore _loggedRegisterStore;
 
   // String registerStoreName = 'nome';
 
@@ -146,6 +148,31 @@ class RegistroStateSale extends ChangeNotifier {
     _controllerpriceSold.clear();
 
     await load();
+  }
+
+  Future<void> autonomyLevelID(double pricePaid) async {
+    switch (_loggedRegisterStore.autonomyLevelID) {
+      case 'Iniciante':
+        var dealershipCut = pricePaid * 74 / 100;
+        var businessCut = pricePaid * 25 / 100;
+        var safetyCut = pricePaid * 1 / 100;
+        break;
+      case 'Intermediario':
+        var dealershipCut = pricePaid * 79 / 100;
+        var businessCut = pricePaid * 20 / 100;
+        var safetyCut = pricePaid * 1 / 100;
+        break;
+      case 'Avançado':
+        var dealershipCut = pricePaid * 84 / 100;
+        var businessCut = pricePaid * 15 / 100;
+        var safetyCut = pricePaid * 1 / 100;
+        break;
+      case 'Especial':
+        var dealershipCut = pricePaid * 94 / 100;
+        var businessCut = pricePaid * 5 / 100;
+        var safetyCut = pricePaid * 1 / 100;
+        break;
+    }
   }
 }
 

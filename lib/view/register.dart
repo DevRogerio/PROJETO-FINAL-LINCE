@@ -6,15 +6,16 @@ import 'package:provider/provider.dart';
 import '../MODEL/register_store.dart';
 import '../controllers/database.dart';
 import 'utils/app_bar.dart';
-
+import 'utils/dropdown_autonomy.dart';
 import 'utils/menu.dart';
 
 class RegistroState extends ChangeNotifier {
   RegistroState() {
     unawaited(load());
   }
+  //String usuario = controllerName.text;
 
-  String registerStoreName = 'nome';
+  String registerStoreName = '';
 
   int? registerStorecnpj;
 
@@ -134,13 +135,6 @@ class Register extends StatelessWidget {
   Register({
     Key? key,
   }) : super(key: key);
-  final dropValue = ValueNotifier('');
-  final dropOpcoes = [
-    'loja Iniciante 74% - rede 25%',
-    'loja Intermediario 79% - rede 20%',
-    'loja Avançado 84% - rede 15%',
-    'loja Especial 94% - rede 5%'
-  ];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -209,35 +203,11 @@ class Register extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ValueListenableBuilder(
-                                  valueListenable: dropValue,
-                                  builder: ((context, value, _) {
-                                    return DropdownButtonFormField<String>(
-                                      icon: const Icon(Icons.drive_eta),
-                                      hint: const Text(
-                                          'Escolha o Nivel de Autonomia'),
-                                      decoration: InputDecoration(
-                                          label:
-                                              const Text('Nivel de Autonomia'),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                          )),
-                                      value: (value.isEmpty) ? null : value,
-                                      onChanged: (escolha) =>
-                                          dropValue.value = escolha.toString(),
-                                      items: dropOpcoes
-                                          .map(
-                                            (op) => DropdownMenuItem(
-                                              value: op,
-                                              child: Text(op),
-                                            ),
-                                          )
-                                          .toList(),
-                                    );
-                                  }),
+                              DropMenu(),
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
                                 ),
                               ),
                               Padding(

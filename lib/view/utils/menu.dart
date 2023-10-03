@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../home.dart';
 import '../register.dart';
@@ -10,8 +11,8 @@ import '../register_vehicles.dart';
 
 class DrawerMenu extends StatelessWidget {
   //dados que vem do banco de dados
-  final String usuario = 'Rogerio';
-  final String email = 'rogeriocunhago@gmail.com';
+  //final String usuario = RegisterStoreTable.name;
+  //final String email = RegisterStoreTable.cnpj;
 
   const DrawerMenu({super.key});
   //final String fotoPerfil = "img/perfil.jpg";
@@ -25,6 +26,9 @@ class DrawerMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<RegistroState>(
+      context,
+    );
     return Drawer(
       child: Container(
         decoration: const BoxDecoration(
@@ -49,8 +53,8 @@ class DrawerMenu extends StatelessWidget {
                 Colors.red,
                 Colors.red,
               ])),
-              accountName: Text(usuario),
-              accountEmail: Text(email),
+              accountName: Text(state.controllerName.text),
+              accountEmail: Text(state.controllerPassword.text),
               currentAccountPicture: CircleAvatar(
                 child: ClipRRect(
                   // child: Image.asset(fotoPerfil),

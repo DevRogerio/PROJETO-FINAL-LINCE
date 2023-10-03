@@ -18,6 +18,7 @@ Future<Database> getDatabase() async {
       await db.execute(RegisterStoreTable.createTable);
       await db.execute(RegistrationTable.createTable);
       await db.execute(SalesTable.createTable);
+      await db.rawInsert(RegisterStoreTable.adminUserRawInsert);
     },
     version: 1,
   );
@@ -40,6 +41,9 @@ class RegisterStoreTable {
   static const String cnpj = 'cnpj';
   static const String password = 'password';
   static const String autonomyLevelID = 'autonomyLevelID ';
+  static const adminUserRawInsert =
+      'INSERT INTO $tableName($cnpj,$name,$autonomyLevelID,$password)'
+      'VALUES(123,"admin","admin","Anderson")';
 
   static Map<String, dynamic> toMap(RegisterStore registerStore) {
     final map = <String, dynamic>{};

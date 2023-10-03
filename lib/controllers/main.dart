@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../view/home.dart';
 import '../view/login_page.dart';
+import '../view/register.dart';
 import '../view/utils/style.dart';
 
 void main() async {
@@ -12,10 +15,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const LoginPage(),
-      debugShowCheckedModeBanner: false,
-      theme: style(),
+    return ChangeNotifierProvider(
+      create: (context) => RegistroState(),
+      child: Consumer<RegistroState>(
+        builder: (context, state, child) {
+          return MaterialApp(
+            home: LoginPage(state),
+            debugShowCheckedModeBanner: false,
+            theme: style(),
+          );
+        },
+      ),
     );
   }
 }
