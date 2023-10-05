@@ -1,4 +1,3 @@
-import 'package:carros_car/view/utils/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -6,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'edit_sale.dart';
 import 'register_sale.dart';
 import 'utils/app_bar.dart';
+import 'utils/menu.dart';
 
 class SearchSale extends StatelessWidget {
   const SearchSale({super.key});

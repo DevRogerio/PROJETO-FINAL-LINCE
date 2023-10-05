@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../controllers/database.dart';
 import '../home.dart';
 import '../register.dart';
 import '../register_sale.dart';
@@ -29,6 +30,8 @@ class DrawerMenu extends StatelessWidget {
     final state = Provider.of<RegistroState>(
       context,
     );
+    final userid = state.logUser!.id;
+    final username = state.logUser!.name;
     return Drawer(
       child: Container(
         decoration: const BoxDecoration(
@@ -53,7 +56,7 @@ class DrawerMenu extends StatelessWidget {
                 Colors.red,
                 Colors.red,
               ])),
-              accountName: Text(state.controllerName.text),
+              accountName: Text(username),
               accountEmail: Text(state.controllerPassword.text),
               currentAccountPicture: CircleAvatar(
                 child: ClipRRect(
@@ -63,27 +66,34 @@ class DrawerMenu extends StatelessWidget {
               ),
             ),
             //home
-            new ListTile(
-              title: mostrarTitulo('Home'),
-              subtitle: const Text('Pagina Inicial'),
-              // ignore: deprecated_member_use
-              trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-              // ignore: deprecated_member_use
-              leading: const FaIcon(FontAwesomeIcons.home),
-              iconColor: Colors.red.shade900,
 
-              //ir para a Home
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Home(),
-                  ),
-                );
-              },
-            ),
+            // if (state.usuario.id == 1)
+            userid == 1
+                ? ListTile(
+                    title: mostrarTitulo('Home'),
+                    subtitle: const Text('Pagina Inicial'),
+                    // ignore: deprecated_member_use
+                    trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+                    // ignore: deprecated_member_use
+                    leading: const FaIcon(FontAwesomeIcons.home),
+                    iconColor: Colors.red.shade900,
+
+                    //ir para a Home
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Home(),
+                        ),
+                      );
+
+                      // ignore: unrelated_type_equality_checks
+                    },
+                  )
+                : Container(),
 
             //Gerencia
+
             new ListTile(
               title: mostrarTitulo('Lojas'),
               subtitle: const Text('Cadastrar Lojas Parceiras'),

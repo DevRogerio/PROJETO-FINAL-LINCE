@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../MODEL/register_store.dart';
 import '../controllers/database.dart';
@@ -12,8 +13,17 @@ import 'utils/menu.dart';
 class RegistroState extends ChangeNotifier {
   RegistroState() {
     unawaited(load());
+    unawaited(loadUser());
   }
-  //String usuario = controllerName.text;
+  /*RegisterStore usuario = RegisterStore(
+    cnpj: 123,
+    name: 'rrr',
+    password: 'rrr',
+    autonomyLevelID: 'rrr',
+    id: 1000,
+  );*/
+  RegisterStore? _logUser;
+  RegisterStore? get logUser => _logUser;
 
   String registerStoreName = '';
 
@@ -117,7 +127,8 @@ class RegistroState extends ChangeNotifier {
       where: '${RegisterStoreTable.name} = ?',
       whereArgs: [name],
     );
-
+    print(result);
+    print('aaa${name}');
     if (result.isNotEmpty) {
       final item = result.first;
 
@@ -128,6 +139,29 @@ class RegistroState extends ChangeNotifier {
         password: item[RegisterStoreTable.password],
       );
     }
+    notifyListeners();
+    return null;
+  }
+
+  Future<void> savedUser(int userid, String username) async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('userid', userid);
+    await preferences.setString('username', username);
+  }
+
+  Future<void> loadUser() async {
+    final preferences = await SharedPreferences.getInstance();
+    final userid = preferences.getInt('userid');
+    final username = preferences.getString('username');
+    if (userid != null && username != null) {
+      _logUser = RegisterStore(name: username, id: userid);
+    }
+    notifyListeners();
+  }
+
+  Future<void> juliano() async {
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.clear();
   }
 }
 

@@ -1,7 +1,9 @@
 //import 'dart:ui';
 
+import 'package:carros_car/view/register.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'search_register.dart';
 import 'search_sale.dart';
@@ -15,6 +17,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<RegistroState>(
+      context,
+    );
+    final userid = state.logUser!.id;
+    //final username = state.logUser!.name;
     return Scaffold(
       //titulo do app
       appBar: BarraSuperior(),
@@ -65,42 +72,47 @@ class Home extends StatelessWidget {
                     const SizedBox(height: 45),
 
                     //botao ver lojas
-                    Builder(
-                      builder: (context) {
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: Colors.red.shade900),
-                          onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Search()),
-                            );
-                          },
-                          child: Container(
-                            width: 300,
-                            padding: const EdgeInsets.all(16),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                FaIcon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.search,
-                                  color: Colors.white,
-                                  size: 24,
+                    userid == 1
+                        ? Builder(
+                            builder: (context) {
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    // ignore: deprecated_member_use
+                                    primary: Colors.red.shade900),
+                                onPressed: () async {
+                                  if (userid == 1) {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const Search()),
+                                    );
+                                  }
+                                },
+                                child: Container(
+                                  width: 300,
+                                  padding: const EdgeInsets.all(16),
+                                  child: const Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      FaIcon(
+                                        // ignore: deprecated_member_use
+                                        FontAwesomeIcons.search,
+                                        color: Colors.white,
+                                        size: 24,
+                                      ),
+                                      Text(
+                                        'Buscar Lojas',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 24),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                                Text(
-                                  'Buscar Lojas',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                              );
+                            },
+                          )
+                        : Container(),
                     const SizedBox(height: 20),
 
                     //botao ver veiculos

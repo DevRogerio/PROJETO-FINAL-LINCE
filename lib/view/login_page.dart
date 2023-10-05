@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
       //  appBar: BarraSuperior(),
 
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Center(
           child: Text(
             'Anderson Carros',
@@ -110,12 +111,16 @@ class LoginPage extends StatelessWidget {
                                                 backgroundColor:
                                                     Colors.red.shade900),
                                             onPressed: () async {
+                                              await state.juliano();
                                               final name =
                                                   state.controllerName.text;
                                               final password =
                                                   state.controllerPassword.text;
                                               final userLogin = await state
                                                   .getRegisterStore(name);
+                                              print(userLogin.id);
+                                              await state.savedUser(
+                                                  userLogin.id, userLogin.name);
                                               if (state.formKey.currentState!
                                                   .validate()) {
                                                 if (userLogin != null &&
