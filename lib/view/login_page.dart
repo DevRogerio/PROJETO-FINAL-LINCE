@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../view/register.dart';
 import 'home.dart';
@@ -111,14 +110,14 @@ class LoginPage extends StatelessWidget {
                                                 backgroundColor:
                                                     Colors.red.shade900),
                                             onPressed: () async {
-                                              await state.juliano();
+                                              await state.clearPreferences();
                                               final name =
                                                   state.controllerName.text;
                                               final password =
                                                   state.controllerPassword.text;
                                               final userLogin = await state
                                                   .getRegisterStore(name);
-                                              print(userLogin.id);
+                                              // print(userLogin.id);
                                               await state.savedUser(
                                                   userLogin.id, userLogin.name);
                                               if (state.formKey.currentState!

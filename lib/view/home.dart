@@ -1,10 +1,10 @@
 //import 'dart:ui';
 
-import 'package:carros_car/view/register.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import 'register.dart';
 import 'search_register.dart';
 import 'search_sale.dart';
 import 'search_vehicles.dart';

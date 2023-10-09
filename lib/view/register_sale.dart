@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import '../MODEL/register_store.dart';
+
 import '../MODEL/sales.dart';
 import '../controllers/database.dart';
 //import '../model/sales.dart';
@@ -15,7 +15,7 @@ class RegistroStateSale extends ChangeNotifier {
   RegistroStateSale() {
     unawaited(load());
   }
-  late RegisterStore _loggedRegisterStore;
+  // late RegisterStore _loggedRegisterStore;
 
   // String registerStoreName = 'nome';
 
@@ -150,7 +150,7 @@ class RegistroStateSale extends ChangeNotifier {
     await load();
   }
 
-  Future<void> autonomyLevelID(double pricePaid) async {
+  /*Future<void> autonomyLevelID(double pricePaid) async {
     switch (_loggedRegisterStore.autonomyLevelID) {
       case 'Iniciante':
         var dealershipCut = pricePaid * 74 / 100;
@@ -173,7 +173,7 @@ class RegistroStateSale extends ChangeNotifier {
         var safetyCut = pricePaid * 1 / 100;
         break;
     }
-  }
+  }*/
 }
 
 /*class Register extends StatelessWidget {
@@ -311,7 +311,7 @@ class RegisterSale extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllerdealershipCut,
                                   decoration: InputDecoration(
-                                    labelText: 'concessionária',
+                                    labelText: '% concessionária',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -323,7 +323,7 @@ class RegisterSale extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllerbusinessCut,
                                   decoration: InputDecoration(
-                                    labelText: 'businessCut',
+                                    labelText: '% loja',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -335,14 +335,14 @@ class RegisterSale extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllersafetyCut,
                                   decoration: InputDecoration(
-                                    labelText: 'corte de segurança',
+                                    labelText: '% caixa de segurança',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
                                   ),
                                 ),
                               ),
-                              Padding(
+                              /*  Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                   controller: state._controllervehicleId,
@@ -365,7 +365,7 @@ class RegisterSale extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
@@ -413,7 +413,7 @@ class _ActionButton extends StatelessWidget {
             onPressed: () async {
               await state.insert();
             },
-            child: const Text('cadastro'),
+            child: const Text('Registrar Venda'),
           )
         ],
       ),

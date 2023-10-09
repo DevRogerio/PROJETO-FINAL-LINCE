@@ -22,6 +22,7 @@ class RegistroState extends ChangeNotifier {
     autonomyLevelID: 'rrr',
     id: 1000,
   );*/
+
   RegisterStore? _logUser;
   RegisterStore? get logUser => _logUser;
 
@@ -127,8 +128,8 @@ class RegistroState extends ChangeNotifier {
       where: '${RegisterStoreTable.name} = ?',
       whereArgs: [name],
     );
-    print(result);
-    print('aaa${name}');
+    // print(result);
+    // print('aaa${name}');
     if (result.isNotEmpty) {
       final item = result.first;
 
@@ -159,7 +160,7 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> juliano() async {
+  Future<void> clearPreferences() async {
     final preferences = await SharedPreferences.getInstance();
     await preferences.clear();
   }

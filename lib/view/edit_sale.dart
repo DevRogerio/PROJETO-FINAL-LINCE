@@ -15,59 +15,104 @@ class EditSaleSearch extends StatelessWidget {
         return Scaffold(
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: state.controllername,
-                      decoration: const InputDecoration(
-                        hintText: 'Alterar nome',
-                      ),
-                      validator: (value) {
-                        if ((value ?? '').isEmpty) {
-                          return 'não pode estar vazio';
-                        }
-                        return null;
-                      },
-                    ),
-                    TextFormField(
-                      controller: state.controllercpf,
-                      decoration: const InputDecoration(
-                        hintText: 'Alterar cpf',
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red.shade900),
-                      onPressed: () async {
-                        //print(state.registeratual);
+          body: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+              Colors.black,
+            ])),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Card(
+                color: Colors.black,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: state.controllername,
+                          decoration: const InputDecoration(
+                            label: Text('nome '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllercpf,
+                          decoration: const InputDecoration(
+                            label: Text('cpf '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllersoldWhen,
+                          decoration: const InputDecoration(
+                            label: Text('data da venda '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerdealershipCut,
+                          decoration: const InputDecoration(
+                            label: Text('% concessionaria '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerbusinessCut,
+                          decoration: const InputDecoration(
+                            label: Text('% loja '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllersafetyCut,
+                          decoration: const InputDecoration(
+                            label: Text('% caixa de segurança '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerpriceSold,
+                          decoration: const InputDecoration(
+                            label: Text(' preço de venda '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 125,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade900),
+                          onPressed: () async {
+                            //print(state.registeratual);
 
-                        if (state.registerAtual != null) {
-                          state.editSearch;
-                          await state.update();
-                        } else {
-                          await state.insert();
-                        }
+                            if (state.registerAtual != null) {
+                              state.editSearch;
+                              await state.update();
+                            } else {
+                              await state.insert();
+                            }
 
-                        if (context.mounted) {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SearchSale(),
-                            ),
-                          );
-                        }
-                      },
-                      child: const Text('atualizar'),
-                    )
-                  ],
+                            if (context.mounted) {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const SearchSale(),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('atualizar'),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
