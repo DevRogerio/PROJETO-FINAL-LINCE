@@ -62,14 +62,25 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.all(25),
                 child: Column(
                   children: [
-                    Text(
-                      'Olá Anderson, o que vamos fazer?',
-                      style: TextStyle(
-                        color: Colors.grey.shade300,
-                        fontSize: 24,
-                      ),
-                    ),
+                    userid == 1
+                        ? Text(
+                            'Olá Anderson, o que vamos fazer?',
+                            style: TextStyle(
+                              color: Colors.grey.shade300,
+                              fontSize: 24,
+                            ),
+                          )
+                        : Container(),
                     const SizedBox(height: 45),
+
+                    SizedBox(
+                      height: 250,
+                      width: 700,
+                      child: Image.asset('assets/img/loogo.jpg'),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // const SizedBox(height: 45),
 
                     //botao ver lojas
                     userid == 1
@@ -112,7 +123,9 @@ class Home extends StatelessWidget {
                               );
                             },
                           )
-                        : Container(),
+                        : Container(
+                            height: 100,
+                          ),
                     const SizedBox(height: 20),
 
                     //botao ver veiculos

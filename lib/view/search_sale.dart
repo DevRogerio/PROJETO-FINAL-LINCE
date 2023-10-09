@@ -44,8 +44,8 @@ class SearchSale extends StatelessWidget {
                     margin:
                         const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
                     child: ListTile(
-                      leading: Text(SalesTable.id.toString()),
-                      title: Text(SalesTable.name.toString()),
+                      leading: Text(SalesTable.name.toString()),
+                      title: Text(SalesTable.priceSold.toString()),
                       subtitle: Text(SalesTable.cpf.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(

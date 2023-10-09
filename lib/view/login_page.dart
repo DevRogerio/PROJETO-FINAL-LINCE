@@ -120,6 +120,7 @@ class LoginPage extends StatelessWidget {
                                               // print(userLogin.id);
                                               await state.savedUser(
                                                   userLogin.id, userLogin.name);
+                                              await state.loadUser();
                                               if (state.formKey.currentState!
                                                   .validate()) {
                                                 if (userLogin != null &&

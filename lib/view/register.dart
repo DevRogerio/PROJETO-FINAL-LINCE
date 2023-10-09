@@ -22,7 +22,6 @@ class RegistroState extends ChangeNotifier {
     autonomyLevelID: 'rrr',
     id: 1000,
   );*/
-
   RegisterStore? _logUser;
   RegisterStore? get logUser => _logUser;
 

@@ -67,50 +67,50 @@ class DrawerMenu extends StatelessWidget {
             //home
 
             // if (state.usuario.id == 1)
-            userid == 1
-                ? ListTile(
-                    title: mostrarTitulo('Home'),
-                    subtitle: const Text('Pagina Inicial'),
-                    // ignore: deprecated_member_use
-                    trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-                    // ignore: deprecated_member_use
-                    leading: const FaIcon(FontAwesomeIcons.home),
-                    iconColor: Colors.red.shade900,
 
-                    //ir para a Home
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Home(),
-                        ),
-                      );
-
-                      // ignore: unrelated_type_equality_checks
-                    },
-                  )
-                : Container(),
-
-            //Gerencia
-
-            new ListTile(
-              title: mostrarTitulo('Lojas'),
-              subtitle: const Text('Cadastrar Lojas Parceiras'),
+            ListTile(
+              title: mostrarTitulo('Home'),
+              subtitle: const Text('Pagina Inicial'),
               // ignore: deprecated_member_use
               trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-              leading: const FaIcon(FontAwesomeIcons.listCheck),
+              // ignore: deprecated_member_use
+              leading: const FaIcon(FontAwesomeIcons.home),
               iconColor: Colors.red.shade900,
 
-              //ir para a gerencia de vendas
+              //ir para a Home
               onTap: () async {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Register(),
+                    builder: (context) => const Home(),
                   ),
                 );
+
+                // ignore: unrelated_type_equality_checks
               },
             ),
+
+            //Gerencia
+            userid == 1
+                ? ListTile(
+                    title: mostrarTitulo('Lojas'),
+                    subtitle: const Text('Cadastrar Lojas Parceiras'),
+                    // ignore: deprecated_member_use
+                    trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
+                    leading: const FaIcon(FontAwesomeIcons.listCheck),
+                    iconColor: Colors.red.shade900,
+
+                    //ir para a gerencia de vendas
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Register(),
+                        ),
+                      );
+                    },
+                  )
+                : Container(),
 
             //configurações
             new ListTile(
