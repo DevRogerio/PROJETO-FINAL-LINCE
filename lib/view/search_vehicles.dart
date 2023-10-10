@@ -14,8 +14,6 @@ class SearchVehicles extends StatelessWidget {
   /// Class of Vehicles
   const SearchVehicles({super.key});
 
-  // final registerStoreTable = RegisterStore;
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -48,24 +46,12 @@ class SearchVehicles extends StatelessWidget {
                     child: ListTile(
                       leading: Image.file(
                         File(registrationTable.vehiclephoto!),
-                      ), //Text(registrationTable.id.toString()),
+                      ),
                       title: Text(registrationTable.model.toString()),
-                      subtitle: /* Image.file(
-                        File(registrationTable.vehiclephoto!),
-                      ),*/
-                          Text(registrationTable.brand.toString()),
+                      subtitle: Text(registrationTable.brand.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
-                            /* IconButton(
-                              onPressed: () async {
-                                //
-                              },
-                              icon: const Icon(
-                                Icons.edit,
-                                size: 20,
-                              ),
-                            ),*/
                             IconButton(
                               onPressed: () async {
                                 await state.delete(registrationTable);
@@ -77,8 +63,6 @@ class SearchVehicles extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                // state.updateRegister();
-
                                 state.editSearchVehicles(registrationTable);
                                 await Navigator.push(
                                   context,

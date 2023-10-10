@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 //import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -23,8 +24,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     init();
     unawaited(load());
   }
-  //String? registrationVehiclespricePaid;
-  //String? registrationVehiclespurchasedWhen;
+
   final controller = RegistrationVehiclesController();
 
   final _controllerModel = TextEditingController();
@@ -32,7 +32,6 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllerbrand = TextEditingController();
   final _controllerbuiltYear = TextEditingController();
   final _controllervehicleYear = TextEditingController();
-  // final _controllervehiclephoto = TextEditingController();
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
   // final _controllerdealershipId = TextEditingController();
@@ -121,7 +120,6 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerplate.clear();
     controllerbrand.clear();
     controllerbuiltYear.clear();
-    //controllervehiclephoto.clear();
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
@@ -170,9 +168,6 @@ class RegistroStateVeiculos extends ChangeNotifier {
 
     //  id: registrationVehicles.id) as RegisterVehicles?;
     //  ) as RegisterVehicles;
-    // print(_registeratual?.id);
-    //  print(_registeratual?.cnpj);
-    // print(_registeratual?.name);
   }
 
   Future<void> update() async {
@@ -195,7 +190,6 @@ class RegistroStateVeiculos extends ChangeNotifier {
     _controllerplate.clear();
     _controllerbrand.clear();
     _controllerbuiltYear.clear();
-    // controllervehiclephoto.clear();
     _controllerpricePaid.clear();
     _controllerpurchasedWhen.clear();
     _controllervehicleYear.clear();
@@ -327,8 +321,15 @@ class RegisterVehicles extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
                                 controller: state.controllerpricePaid,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: <TextInputFormatter>[
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 decoration: InputDecoration(
                                   labelText: 'preço pago pela loja',
+                                  hintText: '\$ 00.000',
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
                                 ),

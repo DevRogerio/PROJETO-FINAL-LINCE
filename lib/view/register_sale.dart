@@ -15,11 +15,6 @@ class RegistroStateSale extends ChangeNotifier {
   RegistroStateSale() {
     unawaited(load());
   }
-  // late RegisterStore _loggedRegisterStore;
-
-  // String registerStoreName = 'nome';
-
-  // int? registerStorecnpj;
 
   final _listUser = <Sale>[];
   final _formKey = GlobalKey<FormState>();
@@ -149,44 +144,7 @@ class RegistroStateSale extends ChangeNotifier {
 
     await load();
   }
-
-  /*Future<void> autonomyLevelID(double pricePaid) async {
-    switch (_loggedRegisterStore.autonomyLevelID) {
-      case 'Iniciante':
-        var dealershipCut = pricePaid * 74 / 100;
-        var businessCut = pricePaid * 25 / 100;
-        var safetyCut = pricePaid * 1 / 100;
-        break;
-      case 'Intermediario':
-        var dealershipCut = pricePaid * 79 / 100;
-        var businessCut = pricePaid * 20 / 100;
-        var safetyCut = pricePaid * 1 / 100;
-        break;
-      case 'Avançado':
-        var dealershipCut = pricePaid * 84 / 100;
-        var businessCut = pricePaid * 15 / 100;
-        var safetyCut = pricePaid * 1 / 100;
-        break;
-      case 'Especial':
-        var dealershipCut = pricePaid * 94 / 100;
-        var businessCut = pricePaid * 5 / 100;
-        var safetyCut = pricePaid * 1 / 100;
-        break;
-    }
-  }*/
 }
-
-/*class Register extends StatelessWidget {
-  Register({
-    Key? key,
-  }) : super(key: key);
-  final dropValue = ValueNotifier('');
-  final dropOpcoes = [
-    'loja Iniciante 74% - rede 25%',
-    'loja Intermediario 79% - rede 20%',
-    'loja Avançado 84% - rede 15%',
-    'loja Especial 94% - rede 5%'
-  ];*/
 
 // final _formKey = GlobalKey<FormState>();
 class RegisterSale extends StatelessWidget {
@@ -260,37 +218,6 @@ class RegisterSale extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              /* Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ValueListenableBuilder(
-                                  valueListenable: dropValue,
-                                  builder: ((context, value, _) {
-                                    return DropdownButtonFormField<String>(
-                                      icon: const Icon(Icons.drive_eta),
-                                      hint: const Text(
-                                          'Escolha o Nivel de Autonomia'),
-                                      decoration: InputDecoration(
-                                          label:
-                                              const Text('Nivel de Autonomia'),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                          )),
-                                      value: (value.isEmpty) ? null : value,
-                                      onChanged: (escolha) =>
-                                          dropValue.value = escolha.toString(),
-                                      items: dropOpcoes
-                                          .map(
-                                            (op) => DropdownMenuItem(
-                                              value: op,
-                                              child: Text(op),
-                                            ),
-                                          )
-                                          .toList(),
-                                    );
-                                  }),
-                                ),
-                              ),*/
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
@@ -342,30 +269,6 @@ class RegisterSale extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              /*  Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                  controller: state._controllervehicleId,
-                                  decoration: InputDecoration(
-                                    labelText: 'vehicleId',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                  controller: state._controlleruserId,
-                                  decoration: InputDecoration(
-                                    labelText: 'userId',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                  ),
-                                ),
-                              ),*/
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(

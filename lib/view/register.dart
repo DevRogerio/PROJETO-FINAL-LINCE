@@ -15,13 +15,7 @@ class RegistroState extends ChangeNotifier {
     unawaited(load());
     unawaited(loadUser());
   }
-  /*RegisterStore usuario = RegisterStore(
-    cnpj: 123,
-    name: 'rrr',
-    password: 'rrr',
-    autonomyLevelID: 'rrr',
-    id: 1000,
-  );*/
+
   RegisterStore? _logUser;
   RegisterStore? get logUser => _logUser;
 
@@ -58,7 +52,6 @@ class RegistroState extends ChangeNotifier {
   Future<void> insert() async {
     final registerStore = RegisterStore(
       name: controllerName.text,
-      // id: int.parse(_controllerid.text),
       cnpj: int.parse(controllerCNPJ.text),
       autonomyLevelID: controllerAutonomyLevelID.text,
       password: controllerPassword.text,
@@ -127,8 +120,7 @@ class RegistroState extends ChangeNotifier {
       where: '${RegisterStoreTable.name} = ?',
       whereArgs: [name],
     );
-    // print(result);
-    // print('aaa${name}');
+
     if (result.isNotEmpty) {
       final item = result.first;
 

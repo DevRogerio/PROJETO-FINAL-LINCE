@@ -1,5 +1,3 @@
-//import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +19,7 @@ class Home extends StatelessWidget {
       context,
     );
     final userid = state.logUser!.id;
-    //final username = state.logUser!.name;
+
     return Scaffold(
       //titulo do app
       appBar: BarraSuperior(),
@@ -79,8 +77,6 @@ class Home extends StatelessWidget {
                       child: Image.asset('assets/img/loogo.jpg'),
                     ),
                     const SizedBox(height: 10),
-
-                    // const SizedBox(height: 45),
 
                     //botao ver lojas
                     userid == 1

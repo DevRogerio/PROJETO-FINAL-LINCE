@@ -1,5 +1,3 @@
-//import 'package:carros_car/MODEL/register_store.dart';
-//import 'package:carros_car/CONTROLLER/database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +9,6 @@ import 'utils/menu.dart';
 
 class Search extends StatelessWidget {
   const Search({super.key});
-  // final registerStoreTable = RegisterStore;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +32,6 @@ class Search extends StatelessWidget {
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listUser.length,
-                //state.controller.select().toString().length,
-                //registerStoreTable.toString().length,
-                //state.load().toString().length,
                 itemBuilder: (context, index) {
                   final registerStoreTable = state.listUser[index];
                   return Container(
@@ -52,15 +46,6 @@ class Search extends StatelessWidget {
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
-                            /* IconButton(
-                              onPressed: () async {
-                                //
-                              },
-                              icon: const Icon(
-                                Icons.edit,
-                                size: 20,
-                              ),
-                            ),*/
                             IconButton(
                               onPressed: () async {
                                 await state.delete(registerStoreTable);
@@ -72,8 +57,6 @@ class Search extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                // state.updateRegister();
-
                                 state.editSearch(registerStoreTable);
                                 await Navigator.push(
                                   context,

@@ -11,11 +11,8 @@ import '../register_vehicles.dart';
 
 class DrawerMenu extends StatelessWidget {
   //dados que vem do banco de dados
-  //final String usuario = RegisterStoreTable.name;
-  //final String email = RegisterStoreTable.cnpj;
 
   const DrawerMenu({super.key});
-  //final String fotoPerfil = "img/perfil.jpg";
 
   Text mostrarTitulo(String texto) {
     return Text(
@@ -59,7 +56,6 @@ class DrawerMenu extends StatelessWidget {
               accountEmail: Text(state.controllerPassword.text),
               currentAccountPicture: CircleAvatar(
                 child: ClipRRect(
-                  // child: Image.asset(fotoPerfil),
                   borderRadius: BorderRadius.circular(40),
                 ),
               ),

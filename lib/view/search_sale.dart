@@ -9,7 +9,6 @@ import 'utils/menu.dart';
 
 class SearchSale extends StatelessWidget {
   const SearchSale({super.key});
-  // final registerStoreTable = RegisterStore;
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +32,6 @@ class SearchSale extends StatelessWidget {
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listUser.length,
-                //state.controller.select().toString().length,
-                //registerStoreTable.toString().length,
-                //state.load().toString().length,
                 itemBuilder: (context, index) {
                   final SalesTable = state.listUser[index];
                   return Container(
@@ -50,15 +46,6 @@ class SearchSale extends StatelessWidget {
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
-                            /* IconButton(
-                              onPressed: () async {
-                                //
-                              },
-                              icon: const Icon(
-                                Icons.edit,
-                                size: 20,
-                              ),
-                            ),*/
                             IconButton(
                               onPressed: () async {
                                 await state.delete(SalesTable);
@@ -70,8 +57,6 @@ class SearchSale extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                // state.updateRegister();
-
                                 state.editSearch(SalesTable);
                                 await Navigator.push(
                                   context,

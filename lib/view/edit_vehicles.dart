@@ -108,8 +108,6 @@ class EditVehicles extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
                           onPressed: () async {
-                            //print(state.registeratual);
-
                             if (state.registeratual != null) {
                               state.editSearchVehicles;
                               await state.update();
