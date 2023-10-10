@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'edit_vehicles.dart';
+
+import 'register.dart';
 import 'register_vehicles.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
@@ -16,8 +18,9 @@ class SearchVehicles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateVeiculos(),
+      create: (context) => RegistroStateVeiculos(mainState.logUser),
       child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(

@@ -126,8 +126,8 @@ class RegistrationTable {
       $vehicleYear    INTEGER NOT NULL,
       $photo          TEXT NOT NULL,
       $pricePaid      REAL NOT NULL,
-      $purchasedWhen  TEXT NOT NULL
-      
+      $purchasedWhen  TEXT NOT NULL,
+      $userID         INTEGER NOT NULL
       
     );
   ''';
@@ -142,6 +142,7 @@ class RegistrationTable {
   static const String photo = 'photo';
   static const String pricePaid = 'pricePaid';
   static const String purchasedWhen = 'purchasedWhen';
+  static const String userID = 'userID';
 
   static Map<String, dynamic> toMap(RegistrationVehicles registrationVehicles) {
     final map = <String, dynamic>{};
@@ -154,6 +155,7 @@ class RegistrationTable {
     map[RegistrationTable.vehicleYear] = registrationVehicles.vehicleYear;
     map[RegistrationTable.photo] = registrationVehicles.vehiclephoto;
     map[RegistrationTable.pricePaid] = registrationVehicles.pricePaid;
+    map[RegistrationTable.userID] = registrationVehicles.userID;
     map[RegistrationTable.purchasedWhen] =
         DateFormat('yyyy-MM-dd').format(registrationVehicles.purchasedWhen!);
 
@@ -181,7 +183,7 @@ class RegistrationVehiclesController {
     );
   }
 
-  Future<List<RegistrationVehicles>> select() async {
+  Future<List<RegistrationVehicles>> selectAll() async {
     final database = await getDatabase();
 
     final List<Map<String, dynamic>> result = await database.query(
@@ -203,6 +205,38 @@ class RegistrationVehiclesController {
           plate: item[RegistrationTable.plate],
           vehiclephoto: item[RegistrationTable.photo],
           vehicleYear: item[RegistrationTable.vehicleYear],
+          userID: item[RegistrationTable.userID],
+        ),
+      );
+    }
+    return list;
+  }
+
+  Future<List<RegistrationVehicles>> selectByCars(int id) async {
+    final database = await getDatabase();
+
+    final List<Map<String, dynamic>> result = await database.query(
+      RegistrationTable.tableName,
+      where: '${RegistrationTable.userID} = ?',
+      whereArgs: [id],
+    );
+
+    var list = <RegistrationVehicles>[];
+
+    for (final item in result) {
+      list.add(
+        RegistrationVehicles(
+          id: item[RegistrationTable.id],
+          model: item[RegistrationTable.model],
+          brand: item[RegistrationTable.brand],
+          builtYear: item[RegistrationTable.builtYear],
+          purchasedWhen: DateFormat('yyyy-MM-dd')
+              .parse(item[RegistrationTable.purchasedWhen]),
+          pricePaid: item[RegistrationTable.pricePaid],
+          plate: item[RegistrationTable.plate],
+          vehiclephoto: item[RegistrationTable.photo],
+          vehicleYear: item[RegistrationTable.vehicleYear],
+          userID: item[RegistrationTable.userID],
         ),
       );
     }
@@ -234,7 +268,7 @@ class SalesTable {
       $dealershipCut  REAL NOT NULL,
       $businessCut    REAL NOT NULL,
       $safetyCut      REAL NOT NULL,
-      $vehicleId      INTERGER NOT NULL,
+      
       $userId         INTEGER NOT NULL
     );
   ''';
@@ -248,7 +282,6 @@ class SalesTable {
   static const String dealershipCut = 'dealershipCut';
   static const String businessCut = 'businessCut';
   static const String safetyCut = 'safetyCut';
-  static const String vehicleId = 'vehicleId';
 
   static const String userId = 'userId';
 
@@ -263,7 +296,6 @@ class SalesTable {
     map[SalesTable.dealershipCut] = sale.dealershipCut;
     map[SalesTable.businessCut] = sale.businessCut;
     map[SalesTable.safetyCut] = sale.safetyCut;
-    map[SalesTable.vehicleId] = sale.vehicleId;
 
     map[SalesTable.userId] = sale.userId;
 
@@ -291,7 +323,7 @@ class SaleController {
     );
   }
 
-  Future<List<Sale>> select() async {
+  Future<List<Sale>> selectAll() async {
     final database = await getDatabase();
 
     final List<Map<String, dynamic>> result = await database.query(
@@ -311,7 +343,35 @@ class SaleController {
           dealershipCut: item[SalesTable.dealershipCut],
           businessCut: item[SalesTable.businessCut],
           safetyCut: item[SalesTable.safetyCut],
-          vehicleId: item[SalesTable.vehicleId],
+          userId: item[SalesTable.userId],
+        ),
+      );
+    }
+    return list;
+  }
+
+  Future<List<Sale>> selectByUser(int id) async {
+    final database = await getDatabase();
+
+    final List<Map<String, dynamic>> result = await database.query(
+      SalesTable.tableName,
+      where: '${SalesTable.userId} = ?',
+      whereArgs: [id],
+    );
+
+    var list = <Sale>[];
+
+    for (final item in result) {
+      list.add(
+        Sale(
+          id: item[SalesTable.id],
+          cpf: item[SalesTable.cpf],
+          name: item[SalesTable.name],
+          soldWhen: DateFormat('yyyy-MM-dd').parse(item[SalesTable.soldWhen]),
+          priceSold: item[SalesTable.priceSold],
+          dealershipCut: item[SalesTable.dealershipCut],
+          businessCut: item[SalesTable.businessCut],
+          safetyCut: item[SalesTable.safetyCut],
           userId: item[SalesTable.userId],
         ),
       );

@@ -5,18 +5,20 @@ import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
+//import '../model/sales.dart';
+import '../MODEL/register_store.dart';
 import '../MODEL/sales.dart';
 import '../controllers/database.dart';
-//import '../model/sales.dart';
+import 'register.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
 
 class RegistroStateSale extends ChangeNotifier {
-  RegistroStateSale() {
-    unawaited(load());
+  RegistroStateSale(this.user) {
+    unawaited(load(user!.id!));
   }
-
-  final _listUser = <Sale>[];
+  final RegisterStore? user;
+  final _listSale = <Sale>[];
   final _formKey = GlobalKey<FormState>();
 
   final controller = SaleController();
@@ -26,7 +28,7 @@ class RegistroStateSale extends ChangeNotifier {
   final _controllerdealershipCut = TextEditingController();
   final _controllerbusinessCut = TextEditingController();
   final _controllersafetyCut = TextEditingController();
-  final _controllervehicleId = TextEditingController();
+  // final _controllervehicleId = TextEditingController();
   final _controlleruserId = TextEditingController();
   final _controllerpriceSold = TextEditingController();
 
@@ -37,13 +39,13 @@ class RegistroStateSale extends ChangeNotifier {
   TextEditingController get controllerdealershipCut => _controllerdealershipCut;
   TextEditingController get controllerbusinessCut => _controllerbusinessCut;
   TextEditingController get controllersafetyCut => _controllersafetyCut;
-  TextEditingController get controllervehicleId => _controllervehicleId;
+  // TextEditingController get controllervehicleId => _controllervehicleId;
   TextEditingController get controlleruserId => _controlleruserId;
   TextEditingController get controllerpriceSold => _controllerpriceSold;
 
   Sale? get registerAtual => _registerAtual;
 
-  List<Sale> get listUser => _listUser;
+  List<Sale> get listSale => _listSale;
 
   GlobalKey<FormState> get formKey => _formKey;
 
@@ -55,14 +57,14 @@ class RegistroStateSale extends ChangeNotifier {
         dealershipCut: double.parse(controllerdealershipCut.text),
         businessCut: double.parse(controllerbusinessCut.text),
         safetyCut: double.parse(controllersafetyCut.text),
-        vehicleId: int.parse(controllervehicleId.text),
-        userId: int.parse(controlleruserId.text),
+        //  vehicleId: int.parse(controllervehicleId.text),
+        userId: user!.id!,
         priceSold: double.parse(
           controllerpriceSold.text,
         ));
 
     await controller.insert(sale);
-    await load();
+    await load(user!.id!);
 
     controllername.clear();
     controllercpf.clear();
@@ -70,7 +72,7 @@ class RegistroStateSale extends ChangeNotifier {
     controllerdealershipCut.clear();
     controllerbusinessCut.clear();
     controllersafetyCut.clear();
-    controllervehicleId.clear();
+    //  controllervehicleId.clear();
     controlleruserId.clear();
     controllerpriceSold.clear();
 
@@ -79,15 +81,21 @@ class RegistroStateSale extends ChangeNotifier {
 
   Future<void> delete(Sale sale) async {
     await controller.delete(sale);
-    await load();
+    await load(user!.id!);
 
     notifyListeners();
   }
 
-  Future<void> load() async {
-    final list = await controller.select();
-    listUser.clear();
-    listUser.addAll(list);
+  Future<void> load(int userId) async {
+    final list = <Sale>[];
+    if (user!.id != 1) {
+      list.addAll(await controller.selectByUser(userId));
+    } else {
+      list.addAll(await controller.selectAll());
+    }
+
+    listSale.clear();
+    listSale.addAll(list);
 
     notifyListeners();
   }
@@ -99,7 +107,7 @@ class RegistroStateSale extends ChangeNotifier {
     _controllerdealershipCut.text = sale.dealershipCut.toString();
     _controllerbusinessCut.text = sale.businessCut.toString();
     _controllersafetyCut.text = sale.safetyCut.toString();
-    _controllervehicleId.text = sale.vehicleId.toString();
+    //  _controllervehicleId.text = sale.vehicleId.toString();
     _controlleruserId.text = sale.userId.toString();
     _controllerpriceSold.text = sale.priceSold.toString();
 
@@ -110,7 +118,7 @@ class RegistroStateSale extends ChangeNotifier {
         dealershipCut: double.parse(controllerdealershipCut.text),
         businessCut: double.parse(controllerbusinessCut.text),
         safetyCut: double.parse(controllersafetyCut.text),
-        vehicleId: int.parse(controllervehicleId.text),
+        //  vehicleId: int.parse(controllervehicleId.text),
         userId: int.parse(controlleruserId.text),
         priceSold: double.parse(controllerpriceSold.text),
         id: sale.id);
@@ -125,7 +133,7 @@ class RegistroStateSale extends ChangeNotifier {
       dealershipCut: double.parse(controllerdealershipCut.text),
       businessCut: double.parse(controllerbusinessCut.text),
       safetyCut: double.parse(controllersafetyCut.text),
-      vehicleId: int.parse(controllervehicleId.text),
+      // vehicleId: int.parse(controllervehicleId.text),
       userId: int.parse(controlleruserId.text),
       priceSold: double.parse(controllerpriceSold.text),
     );
@@ -138,11 +146,11 @@ class RegistroStateSale extends ChangeNotifier {
     _controllerdealershipCut.clear();
     _controllerbusinessCut.clear();
     _controllersafetyCut.clear();
-    _controllervehicleId.clear();
+    //  _controllervehicleId.clear();
     _controlleruserId.clear();
     _controllerpriceSold.clear();
 
-    await load();
+    await load(user!.id!);
   }
 }
 
@@ -155,8 +163,9 @@ class RegisterSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateSale(),
+      create: (context) => RegistroStateSale(mainState.logUser),
       child: Consumer<RegistroStateSale>(
         builder: (_, state, __) {
           return Center(

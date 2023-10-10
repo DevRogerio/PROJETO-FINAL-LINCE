@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'edit_sale.dart';
+import 'register.dart';
 import 'register_sale.dart';
 import 'utils/app_bar.dart';
 import 'utils/menu.dart';
@@ -12,8 +13,9 @@ class SearchSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateSale(),
+      create: (context) => RegistroStateSale(mainState.logUser),
       child: Consumer<RegistroStateSale>(
         builder: (_, state, __) {
           return Scaffold(
@@ -31,9 +33,9 @@ class SearchSale extends StatelessWidget {
               ])),
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
-                itemCount: state.listUser.length,
+                itemCount: state.listSale.length,
                 itemBuilder: (context, index) {
-                  final SalesTable = state.listUser[index];
+                  final SalesTable = state.listSale[index];
                   return Container(
                     color: Colors.red.shade900,
                     padding: const EdgeInsets.all(5),

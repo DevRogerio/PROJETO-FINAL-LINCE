@@ -8,6 +8,7 @@ class RegistrationVehicles {
   final String? vehiclephoto;
   final double? pricePaid;
   final DateTime? purchasedWhen;
+  final int userID;
 
   RegistrationVehicles({
     this.id,
@@ -19,5 +20,6 @@ class RegistrationVehicles {
     this.vehiclephoto,
     this.pricePaid,
     this.purchasedWhen,
+    required this.userID,
   });
 }

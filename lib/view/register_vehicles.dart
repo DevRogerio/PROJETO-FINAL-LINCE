@@ -11,22 +11,26 @@ import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
+import '../MODEL/register_store.dart';
 import '../MODEL/registration_vehicles.dart';
 import '../controllers/database.dart';
 import '../controllers/fipe_api.dart';
+import 'register.dart';
 import 'utils/app_bar.dart';
 import 'utils/autocomplete_.dart';
 import 'utils/menu.dart';
 import 'utils/small_button.dart';
 
 class RegistroStateVeiculos extends ChangeNotifier {
-  RegistroStateVeiculos() {
+  RegistroStateVeiculos(this.user) {
     init();
-    unawaited(load());
+    unawaited(load(user!.id!));
   }
+  final RegisterStore? user;
 
   final controller = RegistrationVehiclesController();
 
+  final _controlleruserID = TextEditingController();
   final _controllerModel = TextEditingController();
   final _controllerplate = TextEditingController();
   final _controllerbrand = TextEditingController();
@@ -39,6 +43,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _listvehicles = <RegistrationVehicles>[];
   String? _controllervehiclephoto;
 
+  TextEditingController get controlleruserID => _controlleruserID;
   TextEditingController get controllerModel => _controllerModel;
   TextEditingController get controllerplate => _controllerplate;
   TextEditingController get controllerbrand => _controllerbrand;
@@ -108,13 +113,14 @@ class RegistroStateVeiculos extends ChangeNotifier {
         vehicleYear: int.parse(controllervehicleYear.text),
         vehiclephoto: controllervehiclephoto,
         pricePaid: double.parse(controllerpricePaid.text),
+        userID: user!.id!,
         purchasedWhen:
             DateFormat('dd/MM/yyyy').parse(controllerpurchasedWhen.text)
         // dealershipId: 1,
         );
 
     await controller.insert(registrationVehicles);
-    await load();
+    await load(user!.id!);
 
     controllerModel.clear();
     controllerplate.clear();
@@ -123,6 +129,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerpricePaid.clear();
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
+    controlleruserID.clear();
     // controllerdealershipId.clear();
 
     notifyListeners();
@@ -130,13 +137,19 @@ class RegistroStateVeiculos extends ChangeNotifier {
 
   Future<void> delete(RegistrationVehicles registrationVehicles) async {
     await controller.delete(registrationVehicles);
-    await load();
+    await load(user!.id!);
 
     notifyListeners();
   }
 
-  Future<void> load() async {
-    final list = await controller.select();
+  Future<void> load(int id) async {
+    final list = <RegistrationVehicles>[];
+    if (user!.id != 1) {
+      list.addAll(await controller.selectByCars(id));
+    } else {
+      list.addAll(await controller.selectAll());
+    }
+
     listvehicles.clear();
     listvehicles.addAll(list);
 
@@ -151,6 +164,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     _controllervehicleYear.text = registrationVehicles.vehicleYear.toString();
     _controllervehiclephoto = registrationVehicles.vehiclephoto!;
     _controllerpricePaid.text = registrationVehicles.pricePaid.toString();
+    _controlleruserID.text = registrationVehicles.toString();
     _controllerpurchasedWhen.text =
         registrationVehicles.purchasedWhen.toString();
 
@@ -163,6 +177,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
         pricePaid: double.parse(controllerpricePaid.text),
         purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
         vehicleYear: int.parse(controllervehicleYear.text),
+        userID: int.parse(controlleruserID.text),
         id: registrationVehicles.id);
     // dealershipId: registrationVehicles.dealershipId,
 
@@ -181,6 +196,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
       vehicleYear: int.parse(controllervehicleYear.text),
       vehiclephoto: controllervehiclephoto,
       pricePaid: double.parse(controllerpricePaid.text),
+      userID: int.parse(controlleruserID.text),
       purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
     );
 
@@ -193,8 +209,9 @@ class RegistroStateVeiculos extends ChangeNotifier {
     _controllerpricePaid.clear();
     _controllerpurchasedWhen.clear();
     _controllervehicleYear.clear();
+    _controlleruserID.clear();
 
-    await load();
+    await load(user!.id!);
   }
 
   Future pickImage() async {
@@ -227,8 +244,9 @@ class RegisterVehicles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateVeiculos(),
+      create: (context) => RegistroStateVeiculos(mainState.logUser),
       child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Center(
