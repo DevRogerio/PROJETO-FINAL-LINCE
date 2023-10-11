@@ -24,28 +24,30 @@ class SearchVehicles extends StatelessWidget {
       child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(
+            backgroundColor: Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-              ])),
+              width: 5000,
+              height: 5000,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+              ),
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listvehicles.length,
                 itemBuilder: (context, index) {
                   final registrationTable = state.listvehicles[index];
                   return Container(
-                    color: Colors.red.shade900,
-                    padding: const EdgeInsets.all(5),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 18, vertical: 30),
+                    width: 85,
+                    height: 85,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
                     child: ListTile(
                       leading: Image.file(
                         File(registrationTable.vehiclephoto!),
@@ -81,7 +83,7 @@ class SearchVehicles extends StatelessWidget {
                               icon: const Icon(
                                 // ignore: deprecated_member_use
                                 FontAwesomeIcons.chevronCircleRight,
-                                color: Colors.black,
+                                color: Colors.white,
                                 size: 35,
                               ),
                             ),

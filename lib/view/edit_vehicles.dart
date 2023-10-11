@@ -17,22 +17,26 @@ class EditVehicles extends StatelessWidget {
     return Consumer<RegistroStateVeiculos>(
       builder: (_, state, __) {
         return Scaffold(
+          backgroundColor: Colors.black,
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
           body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-              Colors.black,
-              Colors.black,
-              Colors.black,
-              Colors.black,
-              Colors.black,
-              Colors.black,
-            ])),
+            width: 5000,
+            height: 5000,
+            decoration: BoxDecoration(
+              color: Colors.red.shade900,
+              borderRadius: BorderRadius.circular(100),
+            ),
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: Card(
-                color: Colors.black,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                width: 5000,
+                height: 5000,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(100),
+                ),
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8),

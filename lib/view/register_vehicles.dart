@@ -177,7 +177,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
         pricePaid: double.parse(controllerpricePaid.text),
         purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
         vehicleYear: int.parse(controllervehicleYear.text),
-        userID: int.parse(controlleruserID.text),
+        userID: user!.id!,
         id: registrationVehicles.id);
     // dealershipId: registrationVehicles.dealershipId,
 
@@ -196,7 +196,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
       vehicleYear: int.parse(controllervehicleYear.text),
       vehiclephoto: controllervehiclephoto,
       pricePaid: double.parse(controllerpricePaid.text),
-      userID: int.parse(controlleruserID.text),
+      userID: user!.id!,
       purchasedWhen: DateTime.parse(controllerpurchasedWhen.text),
     );
 

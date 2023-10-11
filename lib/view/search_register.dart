@@ -20,25 +20,26 @@ class Search extends StatelessWidget {
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-              ])),
+              width: 5000,
+              height: 5000,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+              ),
               child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
+                padding: const EdgeInsets.fromLTRB(25, 25, 25, 75),
                 itemCount: state.listUser.length,
                 itemBuilder: (context, index) {
                   final registerStoreTable = state.listUser[index];
                   return Container(
-                    color: Colors.red.shade900,
-                    padding: const EdgeInsets.all(5),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 25),
+                    width: 75,
+                    height: 75,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
                     child: ListTile(
                       leading: Text(registerStoreTable.id.toString()),
                       title: Text(registerStoreTable.name.toString()),
@@ -72,7 +73,7 @@ class Search extends StatelessWidget {
                               icon: const Icon(
                                 // ignore: deprecated_member_use
                                 FontAwesomeIcons.chevronCircleRight,
-                                color: Colors.black,
+                                color: Colors.white,
                                 size: 35,
                               ),
                             ),

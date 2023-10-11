@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'edit_sale.dart';
@@ -18,32 +19,36 @@ class SearchSale extends StatelessWidget {
       create: (context) => RegistroStateSale(mainState.logUser),
       child: Consumer<RegistroStateSale>(
         builder: (_, state, __) {
+          final numberFormatter = NumberFormat('###,###,###.00');
           return Scaffold(
+            backgroundColor: Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-                Colors.black,
-              ])),
+              width: 5000,
+              height: 5000,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+              ),
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listSale.length,
                 itemBuilder: (context, index) {
                   final SalesTable = state.listSale[index];
                   return Container(
-                    color: Colors.red.shade900,
-                    padding: const EdgeInsets.all(5),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 10),
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 25),
+                    width: 75,
+                    height: 75,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
                     child: ListTile(
                       leading: Text(SalesTable.name.toString()),
-                      title: Text(SalesTable.priceSold.toString()),
+                      title: Text(
+                          'R\$${numberFormatter.format(SalesTable.priceSold)}'),
                       subtitle: Text(SalesTable.cpf.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
@@ -74,7 +79,7 @@ class SearchSale extends StatelessWidget {
                               icon: const Icon(
                                 // ignore: deprecated_member_use
                                 FontAwesomeIcons.chevronCircleRight,
-                                color: Colors.black,
+                                color: Colors.white,
                                 size: 35,
                               ),
                             ),

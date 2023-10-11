@@ -31,6 +31,7 @@ class RegistroStateSale extends ChangeNotifier {
   // final _controllervehicleId = TextEditingController();
   final _controlleruserId = TextEditingController();
   final _controllerpriceSold = TextEditingController();
+  //final numberFormatter = NumberFormat('###,###,###.00');
 
   Sale? _registerAtual;
   TextEditingController get controllercpf => _controllercpf;
