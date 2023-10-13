@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
+/// Button widget
+/// with [text], and [onPressed] parameters.
 class AppSmallButton extends StatelessWidget {
+  /// Constructs an instance of [AppSmallButton] with
+  /// the given [text],  and [onPressed] parameters.
   const AppSmallButton({
     super.key,
     this.text,
     required this.onPressed,
   });
 
+  /// callback when button is pressed
   final void Function()? onPressed;
+
+  /// name that appears in the middle of the button
   final String? text;
 
   @override

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'edit_perfil_search.dart';
-import 'register.dart';
-import 'utils/app_bar.dart';
-import 'utils/menu.dart';
+import '../edit_pages/edit_perfil_search.dart';
+import '../register_pages/register.dart';
+import '../utils/app_bar.dart';
+import '../utils/menu.dart';
 
+/// Screen of Search
 class Search extends StatelessWidget {
+  /// class of Search
   const Search({super.key});
 
   @override

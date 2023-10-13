@@ -5,15 +5,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../home.dart';
-import '../register.dart';
-import '../register_sale.dart';
-import '../register_vehicles.dart';
+import '../register_pages/register.dart';
+import '../register_pages/register_sale.dart';
+import '../register_pages/register_vehicles.dart';
 
+/// Screen of DrawerMenu
 class DrawerMenu extends StatelessWidget {
-  //dados que vem do banco de dados
-
+  /// Class of DrawerMenu
   const DrawerMenu({super.key});
 
+  /// title
   Text mostrarTitulo(String texto) {
     return Text(
       texto,

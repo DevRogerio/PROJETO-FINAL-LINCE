@@ -1,33 +1,35 @@
-//import 'dart:developer';
-
 import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
-import '../MODEL/register_store.dart';
-import '../MODEL/registration_vehicles.dart';
-import '../controllers/database.dart';
-import '../controllers/fipe_api.dart';
+import '../../MODEL/register_store.dart';
+import '../../MODEL/registration_vehicles.dart';
+import '../../controllers/database.dart';
+import '../../controllers/fipe_api.dart';
+import '../utils/app_bar.dart';
+import '../utils/autocomplete_.dart';
+import '../utils/menu.dart';
+import '../utils/small_button.dart';
 import 'register.dart';
-import 'utils/app_bar.dart';
-import 'utils/autocomplete_.dart';
-import 'utils/menu.dart';
-import 'utils/small_button.dart';
 
+/// RegistroStateVeiculos Record Management
 class RegistroStateVeiculos extends ChangeNotifier {
+  /// Constructs a stateVeiculos registry instance
   RegistroStateVeiculos(this.user) {
     init();
     unawaited(load(user!.id!));
   }
+
+  ///user
   final RegisterStore? user;
 
+  /// controller of RegistrationVehiclesController
   final controller = RegistrationVehiclesController();
 
   final _controlleruserID = TextEditingController();
@@ -38,29 +40,53 @@ class RegistroStateVeiculos extends ChangeNotifier {
   final _controllervehicleYear = TextEditingController();
   final _controllerpricePaid = TextEditingController();
   final _controllerpurchasedWhen = TextEditingController();
-  // final _controllerdealershipId = TextEditingController();
   RegistrationVehicles? _registeratual;
   final _listvehicles = <RegistrationVehicles>[];
   String? _controllervehiclephoto;
 
+  /// Manage userID information
   TextEditingController get controlleruserID => _controlleruserID;
+
+  /// Manage Model information
   TextEditingController get controllerModel => _controllerModel;
+
+  /// Manage plate information
   TextEditingController get controllerplate => _controllerplate;
+
+  /// Manage brand information
   TextEditingController get controllerbrand => _controllerbrand;
+
+  /// Manage builtYear information
   TextEditingController get controllerbuiltYear => _controllerbuiltYear;
+
+  /// Manage vehicleYear information
   TextEditingController get controllervehicleYear => _controllervehicleYear;
 
+  /// Manage pricePaid information
   TextEditingController get controllerpricePaid => _controllerpricePaid;
+
+  /// Manage purchasedWhen information
   TextEditingController get controllerpurchasedWhen => _controllerpurchasedWhen;
 
+  /// var editing
   RegistrationVehicles? get registeratual => _registeratual;
+
+  /// list vehicles
   List<RegistrationVehicles> get listvehicles => _listvehicles;
+
+  /// var photo
   String? get controllervehiclephoto => _controllervehiclephoto;
 
+  /// Model shown in the field
   final modelFieldFocusNode = FocusNode();
+
+  /// brands
   final allBrands = <String>[];
+
+  /// models
   final allModels = <String>[];
 
+  /// method init by models and brands
   void init() async {
     final result = await getBrandNames();
 
@@ -77,6 +103,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     );
   }
 
+  /// method by brands
   Future<List<String>?> getBrandNames() async {
     final brandsList = await getCarBrands();
 
@@ -90,6 +117,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     return brandNames;
   }
 
+  /// method by models
   Future<List<String>?> getModelsByBrand(String brand) async {
     final modelsList = await getCarModel(brand);
 
@@ -103,6 +131,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     return modelNames;
   }
 
+  /// method insert
   Future<void> insert() async {
     (controllervehiclephoto);
     final registrationVehicles = RegistrationVehicles(
@@ -115,9 +144,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
         pricePaid: double.parse(controllerpricePaid.text),
         userID: user!.id!,
         purchasedWhen:
-            DateFormat('dd/MM/yyyy').parse(controllerpurchasedWhen.text)
-        // dealershipId: 1,
-        );
+            DateFormat('dd/MM/yyyy').parse(controllerpurchasedWhen.text));
 
     await controller.insert(registrationVehicles);
     await load(user!.id!);
@@ -130,11 +157,11 @@ class RegistroStateVeiculos extends ChangeNotifier {
     controllerpurchasedWhen.clear();
     controllervehicleYear.clear();
     controlleruserID.clear();
-    // controllerdealershipId.clear();
 
     notifyListeners();
   }
 
+  /// method delete
   Future<void> delete(RegistrationVehicles registrationVehicles) async {
     await controller.delete(registrationVehicles);
     await load(user!.id!);
@@ -142,6 +169,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method load
   Future<void> load(int id) async {
     final list = <RegistrationVehicles>[];
     if (user!.id != 1) {
@@ -156,6 +184,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method edit
   void editSearchVehicles(RegistrationVehicles registrationVehicles) {
     _controllerModel.text = registrationVehicles.model;
     _controllerbrand.text = registrationVehicles.brand.toString();
@@ -179,16 +208,12 @@ class RegistroStateVeiculos extends ChangeNotifier {
         vehicleYear: int.parse(controllervehicleYear.text),
         userID: user!.id!,
         id: registrationVehicles.id);
-    // dealershipId: registrationVehicles.dealershipId,
-
-    //  id: registrationVehicles.id) as RegisterVehicles?;
-    //  ) as RegisterVehicles;
   }
 
+  /// method update
   Future<void> update() async {
     final registroEditado = RegistrationVehicles(
       id: _registeratual?.id,
-      // dealershipId: _registeratual?,
       model: controllerModel.text,
       plate: controllerplate.text,
       brand: controllerbrand.text,
@@ -214,6 +239,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     await load(user!.id!);
   }
 
+  /// Method Grab Image From Gallery
   Future pickImage() async {
     {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -224,6 +250,7 @@ class RegistroStateVeiculos extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method take photo
   Future takePhoto() async {
     {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -235,9 +262,9 @@ class RegistroStateVeiculos extends ChangeNotifier {
   }
 }
 
-///
+/// Screen of RegisterVehicles
 class RegisterVehicles extends StatelessWidget {
-  ///
+  /// class of RegisterVehicles
   RegisterVehicles({super.key});
 
   final _formKey = GlobalKey<FormState>();

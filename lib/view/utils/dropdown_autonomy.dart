@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
+/// dropMenu
 class DropMenu extends StatelessWidget {
+  /// class of DropMenu
   DropMenu({super.key});
 
+  ///drop value
   final dropValue = ValueNotifier('');
+
+  ///drop opçoes
   final dropOpcoes = [
     'Iniciante 74% rede - 25% loja',
-    'Intermediario',
-    'Avançado',
-    'Especial'
+    'Intermediario 79% rede - 20% loja',
+    'Avançado 84% rede - 15% loja',
+    'Especial 94% rede - 5% loja'
   ];
 
   @override

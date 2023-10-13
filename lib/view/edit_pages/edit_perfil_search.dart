@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'register_sale.dart';
-import 'search_sale.dart';
-import 'utils/app_bar.dart';
-import 'utils/menu.dart';
+import '../register_pages/register.dart';
+import '../search_pages/search_register.dart';
+import '../utils/app_bar.dart';
+import '../utils/menu.dart';
 
-class EditSaleSearch extends StatelessWidget {
-  const EditSaleSearch({Key? key}) : super(key: key);
+/// Screen of EditPerfilSearch
+class EditPerfilSearch extends StatelessWidget {
+  /// class of EditPerfilSearch
+  const EditPerfilSearch({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<RegistroStateSale>(
+    return Consumer<RegistroState>(
       builder: (_, state, __) {
         return Scaffold(
           backgroundColor: Colors.black,
@@ -39,56 +41,41 @@ class EditSaleSearch extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: state.controllername,
+                          controller: state.controllerName,
                           decoration: const InputDecoration(
-                            label: Text('nome '),
+                            label: Text('alterar nome'),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                          validator: (value) {
+                            if ((value ?? '').isEmpty) {
+                              return 'não pode estar vazio';
+                            }
+                            return null;
+                          },
+                        ),
+                        TextFormField(
+                          controller: state.controllerPassword,
+                          decoration: const InputDecoration(
+                            label: Text('alterar senha'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         TextFormField(
-                          controller: state.controllercpf,
+                          controller: state.controllerCNPJ,
                           decoration: const InputDecoration(
-                            label: Text('cpf '),
+                            label: Text('alterar cnpj'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         TextFormField(
-                          controller: state.controllersoldWhen,
+                          controller: state.controllerAutonomyLevelID,
                           decoration: const InputDecoration(
-                            label: Text('data da venda '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllerdealershipCut,
-                          decoration: const InputDecoration(
-                            label: Text('% concessionaria '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllerbusinessCut,
-                          decoration: const InputDecoration(
-                            label: Text('% loja '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllersafetyCut,
-                          decoration: const InputDecoration(
-                            label: Text('% caixa de segurança '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllerpriceSold,
-                          decoration: const InputDecoration(
-                            label: Text(' preço de venda '),
+                            label: Text('alterar autonomia'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         const SizedBox(
-                          height: 100,
+                          height: 40,
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -105,13 +92,13 @@ class EditSaleSearch extends StatelessWidget {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SearchSale(),
+                                  builder: (context) => const Search(),
                                 ),
                               );
                             }
                           },
                           child: const Text('atualizar'),
-                        )
+                        ),
                       ],
                     ),
                   ),

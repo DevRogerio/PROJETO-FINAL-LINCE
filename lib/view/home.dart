@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import 'register.dart';
-import 'search_register.dart';
-import 'search_sale.dart';
-import 'search_vehicles.dart';
+import 'register_pages/register.dart';
+import 'search_pages/search_register.dart';
+import 'search_pages/search_sale.dart';
+import 'search_pages/search_vehicles.dart';
 import 'utils/app_bar.dart';
 import 'utils/carousel.dart';
 import 'utils/menu.dart';
 
+/// Screen of Home
 class Home extends StatelessWidget {
+  /// class of Home
   const Home({super.key});
 
   @override

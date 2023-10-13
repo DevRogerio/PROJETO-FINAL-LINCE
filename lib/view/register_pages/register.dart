@@ -1,31 +1,39 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../MODEL/register_store.dart';
-import '../controllers/database.dart';
-import 'utils/app_bar.dart';
-import 'utils/dropdown_autonomy.dart';
-import 'utils/menu.dart';
+import '../../MODEL/register_store.dart';
+import '../../controllers/database.dart';
+import '../utils/app_bar.dart';
+import '../utils/dropdown_autonomy.dart';
+import '../utils/menu.dart';
 
+/// RegistroState Record Management
 class RegistroState extends ChangeNotifier {
+  /// Constructs a state registry instance
   RegistroState() {
     unawaited(load());
     unawaited(loadUser());
   }
 
   RegisterStore? _logUser;
+
+  /// current user logged
   RegisterStore? get logUser => _logUser;
 
+  /// store name
   String registerStoreName = '';
 
+  /// store cnpj
   int? registerStorecnpj;
 
   final _listUser = <RegisterStore>[];
   final _formKey = GlobalKey<FormState>();
 
+  /// controller of RegisterController
   final controller = RegisterController();
   final _controllerCNPJ = TextEditingController();
   final _controllerName = TextEditingController();
@@ -34,21 +42,31 @@ class RegistroState extends ChangeNotifier {
 
   RegisterStore? _registerAtual;
 
+  /// Manage name information
   TextEditingController get controllerName => _controllerName;
 
+  /// Manage CNPJ information
+
   TextEditingController get controllerCNPJ => _controllerCNPJ;
+
+  /// Manage AutonomyLevelID information
 
   TextEditingController get controllerAutonomyLevelID =>
       _controllerAutonomyLevelID;
 
+  /// Manage Password information
   TextEditingController get controllerPassword => _controllerPassword;
 
+  /// var editing
   RegisterStore? get registerAtual => _registerAtual;
 
+  /// list user
   List<RegisterStore> get listUser => _listUser;
 
+  /// formkey
   GlobalKey<FormState> get formKey => _formKey;
 
+  /// method insert
   Future<void> insert() async {
     final registerStore = RegisterStore(
       name: controllerName.text,
@@ -68,6 +86,7 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method delete
   Future<void> delete(RegisterStore registerStore) async {
     await controller.delete(registerStore);
     await load();
@@ -75,6 +94,7 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method load
   Future<void> load() async {
     final list = await controller.select();
     listUser.clear();
@@ -83,9 +103,12 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method edit
   void editSearch(RegisterStore registerStore) {
     _controllerName.text = registerStore.name;
     _controllerCNPJ.text = registerStore.cnpj.toString();
+    _controllerPassword.text = registerStore.password!;
+    // _controllerAutonomyLevelID.text = registerStore.autonomyLevelID!;
 
     _registerAtual = RegisterStore(
         name: registerStore.name,
@@ -95,6 +118,7 @@ class RegistroState extends ChangeNotifier {
         id: registerStore.id);
   }
 
+  /// method update
   Future<void> update() async {
     final registroEditado = RegisterStore(
         id: _registerAtual?.id,
@@ -113,6 +137,7 @@ class RegistroState extends ChangeNotifier {
     await load();
   }
 
+  /// method login by name
   Future<dynamic> getRegisterStore(String name) async {
     final database = await getDatabase();
     final List<Map<String, dynamic>> result = await database.query(
@@ -135,12 +160,14 @@ class RegistroState extends ChangeNotifier {
     return null;
   }
 
+  /// method save user SharedPreferences
   Future<void> savedUser(int userid, String username) async {
     final preferences = await SharedPreferences.getInstance();
     await preferences.setInt('userid', userid);
     await preferences.setString('username', username);
   }
 
+  /// method load user SharedPreferences
   Future<void> loadUser() async {
     final preferences = await SharedPreferences.getInstance();
     final userid = preferences.getInt('userid');
@@ -151,13 +178,31 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// method clear SharedPreferences
   Future<void> clearPreferences() async {
     final preferences = await SharedPreferences.getInstance();
     await preferences.clear();
   }
+
+  void _gerarSenha() {
+    var caracteres =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    final random = Random();
+    var senha = '';
+
+    for (var i = 0; i < 4; i++) {
+      var indice = random.nextInt(caracteres.length);
+      senha += caracteres[indice];
+    }
+    _controllerPassword.text = senha;
+
+    return;
+  }
 }
 
+/// Screen of Register
 class Register extends StatelessWidget {
+  /// class of Register
   Register({
     Key? key,
   }) : super(key: key);
@@ -247,6 +292,14 @@ class Register extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.red.shade900),
+                                onPressed: () {
+                                  state._gerarSenha();
+                                },
+                                child: const Text('gerar senha'),
                               ),
                               const _ActionButton(),
                             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Theme main
 ThemeData style() {
   var base = ThemeData.dark();
   return base.copyWith(

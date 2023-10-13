@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../view/register.dart';
 import 'home.dart';
+import 'register_pages/register.dart';
 
+/// Screen of Login
 class LoginPage extends StatelessWidget {
+  /// class of Login
   const LoginPage(this.state, {super.key});
 
+  /// state of RegistroState
   final RegistroState state;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //  appBar: BarraSuperior(),
-
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Center(
@@ -22,7 +23,6 @@ class LoginPage extends StatelessWidget {
           ),
         ),
       ),
-
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, colors: [

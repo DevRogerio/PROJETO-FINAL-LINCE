@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_classes_with_only_static_members
+
 import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -6,6 +8,7 @@ import '../MODEL/register_store.dart';
 import '../MODEL/registration_vehicles.dart';
 import '../MODEL/sales.dart';
 
+/// initial db
 Future<Database> getDatabase() async {
   final path = join(
     await getDatabasesPath(),
@@ -24,7 +27,9 @@ Future<Database> getDatabase() async {
   );
 }
 
+/// Class for [RegisterStore] table representation
 class RegisterStoreTable {
+  /// Used on table creation
   static const String createTable = '''
   CREATE TABLE $tableName (
       $id               INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -35,16 +40,30 @@ class RegisterStoreTable {
     ); 
   ''';
 
+  /// Table's name reference
   static const String tableName = 'RegisterStore';
+
+  /// [RegisterStore.id] column name reference.
   static const String id = 'id';
+
+  /// [RegisterStore.name] column name reference.
   static const String name = 'name';
+
+  /// [RegisterStore.cnpj] column name reference.
   static const String cnpj = 'cnpj';
+
+  /// [RegisterStore.password] column name reference.
   static const String password = 'password';
+
+  /// [RegisterStore.autonomyLevelID] column name reference.
   static const String autonomyLevelID = 'autonomyLevelID ';
+
+  /// Inserts the admin user when database is created.
   static const adminUserRawInsert =
       'INSERT INTO $tableName($cnpj,$name,$autonomyLevelID,$password)'
       'VALUES(123,"admin","admin","Anderson")';
 
+  /// Transforms a given [registerStore] into a map.
   static Map<String, dynamic> toMap(RegisterStore registerStore) {
     final map = <String, dynamic>{};
 
@@ -58,7 +77,9 @@ class RegisterStoreTable {
   }
 }
 
+/// The controller for [RegisterController]
 class RegisterController {
+  /// Inserts the given [registerStore] into database.
   Future<void> insert(RegisterStore registerStore) async {
     final database = await getDatabase();
     final map = RegisterStoreTable.toMap(registerStore);
@@ -68,6 +89,7 @@ class RegisterController {
     return;
   }
 
+  /// Deletes a given [registerStore] from database.
   Future<void> delete(RegisterStore registerStore) async {
     final database = await getDatabase();
 
@@ -78,6 +100,7 @@ class RegisterController {
     );
   }
 
+  /// Returns all instances of [RegisterStore] saved on database as a list.
   Future<List<RegisterStore>> select() async {
     final database = await getDatabase();
 
@@ -101,6 +124,7 @@ class RegisterController {
     return list;
   }
 
+  /// Updates the given [registerStore] data contained in the database
   Future<void> update(RegisterStore registerStore) async {
     final database = await getDatabase();
 
@@ -115,7 +139,9 @@ class RegisterController {
   }
 }
 
+/// Class for [RegistrationTable] table representation
 class RegistrationTable {
+  /// Used on table creation
   static const String createTable = '''
     CREATE TABLE $tableName(
       $id             INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -132,18 +158,40 @@ class RegistrationTable {
     );
   ''';
 
+  /// Table's name reference
   static const String tableName = 'registrationVehicles';
+
+  /// [RegistrationVehicles.id] column name reference.
   static const String id = 'id';
+
+  /// [RegistrationVehicles.model] column name reference.
   static const String model = 'model';
+
+  /// [RegistrationVehicles.plate] column name reference.
   static const String plate = 'plate';
+
+  /// [RegistrationVehicles.brand] column name reference.
   static const String brand = 'brand';
+
+  /// [RegistrationVehicles.builtYear] column name reference.
   static const String builtYear = 'builtYear';
+
+  /// [RegistrationVehicles.vehicleYear] column name reference.
   static const String vehicleYear = 'vehicleYear';
+
+  /// [RegistrationVehicles.photo] column name reference.
   static const String photo = 'photo';
+
+  /// [RegistrationVehicles.pricePaid] column name reference.
   static const String pricePaid = 'pricePaid';
+
+  /// [RegistrationVehicles.purchasedWhen] column name reference.
   static const String purchasedWhen = 'purchasedWhen';
+
+  /// [RegistrationVehicles.userID] column name reference.
   static const String userID = 'userID';
 
+  /// Transforms a given [RegistrationVehicles] into a map
   static Map<String, dynamic> toMap(RegistrationVehicles registrationVehicles) {
     final map = <String, dynamic>{};
 
@@ -163,7 +211,9 @@ class RegistrationTable {
   }
 }
 
+/// The controller for [RegistrationTable]
 class RegistrationVehiclesController {
+  /// Inserts the given [registrationVehicles] into database.
   Future<void> insert(RegistrationVehicles registrationVehicles) async {
     final database = await getDatabase();
     final map = RegistrationTable.toMap(registrationVehicles);
@@ -173,6 +223,7 @@ class RegistrationVehiclesController {
     return;
   }
 
+  /// Deletes a given [registrationVehicles] from database.
   Future<void> delete(RegistrationVehicles registrationVehicles) async {
     final database = await getDatabase();
 
@@ -183,6 +234,7 @@ class RegistrationVehiclesController {
     );
   }
 
+  /// Returns all instances of [RegistrationVehicles]saved on database as a list
   Future<List<RegistrationVehicles>> selectAll() async {
     final database = await getDatabase();
 
@@ -212,6 +264,7 @@ class RegistrationVehiclesController {
     return list;
   }
 
+  /// Returns a single [RegistrationVehicles] from database given its [id].
   Future<List<RegistrationVehicles>> selectByCars(int id) async {
     final database = await getDatabase();
 
@@ -243,6 +296,7 @@ class RegistrationVehiclesController {
     return list;
   }
 
+  /// Updates the given [registrationVehicles] data contained in the database
   Future<void> update(RegistrationVehicles registrationVehicles) async {
     final database = await getDatabase();
 
@@ -257,7 +311,9 @@ class RegistrationVehiclesController {
   }
 }
 
+/// Class for [SalesTable] table representation
 class SalesTable {
+  /// Used on table creation
   static const String createTable = '''
     CREATE TABLE $tableName(
       $id             INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -273,18 +329,37 @@ class SalesTable {
     );
   ''';
 
+  /// Table's name reference
   static const String tableName = 'sale';
+
+  /// [Sale.id] column name reference.
   static const String id = 'id';
+
+  /// [Sale.cpf] column name reference.
   static const String cpf = 'Cpf';
+
+  /// [Sale.name] column name reference.
   static const String name = 'name';
+
+  /// [Sale.soldWhen] column name reference.
   static const String soldWhen = 'soldWhen';
+
+  /// [Sale.priceSold] column name reference.
   static const String priceSold = 'priceSold';
+
+  /// [Sale.dealershipCut] column name reference.
   static const String dealershipCut = 'dealershipCut';
+
+  /// [Sale.businessCut] column name reference.
   static const String businessCut = 'businessCut';
+
+  /// [Sale.safetyCut] column name reference.
   static const String safetyCut = 'safetyCut';
 
+  /// [Sale.userId] column name reference.
   static const String userId = 'userId';
 
+  /// Transforms a given [sale] into a map.
   static Map<String, dynamic> toMap(Sale sale) {
     final map = <String, dynamic>{};
 
@@ -303,7 +378,9 @@ class SalesTable {
   }
 }
 
+/// The controller for [SalesTable]
 class SaleController {
+  /// Inserts the given [sale] into database.
   Future<void> insert(Sale sale) async {
     final database = await getDatabase();
     final map = SalesTable.toMap(sale);
@@ -313,6 +390,7 @@ class SaleController {
     return;
   }
 
+  /// Delete the given [sale] into database.
   Future<void> delete(Sale sale) async {
     final database = await getDatabase();
 
@@ -323,6 +401,7 @@ class SaleController {
     );
   }
 
+  /// Returns all instances of [Sale] saved on database as a list.
   Future<List<Sale>> selectAll() async {
     final database = await getDatabase();
 
@@ -350,6 +429,7 @@ class SaleController {
     return list;
   }
 
+  /// Returns a single [Sale] from database given its [id].
   Future<List<Sale>> selectByUser(int id) async {
     final database = await getDatabase();
 
@@ -379,6 +459,7 @@ class SaleController {
     return list;
   }
 
+  /// Updates the given [sale] data contained in the database
   Future<void> update(Sale sale) async {
     final database = await getDatabase();
 

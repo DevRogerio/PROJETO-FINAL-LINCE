@@ -1,16 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
-import 'register.dart';
-import 'search_register.dart';
-import 'utils/app_bar.dart';
-import 'utils/menu.dart';
+import '../register_pages/register_sale.dart';
+import '../register_pages/register_vehicles.dart';
+import '../search_pages/search_vehicles.dart';
+import '../utils/app_bar.dart';
+import '../utils/menu.dart';
 
-class EditPerfilSearch extends StatelessWidget {
-  const EditPerfilSearch({Key? key}) : super(key: key);
+/// Screen of EditVehicles
+class EditVehicles extends StatelessWidget {
+  /// class of EditVehicles
+  const EditVehicles({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Consumer<RegistroState>(
+    return Consumer<RegistroStateVeiculos>(
       builder: (_, state, __) {
         return Scaffold(
           backgroundColor: Colors.black,
@@ -39,9 +45,9 @@ class EditPerfilSearch extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormField(
-                          controller: state.controllerName,
+                          controller: state.controllerbrand,
                           decoration: const InputDecoration(
-                            label: Text('alterar nome'),
+                            label: Text('Marca'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                           validator: (value) {
@@ -52,50 +58,93 @@ class EditPerfilSearch extends StatelessWidget {
                           },
                         ),
                         TextFormField(
-                          controller: state.controllerPassword,
+                          controller: state.controllerModel,
                           decoration: const InputDecoration(
-                            label: Text('alterar senha'),
+                            label: Text('Modelo '),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         TextFormField(
-                          controller: state.controllerCNPJ,
+                          controller: state.controllerplate,
                           decoration: const InputDecoration(
-                            label: Text('alterar cnpj'),
+                            label: Text('Placa '),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         TextFormField(
-                          controller: state.controllerAutonomyLevelID,
+                          controller: state.controllerbuiltYear,
                           decoration: const InputDecoration(
-                            label: Text('alterar autonomia'),
+                            label: Text('Ano de fabricação '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllervehicleYear,
+                          decoration: const InputDecoration(
+                            label: Text('Ano do veículo'),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerpricePaid,
+                          decoration: const InputDecoration(
+                            label: Text('Preço '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.controllerpurchasedWhen,
+                          decoration: const InputDecoration(
+                            label: Text('Data da compra'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
                         const SizedBox(
-                          height: 40,
+                          height: 25,
                         ),
+                        FormField(builder: (field) {
+                          return SizedBox(
+                            height: 600,
+                            child: Image.file(
+                              File(state.controllervehiclephoto!),
+                            ),
+                          );
+                        }),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
                           onPressed: () async {
-                            if (state.registerAtual != null) {
-                              state.editSearch;
+                            if (state.registeratual != null) {
+                              state.editSearchVehicles;
                               await state.update();
                             } else {
                               await state.insert();
                             }
-
                             if (context.mounted) {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Search(),
+                                  builder: (context) => const SearchVehicles(),
                                 ),
                               );
                             }
                           },
                           child: const Text('atualizar'),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade900),
+                          onPressed: () async {
+                            if (context.mounted) {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RegisterSale(),
+                                ),
+                              );
+                            }
+                          },
+                          child: const Text('Vender Carro'),
                         ),
                       ],
                     ),

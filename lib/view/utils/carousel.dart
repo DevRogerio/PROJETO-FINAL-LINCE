@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+/// Show cars passing by on the screen
 class Carousel extends StatefulWidget {
+  /// class of Carousel
   const Carousel({Key? key}) : super(key: key);
 
   @override

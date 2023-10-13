@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../view/login_page.dart';
-import '../view/register.dart';
+import '../view/register_pages/register.dart';
 import '../view/utils/style.dart';
 
 void main() async {
   runApp(const MyApp());
 }
 
+///initializing the [MyApp]
 class MyApp extends StatelessWidget {
+  /// The constructor of [MyApp]
   const MyApp({super.key});
 
   @override

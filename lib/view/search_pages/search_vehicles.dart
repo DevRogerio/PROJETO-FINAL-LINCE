@@ -1,25 +1,28 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import 'edit_sale.dart';
-import 'register.dart';
-import 'register_sale.dart';
-import 'utils/app_bar.dart';
-import 'utils/menu.dart';
+import '../edit_pages/edit_vehicles.dart';
 
-class SearchSale extends StatelessWidget {
-  const SearchSale({super.key});
+import '../register_pages/register.dart';
+import '../register_pages/register_vehicles.dart';
+import '../utils/app_bar.dart';
+import '../utils/menu.dart';
+
+/// Screen of Vehicles
+class SearchVehicles extends StatelessWidget {
+  /// Class of Vehicles
+  const SearchVehicles({super.key});
 
   @override
   Widget build(BuildContext context) {
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateSale(mainState.logUser),
-      child: Consumer<RegistroStateSale>(
+      create: (context) => RegistroStateVeiculos(mainState.logUser),
+      child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
-          final numberFormatter = NumberFormat('###,###,###.00');
           return Scaffold(
             backgroundColor: Colors.black,
             appBar: BarraSuperior(),
@@ -33,29 +36,30 @@ class SearchSale extends StatelessWidget {
               ),
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
-                itemCount: state.listSale.length,
+                itemCount: state.listvehicles.length,
                 itemBuilder: (context, index) {
-                  final SalesTable = state.listSale[index];
+                  final registrationTable = state.listvehicles[index];
                   return Container(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 25),
-                    width: 75,
-                    height: 75,
+                        horizontal: 18, vertical: 30),
+                    width: 85,
+                    height: 85,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ListTile(
-                      leading: Text(SalesTable.name.toString()),
-                      title: Text(
-                          'R\$${numberFormatter.format(SalesTable.priceSold)}'),
-                      subtitle: Text(SalesTable.cpf.toString()),
+                      leading: Image.file(
+                        File(registrationTable.vehiclephoto!),
+                      ),
+                      title: Text(registrationTable.model.toString()),
+                      subtitle: Text(registrationTable.brand.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
                             IconButton(
                               onPressed: () async {
-                                await state.delete(SalesTable);
+                                await state.delete(registrationTable);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -64,14 +68,14 @@ class SearchSale extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                state.editSearch(SalesTable);
+                                state.editSearchVehicles(registrationTable);
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         ChangeNotifierProvider.value(
                                       value: state,
-                                      child: const EditSaleSearch(),
+                                      child: const EditVehicles(),
                                     ),
                                   ),
                                 );
