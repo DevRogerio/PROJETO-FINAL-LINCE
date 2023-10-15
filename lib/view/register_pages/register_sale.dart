@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -243,6 +244,7 @@ class RegisterSale extends StatelessWidget {
                                   controller: state.controllercpf,
                                   decoration: InputDecoration(
                                     labelText: 'Documento(cpf)',
+                                    hintText: '02652603000101',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -268,11 +270,18 @@ class RegisterSale extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                   controller: state._controllerdealershipCut,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
                                   decoration: InputDecoration(
                                     labelText: '% concessionária',
+                                    hintText: '% 00.000',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                   ),
                                 ),
                               ),
@@ -280,11 +289,18 @@ class RegisterSale extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                   controller: state._controllerbusinessCut,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
                                   decoration: InputDecoration(
                                     labelText: '% loja',
+                                    hintText: '% 00.000',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                   ),
                                 ),
                               ),
@@ -292,11 +308,18 @@ class RegisterSale extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                   controller: state._controllersafetyCut,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
                                   decoration: InputDecoration(
-                                    labelText: '% caixa de segurança',
+                                    labelText: 'caixa de segurança',
+                                    hintText: '% 00.000',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                   ),
                                 ),
                               ),
@@ -304,11 +327,18 @@ class RegisterSale extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
                                   controller: state._controllerpriceSold,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
                                   decoration: InputDecoration(
                                     labelText: 'preço de venda',
+                                    hintText: '\$ 00.000',
                                     border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
                                   ),
                                 ),
                               ),

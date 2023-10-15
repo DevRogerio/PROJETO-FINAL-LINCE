@@ -85,9 +85,9 @@ class Home extends StatelessWidget {
                         ? Builder(
                             builder: (context) {
                               return ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    // ignore: deprecated_member_use
-                                    primary: Colors.red.shade900),
+                                //  style: ElevatedButton.styleFrom(
+                                // ignore: deprecated_member_use
+                                //   primary: Colors.red.shade900),
                                 onPressed: () async {
                                   if (userid == 1) {
                                     await Navigator.push(
@@ -97,9 +97,19 @@ class Home extends StatelessWidget {
                                     );
                                   }
                                 },
+                                style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(100),
+                                      side: const BorderSide(
+                                          width: 15, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
                                 child: Container(
                                   width: 300,
-                                  padding: const EdgeInsets.all(16),
+                                  padding: const EdgeInsets.all(25),
+                                  color: Colors.black,
                                   child: const Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -130,9 +140,9 @@ class Home extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: Colors.red.shade900),
+                          // style: ElevatedButton.styleFrom(
+                          // ignore: deprecated_member_use
+                          //  primary: Colors.red.shade900),
                           onPressed: () async {
                             await Navigator.push(
                               context,
@@ -141,9 +151,19 @@ class Home extends StatelessWidget {
                               ),
                             );
                           },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                side: const BorderSide(
+                                    width: 15, color: Colors.white),
+                              ),
+                            ),
+                          ),
                           child: Container(
                             width: 300,
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(25),
+                            color: Colors.black,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -171,9 +191,6 @@ class Home extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              // ignore: deprecated_member_use
-                              primary: Colors.red.shade900),
                           onPressed: () async {
                             await Navigator.push(
                               context,
@@ -181,9 +198,19 @@ class Home extends StatelessWidget {
                                   builder: (context) => const SearchSale()),
                             );
                           },
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                                side: const BorderSide(
+                                    width: 15, color: Colors.white),
+                              ),
+                            ),
+                          ),
                           child: Container(
                             width: 300,
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(25),
+                            color: Colors.black,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

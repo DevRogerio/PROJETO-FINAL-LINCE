@@ -14,15 +14,23 @@ class _CarouselState extends State<Carousel> {
   final List data = [
     {
       'url':
-          'https://media.istockphoto.com/id/532186572/pt/foto/carros-no-parque-de-estacionamento-em-linha.jpg?s=612x612&w=0&k=20&c=obDZpnC-juC_KhDA9KIqO5tWQUR2io2LAEOOodG-k0Y='
+          'https://garagem360.com.br/wp-content/uploads/2023/08/Fiat-Strada-Volcano-CVT-2024-1.jpg'
     },
     {
       'url':
-          'https://garagem360.com.br/wp-content/uploads/2023/03/carros-da-chevrolet.jpg'
+          'https://garagem360.com.br/wp-content/uploads/2023/07/Honda-Elevate-frente.jpg'
     },
     {
       'url':
-          'https://www.automaxfiat.com.br/wp-content/uploads/2021/03/tipos-de-carros-1024x683.jpg'
+          'https://cdn.motor1.com/images/mgl/W89Qz3/s1/volkswagen-polo-track-2023.jpg'
+    },
+    {
+      'url':
+          'https://cdn.motor1.com/images/mgl/pb0wn1/s3/volkswagen-polo-track-2023.webp'
+    },
+    {
+      'url':
+          'https://garagem360.com.br/wp-content/uploads/2023/10/Novo-Projeto-2023-10-06T075005.864.jpg'
     },
   ];
 
