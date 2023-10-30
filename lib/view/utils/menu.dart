@@ -53,7 +53,7 @@ class DrawerMenu extends StatelessWidget {
                 Colors.red,
                 Colors.red,
               ])),
-              accountName: Text(username),
+              accountName: Text(username!),
               accountEmail: Text(state.controllerPassword.text),
               currentAccountPicture: CircleAvatar(
                 child: ClipRRect(

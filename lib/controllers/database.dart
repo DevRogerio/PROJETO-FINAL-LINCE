@@ -7,6 +7,7 @@ import 'package:sqflite/sqflite.dart';
 import '../MODEL/register_store.dart';
 import '../MODEL/registration_vehicles.dart';
 import '../MODEL/sales.dart';
+import '../model/autonomy_level.dart';
 
 /// initial db
 Future<Database> getDatabase() async {
@@ -21,9 +22,10 @@ Future<Database> getDatabase() async {
       await db.execute(RegisterStoreTable.createTable);
       await db.execute(RegistrationTable.createTable);
       await db.execute(SalesTable.createTable);
+      await db.execute(AutonomyLeveltable.createTable);
       await db.rawInsert(RegisterStoreTable.adminUserRawInsert);
     },
-    version: 1,
+    version: 2,
   );
 }
 
@@ -471,5 +473,98 @@ class SaleController {
       where: '${SalesTable.id} = ?',
       whereArgs: [sale.id],
     );
+  }
+}
+
+/// AutonomyTable
+class AutonomyLeveltable {
+  static const String createTable = '''
+    CREATE TABLE $tablename(
+      $id                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+      $personid           INTEGER NOT NULL,
+      $name               TEXT NOT NULL,
+      $networkPercentage  REAL NOT NULL,
+      $networkSecurity    REAL NOT NULL,
+      $storePercentage    REAL NOT NULL 
+    );
+    ''';
+
+  static const String tablename = 'autonomy_level';
+
+  static const String id = 'id';
+
+  static const String personid = 'id_person';
+
+  static const String name = 'name';
+
+  static const String networkSecurity = 'network_Security';
+
+  static const String storePercentage = 'store_Percentage';
+
+  static const String networkPercentage = 'networkPercentage';
+
+  static Map<String, dynamic> tomap(AutonomyLevel autonomylavel) {
+    final map = <String, dynamic>{};
+
+    map[AutonomyLeveltable.id] = autonomylavel.id;
+    map[AutonomyLeveltable.personid] = autonomylavel.personID;
+    map[AutonomyLeveltable.name] = autonomylavel.name;
+    map[AutonomyLeveltable.networkPercentage] = autonomylavel.networkPercentage;
+    map[AutonomyLeveltable.networkSecurity] = autonomylavel.networkSecurity;
+    map[AutonomyLeveltable.storePercentage] = autonomylavel.storePercentage;
+
+    return map;
+  }
+}
+
+///autonomy table controller
+class AutonomyControler {
+  Future<void> insert(
+    AutonomyLevel autonomy,
+  ) async {
+    final database = await getDatabase();
+    final map = AutonomyLeveltable.tomap(autonomy);
+    await database.insert(AutonomyLeveltable.tablename, map);
+  }
+
+  Future<List<AutonomyLevel>> select(int personID) async {
+    final database = await getDatabase();
+    final List<Map<String, dynamic>> result = await database.query(
+        AutonomyLeveltable.tablename,
+        where: '${AutonomyLeveltable.personid} = ?',
+        whereArgs: [personID]);
+
+    var list = <AutonomyLevel>[];
+
+    for (var item in result) {
+      list.add(AutonomyLevel(
+          id: item[AutonomyLeveltable.id],
+          personID: item[AutonomyLeveltable.personid],
+          name: item[AutonomyLeveltable.name],
+          networkSecurity: item[AutonomyLeveltable.networkSecurity],
+          storePercentage: item[AutonomyLeveltable.storePercentage],
+          networkPercentage: item[AutonomyLeveltable.networkPercentage]));
+    }
+    return list;
+  }
+
+  Future<void> delete(AutonomyLevel autonomy) async {
+    final database = await getDatabase();
+    await database.delete(AutonomyLeveltable.tablename,
+        where: '${AutonomyLeveltable.id} = ?', whereArgs: [autonomy.id]);
+  }
+
+  Future<void> update(AutonomyLevel autonomy) async {
+    final database = await getDatabase();
+
+    final map = AutonomyLeveltable.tomap(autonomy);
+
+    await database.update(
+      AutonomyLeveltable.tablename,
+      map,
+      where: '${AutonomyLeveltable.id} = ?',
+      whereArgs: [autonomy.id],
+    );
+    return;
   }
 }

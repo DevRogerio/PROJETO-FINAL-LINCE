@@ -105,7 +105,7 @@ class RegistroState extends ChangeNotifier {
 
   /// method edit
   void editSearch(RegisterStore registerStore) {
-    _controllerName.text = registerStore.name;
+    _controllerName.text = registerStore.name!;
     _controllerCNPJ.text = registerStore.cnpj.toString();
     _controllerPassword.text = registerStore.password!;
     // _controllerAutonomyLevelID.text = registerStore.autonomyLevelID!;

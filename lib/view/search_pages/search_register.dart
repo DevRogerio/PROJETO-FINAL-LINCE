@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:provider/provider.dart';
 
 import '../edit_pages/edit_perfil_search.dart';
@@ -77,6 +78,17 @@ class Search extends StatelessWidget {
                                 FontAwesomeIcons.chevronCircleRight,
                                 color: Colors.white,
                                 size: 35,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () async {
+                                await Navigator.of(context).pushNamed(
+                                    'Autonomyedite',
+                                    arguments: registerStoreTable);
+                              },
+                              icon: const Icon(
+                                Icons.edit,
+                                size: 25,
                               ),
                             ),
                           ],

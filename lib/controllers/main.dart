@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../view/login_page.dart';
+import '../view/register_pages/autonomy_screen.dart';
 import '../view/register_pages/register.dart';
 import '../view/utils/style.dart';
 
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
       child: Consumer<RegistroState>(
         builder: (context, state, child) {
           return MaterialApp(
+            routes: {
+              'Autonomyedite': (context) => const Autonomyedite(),
+            },
             home: LoginPage(state),
             debugShowCheckedModeBanner: false,
             theme: style(),

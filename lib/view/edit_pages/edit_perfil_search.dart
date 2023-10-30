@@ -67,13 +67,13 @@ class EditPerfilSearch extends StatelessWidget {
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
-                        TextFormField(
+                        /*  TextFormField(
                           controller: state.controllerAutonomyLevelID,
                           decoration: const InputDecoration(
                             label: Text('alterar autonomia'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
-                        ),
+                        ),*/
                         const SizedBox(
                           height: 40,
                         ),

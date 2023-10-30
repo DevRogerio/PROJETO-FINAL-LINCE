@@ -48,6 +48,7 @@ dependencies:
   dio: ^5.3.2
   carousel_slider: ^4.2.1
   shared_preferences: ^2.2.1
+  get: ^4.6.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

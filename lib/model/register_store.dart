@@ -9,7 +9,7 @@ class RegisterStore {
   final int? cnpj;
 
   /// name
-  final String name;
+  final String? name;
 
   /// autonomyLevelID
   final String? autonomyLevelID;
@@ -23,7 +23,7 @@ class RegisterStore {
   RegisterStore({
     this.id,
     this.cnpj,
-    required this.name,
+    this.name,
     this.autonomyLevelID,
     this.password,
   });
