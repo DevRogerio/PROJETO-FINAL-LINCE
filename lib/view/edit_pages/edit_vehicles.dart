@@ -135,14 +135,8 @@ class EditVehicles extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red.shade900),
                           onPressed: () async {
-                            if (context.mounted) {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegisterSale(),
-                                ),
-                              );
-                            }
+                            await Navigator.of(context).pushNamed('SearchSale',
+                                arguments: RegisterSale);
                           },
                           child: const Text('Vender Carro'),
                         ),

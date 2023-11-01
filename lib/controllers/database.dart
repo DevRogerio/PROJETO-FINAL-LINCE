@@ -326,7 +326,7 @@ class SalesTable {
       $dealershipCut  REAL NOT NULL,
       $businessCut    REAL NOT NULL,
       $safetyCut      REAL NOT NULL,
-      
+    
       $userId         INTEGER NOT NULL
     );
   ''';
@@ -336,6 +336,8 @@ class SalesTable {
 
   /// [Sale.id] column name reference.
   static const String id = 'id';
+
+ // static const String vehicleid = 'vehicleid';
 
   /// [Sale.cpf] column name reference.
   static const String cpf = 'Cpf';
@@ -373,6 +375,7 @@ class SalesTable {
     map[SalesTable.dealershipCut] = sale.dealershipCut;
     map[SalesTable.businessCut] = sale.businessCut;
     map[SalesTable.safetyCut] = sale.safetyCut;
+    //map[SalesTable.vehicleid] = sale.vehicleid;
 
     map[SalesTable.userId] = sale.userId;
 
@@ -425,6 +428,7 @@ class SaleController {
           businessCut: item[SalesTable.businessCut],
           safetyCut: item[SalesTable.safetyCut],
           userId: item[SalesTable.userId],
+         // vehicleid: item[SalesTable.vehicleid],
         ),
       );
     }
@@ -455,6 +459,7 @@ class SaleController {
           businessCut: item[SalesTable.businessCut],
           safetyCut: item[SalesTable.safetyCut],
           userId: item[SalesTable.userId],
+         // vehicleid: item[SalesTable.vehicleid],
         ),
       );
     }

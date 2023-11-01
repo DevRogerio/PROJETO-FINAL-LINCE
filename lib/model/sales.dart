@@ -29,6 +29,8 @@ class Sale {
   /// userId unique for Sale
   final int? userId;
 
+  //final int vehicleid;
+
   ///instance of an [Sale]
   /// given  provided [id], [cpf], [name], [soldWhen],[priceSold],
   /// [dealershipCut],[businessCut],[safetyCut],[userId]
@@ -43,5 +45,6 @@ class Sale {
     this.businessCut,
     this.safetyCut,
     this.userId,
+    //  required this.vehicleid,
   });
 }

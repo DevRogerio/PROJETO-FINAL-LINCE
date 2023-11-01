@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../MODEL/register_store.dart';
 import '../../MODEL/sales.dart';
 import '../../controllers/database.dart';
+import '../../model/autonomy_level.dart';
 import '../utils/app_bar.dart';
 import '../utils/menu.dart';
 import 'register.dart';
@@ -31,13 +32,22 @@ class RegistroStateSale extends ChangeNotifier {
   final _controllercpf = TextEditingController();
   final _controllername = TextEditingController();
   final _controllersoldWhen = TextEditingController();
-  final _controllerdealershipCut = TextEditingController();
-  final _controllerbusinessCut = TextEditingController();
-  final _controllersafetyCut = TextEditingController();
+
   final _controlleruserId = TextEditingController();
   final _controllerpriceSold = TextEditingController();
 
   Sale? _registerAtual;
+  final _listAutomomydata = <AutonomyLevel>[];
+
+  /// get from autonomy list
+  List<AutonomyLevel> get listAutonomydata => _listAutomomydata;
+
+  double? dealershipCut;
+  double? businessCut;
+  double? safetyCut;
+
+  ///controller db from autonomy table
+  final controllerAutonomy = AutonomyControler();
 
   /// Used to manage social security information [controllercpf]
   TextEditingController get controllercpf => _controllercpf;
@@ -48,15 +58,6 @@ class RegistroStateSale extends ChangeNotifier {
   /// Manage soldWhen information
 
   TextEditingController get controllersoldWhen => _controllersoldWhen;
-
-  /// Manage dealershipCut information
-  TextEditingController get controllerdealershipCut => _controllerdealershipCut;
-
-  /// Manage businessCut information
-  TextEditingController get controllerbusinessCut => _controllerbusinessCut;
-
-  /// Manage safetyCut information
-  TextEditingController get controllersafetyCut => _controllersafetyCut;
 
   /// Manage userId information
   TextEditingController get controlleruserId => _controlleruserId;
@@ -76,16 +77,17 @@ class RegistroStateSale extends ChangeNotifier {
   /// Method insert
   Future<void> insert() async {
     final sale = Sale(
-        cpf: int.parse(controllercpf.text),
-        name: controllername.text,
-        soldWhen: DateFormat('dd/MM/yyyy').parse(controllersoldWhen.text),
-        dealershipCut: double.parse(controllerdealershipCut.text),
-        businessCut: double.parse(controllerbusinessCut.text),
-        safetyCut: double.parse(controllersafetyCut.text),
-        userId: user!.id!,
-        priceSold: double.parse(
-          controllerpriceSold.text,
-        ));
+      cpf: int.parse(controllercpf.text),
+      name: controllername.text,
+      soldWhen: DateFormat('dd/MM/yyyy').parse(controllersoldWhen.text),
+      userId: user!.id!,
+      priceSold: double.parse(_controllerpriceSold.text),
+      dealershipCut:
+          (dealershipCut! / 100) * double.parse(_controllerpriceSold.text),
+      businessCut:
+          (businessCut! / 100) * double.parse(_controllerpriceSold.text),
+      safetyCut: (safetyCut! / 100) * double.parse(_controllerpriceSold.text),
+    );
 
     await controller.insert(sale);
     await load(user!.id!);
@@ -93,9 +95,7 @@ class RegistroStateSale extends ChangeNotifier {
     controllername.clear();
     controllercpf.clear();
     controllersoldWhen.clear();
-    controllerdealershipCut.clear();
-    controllerbusinessCut.clear();
-    controllersafetyCut.clear();
+
     controlleruserId.clear();
     controllerpriceSold.clear();
 
@@ -130,9 +130,7 @@ class RegistroStateSale extends ChangeNotifier {
     _controllername.text = sale.name.toString();
     _controllercpf.text = sale.cpf.toString();
     _controllersoldWhen.text = sale.soldWhen.toString();
-    _controllerdealershipCut.text = sale.dealershipCut.toString();
-    _controllerbusinessCut.text = sale.businessCut.toString();
-    _controllersafetyCut.text = sale.safetyCut.toString();
+
     _controlleruserId.text = sale.userId.toString();
     _controllerpriceSold.text = sale.priceSold.toString();
 
@@ -140,9 +138,6 @@ class RegistroStateSale extends ChangeNotifier {
         name: sale.name,
         cpf: int.parse(controllercpf.text),
         soldWhen: DateTime.parse(controllersoldWhen.text),
-        dealershipCut: double.parse(controllerdealershipCut.text),
-        businessCut: double.parse(controllerbusinessCut.text),
-        safetyCut: double.parse(controllersafetyCut.text),
         userId: int.parse(controlleruserId.text),
         priceSold: double.parse(controllerpriceSold.text),
         id: sale.id);
@@ -155,9 +150,6 @@ class RegistroStateSale extends ChangeNotifier {
       name: controllername.text,
       cpf: int.parse(controllercpf.text),
       soldWhen: DateTime.parse(controllersoldWhen.text),
-      dealershipCut: double.parse(controllerdealershipCut.text),
-      businessCut: double.parse(controllerbusinessCut.text),
-      safetyCut: double.parse(controllersafetyCut.text),
       userId: int.parse(controlleruserId.text),
       priceSold: double.parse(controllerpriceSold.text),
     );
@@ -167,13 +159,22 @@ class RegistroStateSale extends ChangeNotifier {
     _controllername.clear();
     _controllercpf.clear();
     _controllersoldWhen.clear();
-    _controllerdealershipCut.clear();
-    _controllerbusinessCut.clear();
-    _controllersafetyCut.clear();
+
     _controlleruserId.clear();
     _controllerpriceSold.clear();
 
     await load(user!.id!);
+  }
+
+  Future<void> dataAutonomy(int user) async {
+    final list = await controllerAutonomy.select(user);
+
+    if (list.isNotEmpty) {
+      dealershipCut = list[0].networkPercentage;
+      businessCut = list[0].storePercentage;
+      safetyCut = list[0].networkSecurity;
+    }
+    notifyListeners();
   }
 }
 
@@ -186,6 +187,7 @@ class RegisterSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final person = ModalRoute.of(context)!.settings.arguments as RegisterStore?;
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
       create: (context) => RegistroStateSale(mainState.logUser),
@@ -269,63 +271,6 @@ class RegisterSale extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextFormField(
-                                  controller: state._controllerdealershipCut,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]')),
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  decoration: InputDecoration(
-                                    labelText: '% concessionária',
-                                    hintText: '% 00.000',
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                  controller: state._controllerbusinessCut,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]')),
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  decoration: InputDecoration(
-                                    labelText: '% loja',
-                                    hintText: '% 00.000',
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                  controller: state._controllersafetyCut,
-                                  keyboardType: TextInputType.number,
-                                  inputFormatters: <TextInputFormatter>[
-                                    FilteringTextInputFormatter.allow(
-                                        RegExp(r'[0-9]')),
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  decoration: InputDecoration(
-                                    labelText: 'caixa de segurança',
-                                    hintText: '% 00.000',
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(100)),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
                                   controller: state._controllerpriceSold,
                                   keyboardType: TextInputType.number,
                                   inputFormatters: <TextInputFormatter>[
@@ -365,6 +310,8 @@ class _ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = Provider.of<RegistroStateSale>(context);
+    final state2 = Provider.of<RegistroState>(context);
+    final iduser = state2.logUser!.id;
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -375,6 +322,7 @@ class _ActionButton extends StatelessWidget {
             style:
                 ElevatedButton.styleFrom(backgroundColor: Colors.red.shade900),
             onPressed: () async {
+              await state.dataAutonomy(iduser!);
               await state.insert();
             },
             child: const Text('Registrar Venda'),

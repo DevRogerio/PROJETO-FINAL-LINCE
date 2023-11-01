@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../view/edit_pages/edit_vehicles.dart';
 import '../view/login_page.dart';
 import '../view/register_pages/autonomy_screen.dart';
 import '../view/register_pages/register.dart';
+import '../view/search_pages/search_sale.dart';
+
 import '../view/utils/style.dart';
 
 void main() async {
@@ -24,6 +27,8 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             routes: {
               'Autonomyedite': (context) => const Autonomyedite(),
+              'SearchSale': (context) => const SearchSale(),
+              'EditVehicles': (context) => const EditVehicles(),
             },
             home: LoginPage(state),
             debugShowCheckedModeBanner: false,

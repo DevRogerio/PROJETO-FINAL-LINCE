@@ -62,27 +62,6 @@ class EditSaleSearch extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
-                          controller: state.controllerdealershipCut,
-                          decoration: const InputDecoration(
-                            label: Text('% concessionaria '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllerbusinessCut,
-                          decoration: const InputDecoration(
-                            label: Text('% loja '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
-                          controller: state.controllersafetyCut,
-                          decoration: const InputDecoration(
-                            label: Text('% caixa de segurança '),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                        TextFormField(
                           controller: state.controllerpriceSold,
                           decoration: const InputDecoration(
                             label: Text(' preço de venda '),
