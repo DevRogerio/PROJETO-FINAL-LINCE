@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:provider/provider.dart';
+import 'package:share_extend/share_extend.dart';
 
 import '../edit_pages/edit_sale.dart';
 import '../register_pages/register.dart';
@@ -18,7 +23,7 @@ class SearchSale extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateSale(mainState.logUser),
+      create: (context) => RegistroStateSale(mainState.logUser, null),
       child: Consumer<RegistroStateSale>(
         builder: (_, state, __) {
           final numberFormatter = NumberFormat('###,###,###.00');
@@ -39,10 +44,10 @@ class SearchSale extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final salesTable = state.listSale[index];
                   return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 25),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
                     width: 75,
-                    height: 75,
+                    height: 70,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(100),
@@ -85,6 +90,23 @@ class SearchSale extends StatelessWidget {
                                 size: 35,
                               ),
                             ),
+                            SizedBox(
+                              height: 10,
+                              width: 10,
+                            ),
+                            ElevatedButton.icon(
+                                onPressed: () {
+                                  _gerarPDF(
+                                      salesTable.businessCut.toString(),
+                                      salesTable.dealershipCut.toString(),
+                                      salesTable.cpf.toString(),
+                                      salesTable.name.toString(),
+                                      salesTable.soldWhen.toString(),
+                                      salesTable.priceSold.toString());
+                                },
+                                icon: const Icon(
+                                    size: 2, Icons.picture_as_pdf_outlined),
+                                label: const Text('PDF'))
                           ],
                         ),
                       ),
@@ -98,4 +120,48 @@ class SearchSale extends StatelessWidget {
       ),
     );
   }
+}
+
+void _gerarPDF(String nome, String cpf, String data, String carro, String placa,
+    String preco) async {
+  final pdf = pw.Document(deflate: zlib.encode);
+
+  pdf.addPage(
+    pw.Page(
+      build: (context) {
+        return pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            pw.Text('Nome: $nome',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text('CPF: $cpf',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text('Data: $data',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text('Carro: $carro',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text('Placa: $placa',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+            pw.Text('Preço: $preco',
+                style:
+                    pw.TextStyle(fontSize: 20, fontWeight: pw.FontWeight.bold)),
+          ],
+        );
+      },
+    ),
+  );
+
+  final docDir = (await getApplicationDocumentsDirectory()).path;
+
+  final path = '$docDir/seu_arquivo.pdf';
+
+  final file = File(path);
+  file.writeAsBytesSync(await pdf.save());
+
+  await ShareExtend.share(path, 'pdf', sharePanelTitle: 'enviar pdf');
 }

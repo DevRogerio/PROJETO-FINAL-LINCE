@@ -31,6 +31,8 @@ class Sale {
 
   //final int vehicleid;
 
+  final int? vehicleid;
+
   ///instance of an [Sale]
   /// given  provided [id], [cpf], [name], [soldWhen],[priceSold],
   /// [dealershipCut],[businessCut],[safetyCut],[userId]
@@ -45,6 +47,6 @@ class Sale {
     this.businessCut,
     this.safetyCut,
     this.userId,
-    //  required this.vehicleid,
+    this.vehicleid,
   });
 }

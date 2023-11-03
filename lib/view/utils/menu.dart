@@ -3,10 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
 import '../home.dart';
 import '../register_pages/register.dart';
-import '../register_pages/register_sale.dart';
 import '../register_pages/register_vehicles.dart';
 
 /// Screen of DrawerMenu
@@ -124,26 +122,6 @@ class DrawerMenu extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => RegisterVehicles(),
-                  ),
-                );
-              },
-            ),
-
-            //logout
-            new ListTile(
-              title: mostrarTitulo('Vendas'),
-              subtitle: const Text('Registro de vendas'),
-              // ignore: deprecated_member_use
-              trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
-              leading: const FaIcon(FontAwesomeIcons.dollarSign),
-              iconColor: Colors.red.shade900,
-
-              //ir para a pagina inicial
-              onTap: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RegisterSale(),
                   ),
                 );
               },

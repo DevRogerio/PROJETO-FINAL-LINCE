@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 import '../register_pages/register_sale.dart';
@@ -68,6 +69,22 @@ class EditSaleSearch extends StatelessWidget {
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
+                        TextFormField(
+                          controller: state.dealershipCut,
+                          enabled: false,
+                          decoration: const InputDecoration(
+                            label: Text(' loja '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: state.businessCut,
+                          enabled: false,
+                          decoration: const InputDecoration(
+                            label: Text(' rede '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
+                        ),
                         const SizedBox(
                           height: 100,
                         ),
@@ -92,7 +109,7 @@ class EditSaleSearch extends StatelessWidget {
                             }
                           },
                           child: const Text('atualizar'),
-                        )
+                        ),
                       ],
                     ),
                   ),

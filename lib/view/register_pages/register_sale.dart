@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 //import '../model/sales.dart';
 import '../../MODEL/register_store.dart';
+import '../../MODEL/registration_vehicles.dart';
 import '../../MODEL/sales.dart';
 import '../../controllers/database.dart';
 import '../../model/autonomy_level.dart';
@@ -18,7 +19,10 @@ import 'register.dart';
 /// Sales Record Management
 class RegistroStateSale extends ChangeNotifier {
   /// Constructs a stateSale registry instance
-  RegistroStateSale(this.user) {
+  RegistroStateSale(
+    this.user,
+    this.vehicle,
+  ) {
     unawaited(load(user!.id!));
   }
 
@@ -35,19 +39,27 @@ class RegistroStateSale extends ChangeNotifier {
 
   final _controlleruserId = TextEditingController();
   final _controllerpriceSold = TextEditingController();
+  final _dealershipCut = TextEditingController();
+  final _businessCut = TextEditingController();
 
   Sale? _registerAtual;
   final _listAutomomydata = <AutonomyLevel>[];
 
+  final RegistrationVehicles? vehicle;
+
   /// get from autonomy list
   List<AutonomyLevel> get listAutonomydata => _listAutomomydata;
 
-  double? dealershipCut;
-  double? businessCut;
-  double? safetyCut;
+  double? dealershipPercentage;
+  double? businessPercentage;
+  double? safetyPercentage;
 
   ///controller db from autonomy table
   final controllerAutonomy = AutonomyControler();
+
+  TextEditingController get dealershipCut => _dealershipCut;
+
+  TextEditingController get businessCut => _businessCut;
 
   /// Used to manage social security information [controllercpf]
   TextEditingController get controllercpf => _controllercpf;
@@ -82,11 +94,13 @@ class RegistroStateSale extends ChangeNotifier {
       soldWhen: DateFormat('dd/MM/yyyy').parse(controllersoldWhen.text),
       userId: user!.id!,
       priceSold: double.parse(_controllerpriceSold.text),
-      dealershipCut:
-          (dealershipCut! / 100) * double.parse(_controllerpriceSold.text),
+      dealershipCut: (dealershipPercentage! / 100) *
+          double.parse(_controllerpriceSold.text),
       businessCut:
-          (businessCut! / 100) * double.parse(_controllerpriceSold.text),
-      safetyCut: (safetyCut! / 100) * double.parse(_controllerpriceSold.text),
+          (businessPercentage! / 100) * double.parse(_controllerpriceSold.text),
+      safetyCut:
+          (safetyPercentage! / 100) * double.parse(_controllerpriceSold.text),
+      vehicleid: vehicle!.id,
     );
 
     await controller.insert(sale);
@@ -130,9 +144,10 @@ class RegistroStateSale extends ChangeNotifier {
     _controllername.text = sale.name.toString();
     _controllercpf.text = sale.cpf.toString();
     _controllersoldWhen.text = sale.soldWhen.toString();
-
     _controlleruserId.text = sale.userId.toString();
     _controllerpriceSold.text = sale.priceSold.toString();
+    _dealershipCut.text = sale.dealershipCut.toString();
+    _businessCut.text = sale.businessCut.toString();
 
     _registerAtual = Sale(
         name: sale.name,
@@ -140,6 +155,8 @@ class RegistroStateSale extends ChangeNotifier {
         soldWhen: DateTime.parse(controllersoldWhen.text),
         userId: int.parse(controlleruserId.text),
         priceSold: double.parse(controllerpriceSold.text),
+        dealershipCut: double.parse(dealershipCut.text),
+        businessCut: double.parse(businessCut.text),
         id: sale.id);
   }
 
@@ -152,6 +169,8 @@ class RegistroStateSale extends ChangeNotifier {
       soldWhen: DateTime.parse(controllersoldWhen.text),
       userId: int.parse(controlleruserId.text),
       priceSold: double.parse(controllerpriceSold.text),
+      dealershipCut: double.parse(dealershipCut.text),
+      businessCut: double.parse(businessCut.text),
     );
 
     await controller.update(registroEditado);
@@ -162,6 +181,8 @@ class RegistroStateSale extends ChangeNotifier {
 
     _controlleruserId.clear();
     _controllerpriceSold.clear();
+    _dealershipCut.clear();
+    _businessCut.clear();
 
     await load(user!.id!);
   }
@@ -170,9 +191,9 @@ class RegistroStateSale extends ChangeNotifier {
     final list = await controllerAutonomy.select(user);
 
     if (list.isNotEmpty) {
-      dealershipCut = list[0].networkPercentage;
-      businessCut = list[0].storePercentage;
-      safetyCut = list[0].networkSecurity;
+      dealershipPercentage = list[0].networkPercentage;
+      businessPercentage = list[0].storePercentage;
+      safetyPercentage = list[0].networkSecurity;
     }
     notifyListeners();
   }
@@ -187,10 +208,11 @@ class RegisterSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final person = ModalRoute.of(context)!.settings.arguments as RegisterStore?;
+    final vehicle =
+        ModalRoute.of(context)!.settings.arguments as RegistrationVehicles?;
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroStateSale(mainState.logUser),
+      create: (context) => RegistroStateSale(mainState.logUser, vehicle!),
       child: Consumer<RegistroStateSale>(
         builder: (_, state, __) {
           return Center(

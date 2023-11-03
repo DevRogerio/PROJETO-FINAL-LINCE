@@ -49,6 +49,8 @@ dependencies:
   carousel_slider: ^4.2.1
   shared_preferences: ^2.2.1
   get: ^4.6.5
+  pdf: ^3.10.4
+  share_extend: ^2.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

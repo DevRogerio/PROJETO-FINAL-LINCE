@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../MODEL/register_store.dart';
 import '../../controllers/database.dart';
 import '../utils/app_bar.dart';
-import '../utils/dropdown_autonomy.dart';
 import '../utils/menu.dart';
 
 /// RegistroState Record Management
@@ -38,7 +35,6 @@ class RegistroState extends ChangeNotifier {
   final _controllerCNPJ = TextEditingController();
   final _controllerName = TextEditingController();
   final _controllerPassword = TextEditingController();
-  final _controllerAutonomyLevelID = TextEditingController();
 
   RegisterStore? _registerAtual;
 
@@ -48,11 +44,6 @@ class RegistroState extends ChangeNotifier {
   /// Manage CNPJ information
 
   TextEditingController get controllerCNPJ => _controllerCNPJ;
-
-  /// Manage AutonomyLevelID information
-
-  TextEditingController get controllerAutonomyLevelID =>
-      _controllerAutonomyLevelID;
 
   /// Manage Password information
   TextEditingController get controllerPassword => _controllerPassword;
@@ -71,7 +62,6 @@ class RegistroState extends ChangeNotifier {
     final registerStore = RegisterStore(
       name: controllerName.text,
       cnpj: int.parse(controllerCNPJ.text),
-      autonomyLevelID: controllerAutonomyLevelID.text,
       password: controllerPassword.text,
     );
 
@@ -80,7 +70,7 @@ class RegistroState extends ChangeNotifier {
 
     controllerName.clear();
     controllerCNPJ.clear();
-    controllerAutonomyLevelID.clear();
+
     controllerPassword.clear();
 
     notifyListeners();
@@ -108,13 +98,11 @@ class RegistroState extends ChangeNotifier {
     _controllerName.text = registerStore.name!;
     _controllerCNPJ.text = registerStore.cnpj.toString();
     _controllerPassword.text = registerStore.password!;
-    // _controllerAutonomyLevelID.text = registerStore.autonomyLevelID!;
 
     _registerAtual = RegisterStore(
         name: registerStore.name,
         cnpj: registerStore.cnpj,
         password: registerStore.password,
-        autonomyLevelID: registerStore.autonomyLevelID,
         id: registerStore.id);
   }
 
@@ -124,13 +112,12 @@ class RegistroState extends ChangeNotifier {
         id: _registerAtual?.id,
         name: controllerName.text,
         password: controllerPassword.text,
-        autonomyLevelID: controllerAutonomyLevelID.text,
         cnpj: int.parse(controllerCNPJ.text));
 
     await controller.update(registroEditado);
     _registerAtual = null;
     _controllerPassword.clear();
-    _controllerAutonomyLevelID.clear();
+
     _controllerName.clear();
     _controllerCNPJ.clear();
 
@@ -272,13 +259,6 @@ class Register extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(100),
                                     ),
                                   ),
-                                ),
-                              ),
-                              DropMenu(),
-                              const Padding(
-                                padding: EdgeInsets.only(
-                                  top: 8,
-                                  bottom: 8,
                                 ),
                               ),
                               Padding(

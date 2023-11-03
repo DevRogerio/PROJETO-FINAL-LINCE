@@ -38,7 +38,7 @@ class SearchVehicles extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listvehicles.length,
                 itemBuilder: (context, index) {
-                  final registrationTable = state.listvehicles[index];
+                  final vehicle = state.listvehicles[index];
                   return Container(
                     margin: const EdgeInsets.symmetric(
                         horizontal: 18, vertical: 30),
@@ -50,16 +50,16 @@ class SearchVehicles extends StatelessWidget {
                     ),
                     child: ListTile(
                       leading: Image.file(
-                        File(registrationTable.vehiclephoto!),
+                        File(vehicle.vehiclephoto!),
                       ),
-                      title: Text(registrationTable.model.toString()),
-                      subtitle: Text(registrationTable.brand.toString()),
+                      title: Text(vehicle.model.toString()),
+                      subtitle: Text(vehicle.brand.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
                             IconButton(
                               onPressed: () async {
-                                await state.delete(registrationTable);
+                                await state.delete(vehicle);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -68,7 +68,7 @@ class SearchVehicles extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                state.editSearchVehicles(registrationTable);
+                                state.editSearchVehicles(vehicle);
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -87,6 +87,19 @@ class SearchVehicles extends StatelessWidget {
                                 size: 35,
                               ),
                             ),
+                            IconButton(
+                              onPressed: () async {
+                                await Navigator.of(context).pushNamed(
+                                  'RegisterSale',
+                                  arguments: vehicle,
+                                );
+                              },
+                              icon: Icon(
+                                FontAwesomeIcons.dollarSign,
+                                color: Colors.white,
+                                size: 35,
+                              ),
+                            )
                           ],
                         ),
                       ),
