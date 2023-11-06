@@ -90,7 +90,7 @@ class SearchSale extends StatelessWidget {
                                 size: 35,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                               width: 10,
                             ),

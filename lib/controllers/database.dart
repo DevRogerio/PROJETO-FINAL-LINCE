@@ -37,7 +37,7 @@ class RegisterStoreTable {
       $id               INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
       $cnpj             INTEGER NOT NULL,
       $name             TEXT NOT NULL,
-      $autonomyLevelID  TEXT NOT NULL,
+    
       $password         TEXT NOT NULL
     ); 
   ''';
@@ -57,13 +57,10 @@ class RegisterStoreTable {
   /// [RegisterStore.password] column name reference.
   static const String password = 'password';
 
-  /// [RegisterStore.autonomyLevelID] column name reference.
-  static const String autonomyLevelID = 'autonomyLevelID ';
-
   /// Inserts the admin user when database is created.
   static const adminUserRawInsert =
-      'INSERT INTO $tableName($cnpj,$name,$autonomyLevelID,$password)'
-      'VALUES(123,"admin","admin","Anderson")';
+      'INSERT INTO $tableName($cnpj,$name,$password)'
+      'VALUES(123,"admin","Anderson")';
 
   /// Transforms a given [registerStore] into a map.
   static Map<String, dynamic> toMap(RegisterStore registerStore) {
@@ -73,7 +70,6 @@ class RegisterStoreTable {
     map[RegisterStoreTable.cnpj] = registerStore.cnpj;
     map[RegisterStoreTable.name] = registerStore.name;
     map[RegisterStoreTable.password] = registerStore.password;
-    map[RegisterStoreTable.autonomyLevelID] = registerStore.autonomyLevelID;
 
     return map;
   }
@@ -116,7 +112,6 @@ class RegisterController {
       list.add(
         RegisterStore(
           id: item[RegisterStoreTable.id],
-          autonomyLevelID: item[RegisterStoreTable.autonomyLevelID],
           cnpj: item[RegisterStoreTable.cnpj],
           name: item[RegisterStoreTable.name],
           password: item[RegisterStoreTable.password],
