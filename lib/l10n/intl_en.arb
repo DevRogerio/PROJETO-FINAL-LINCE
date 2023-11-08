@@ -1,0 +1,9 @@
+{
+    "@@locale":"en",
+    "documentCNPJ":"Document (CNPJ with 14 digits)",
+    "StoreName":"Store Name",
+    "passwordStore":"password",
+    "generatepassword":"generate passoword",
+    "register":"register"
+}
+

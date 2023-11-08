@@ -28,7 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  intl: ^0.18.0
   flutter:
+    sdk: flutter
+  flutter_localizations:
     sdk: flutter
 
 
@@ -40,8 +43,7 @@ dependencies:
   path: any
   sqflite: ^2.3.0
   provider: ^6.0.5
-  font_awesome_flutter: ^10.5.0
-  intl: ^0.18.1
+  font_awesome_flutter: ^10.5.0 
   mask_text_input_formatter: ^2.5.0
   image_picker: ^1.0.4
   path_provider: ^2.1.1
@@ -58,13 +60,9 @@ dev_dependencies:
     sdk: flutter
 
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+ 
   flutter_lints: ^2.0.0
-
+  
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -75,14 +73,18 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+  - assets/img/loogo.jpg
 
+flutter_intl:
+  enabled: true
+  class_name: Inter
 
 
   
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-  - assets/img/loogo.jpg
+ 
   
     
 

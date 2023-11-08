@@ -5,8 +5,12 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../MODEL/register_store.dart';
 import '../../controllers/database.dart';
+import '../../generated/l10n.dart';
 import '../utils/app_bar.dart';
 import '../utils/menu.dart';
+
+/// Defines a constant variable named [appThemeModeKey] and assigns a string.
+const appThemeModeKey = 'appThemeMode';
 
 /// RegistroState Record Management
 class RegistroState extends ChangeNotifier {
@@ -14,7 +18,19 @@ class RegistroState extends ChangeNotifier {
   RegistroState() {
     unawaited(load());
     unawaited(loadUser());
+    unawaited(_init());
   }
+  late final SharedPreferences _sharedPreferences;
+
+  var _lightMode = false;
+
+  /// Defines a getter method that allows you to access
+  /// the value of the _lightMode.
+  bool get ligthMode => _lightMode;
+
+  /// This variable can be used to track whether something is currently
+  /// in a [loading] state,
+  bool loading = true;
 
   RegisterStore? _logUser;
 
@@ -185,6 +201,21 @@ class RegistroState extends ChangeNotifier {
 
     return;
   }
+
+  /// Used to toggle between two theme modes (light and dark).
+  /// It saves the current theme mode
+  /// to persistent storage using SharedPreferences.
+  Future<void> toggleTheme() async {
+    _lightMode = !_lightMode;
+    await _sharedPreferences.setBool(appThemeModeKey, _lightMode);
+    notifyListeners();
+  }
+
+  Future<void> _init() async {
+    _sharedPreferences = await SharedPreferences.getInstance();
+    _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? false;
+    notifyListeners();
+  }
 }
 
 /// Screen of Register
@@ -242,7 +273,7 @@ class Register extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllerCNPJ,
                                   decoration: InputDecoration(
-                                    labelText: 'Documento(CNPJ com 14 digitos)',
+                                    labelText: Inter.current.documentCNPJ,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -254,7 +285,7 @@ class Register extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state.controllerName,
                                   decoration: InputDecoration(
-                                    labelText: 'Nome Da Loja',
+                                    labelText: Inter.current.StoreName,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -266,7 +297,7 @@ class Register extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllerPassword,
                                   decoration: InputDecoration(
-                                    labelText: 'Senha',
+                                    labelText: Inter.current.passwordStore,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -279,7 +310,7 @@ class Register extends StatelessWidget {
                                 onPressed: () {
                                   state._gerarSenha();
                                 },
-                                child: const Text('gerar senha'),
+                                child: Text(Inter.current.generatepassword),
                               ),
                               const _ActionButton(),
                             ],
@@ -316,7 +347,7 @@ class _ActionButton extends StatelessWidget {
             onPressed: () async {
               await state.insert();
             },
-            child: const Text('cadastro'),
+            child: Text(Inter.current.register),
           )
         ],
       ),

@@ -1,0 +1,10 @@
+{
+    "@@locale":"pt_BR",
+    "documentCNPJ":"Documento (CNPJ com 14 digitos)",
+    "StoreName":"Nome da loja",
+    "passwordStore":"senha",
+    "generatepassword":"gerar senha",
+    "register":"cadastrar"
+}
+
+

@@ -1,8 +1,11 @@
 // ignore_for_file: unnecessary_new
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import '../../generated/l10n.dart';
 import '../home.dart';
 import '../register_pages/register.dart';
 import '../register_pages/register_vehicles.dart';
@@ -126,6 +129,24 @@ class DrawerMenu extends StatelessWidget {
                 );
               },
             ),
+            IconButton(
+              alignment: Alignment.bottomLeft,
+              onPressed: state.toggleTheme,
+              icon: Icon(
+                state.ligthMode ? Icons.dark_mode : Icons.light_mode,
+              ),
+            ),
+            /* new ListTile(
+              title: mostrarTitulo('idiomas'),
+              subtitle: const Text('trocar idiomas'),
+              // ignore: deprecated_member_use
+              trailing: StatefulBuilder(builder: (context, setState) {
+                return Switch(
+                  value: valor,
+                  onChanged: (newVal) => setState(() =>valor = newVal),
+                );
+              }),
+            ),*/
           ],
         ),
       ),

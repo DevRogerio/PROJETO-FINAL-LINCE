@@ -1,13 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../generated/l10n.dart';
 import 'register_pages/register.dart';
 import 'search_pages/search_register.dart';
 import 'search_pages/search_sale.dart';
 import 'search_pages/search_vehicles.dart';
 import 'utils/app_bar.dart';
 import 'utils/carousel.dart';
+import 'utils/languages_button.dart';
 import 'utils/menu.dart';
 
 /// Screen of Home
@@ -241,3 +245,38 @@ class Home extends StatelessWidget {
     );
   }
 }
+
+/*class LanguagesButton extends StatefulWidget {
+  const LanguagesButton({super.key});
+
+  @override
+  State<LanguagesButton> createState() => _LanguagesButtonState();
+}
+
+class _LanguagesButtonState extends State<LanguagesButton> {
+  bool isPortuguese = false;
+
+  void changeLang() {
+    setState(() {
+      if (isPortuguese) {
+        unawaited(Inter.load(Locale('en')));
+        isPortuguese = false;
+      } else {
+        unawaited(Inter.load(Locale('pt', 'BR')));
+        isPortuguese = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          changeLang();
+        },
+      ),
+    );
+  }
+}
+*/
