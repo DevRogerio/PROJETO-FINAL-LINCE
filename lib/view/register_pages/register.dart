@@ -12,6 +12,9 @@ import '../utils/menu.dart';
 /// Defines a constant variable named [appThemeModeKey] and assigns a string.
 const appThemeModeKey = 'appThemeMode';
 
+/// Shared preferences key to the app language.
+const appLanguageKey = 'appLanguageKey';
+
 /// RegistroState Record Management
 class RegistroState extends ChangeNotifier {
   /// Constructs a state registry instance
@@ -31,6 +34,11 @@ class RegistroState extends ChangeNotifier {
   /// This variable can be used to track whether something is currently
   /// in a [loading] state,
   bool loading = true;
+
+  var _language = 'en';
+
+  /// The selected language of the app.
+  String? get language => _language;
 
   RegisterStore? _logUser;
 
@@ -211,9 +219,17 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Changes the [_language] value to the given [language].
+  Future<void> toggleLanguage({String? language}) async {
+    _language = _language;
+    await _sharedPreferences.setString(appLanguageKey, _language);
+    notifyListeners();
+  }
+
   Future<void> _init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
     _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? false;
+    _language = _sharedPreferences.getString(appLanguageKey) ?? 'en';
     notifyListeners();
   }
 }

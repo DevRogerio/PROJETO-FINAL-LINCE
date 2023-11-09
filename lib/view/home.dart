@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +9,6 @@ import 'search_pages/search_sale.dart';
 import 'search_pages/search_vehicles.dart';
 import 'utils/app_bar.dart';
 import 'utils/carousel.dart';
-import 'utils/languages_button.dart';
 import 'utils/menu.dart';
 
 /// Screen of Home
@@ -68,7 +65,7 @@ class Home extends StatelessWidget {
                   children: [
                     userid == 1
                         ? Text(
-                            'Olá Anderson, o que vamos fazer?',
+                            Inter.current.HiAnderson,
                             style: TextStyle(
                               color: Colors.grey.shade300,
                               fontSize: 24,
@@ -89,9 +86,6 @@ class Home extends StatelessWidget {
                         ? Builder(
                             builder: (context) {
                               return ElevatedButton(
-                                //  style: ElevatedButton.styleFrom(
-                                // ignore: deprecated_member_use
-                                //   primary: Colors.red.shade900),
                                 onPressed: () async {
                                   if (userid == 1) {
                                     await Navigator.push(
@@ -114,19 +108,19 @@ class Home extends StatelessWidget {
                                   width: 300,
                                   padding: const EdgeInsets.all(25),
                                   color: Colors.black,
-                                  child: const Row(
+                                  child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      FaIcon(
+                                      const FaIcon(
                                         // ignore: deprecated_member_use
                                         FontAwesomeIcons.search,
                                         color: Colors.white,
                                         size: 24,
                                       ),
                                       Text(
-                                        'Buscar Lojas',
-                                        style: TextStyle(
+                                        Inter.current.SearchforStores,
+                                        style: const TextStyle(
                                             color: Colors.white, fontSize: 24),
                                       )
                                     ],
@@ -168,18 +162,18 @@ class Home extends StatelessWidget {
                             width: 300,
                             padding: const EdgeInsets.all(25),
                             color: Colors.black,
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   // ignore: deprecated_member_use
                                   FontAwesomeIcons.car,
                                   color: Colors.white,
                                   size: 24,
                                 ),
                                 Text(
-                                  'Buscar Veiculos',
-                                  style: TextStyle(
+                                  Inter.current.SearchforCars,
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 24),
                                 )
                               ],
@@ -215,18 +209,18 @@ class Home extends StatelessWidget {
                             width: 300,
                             padding: const EdgeInsets.all(25),
                             color: Colors.black,
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                FaIcon(
+                                const FaIcon(
                                   // ignore: deprecated_member_use
                                   FontAwesomeIcons.dollarSign,
                                   color: Colors.white,
                                   size: 24,
                                 ),
                                 Text(
-                                  'Vendas Realizadas',
-                                  style: TextStyle(
+                                  Inter.current.SalesMade,
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 24),
                                 )
                               ],

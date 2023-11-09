@@ -1,7 +1,5 @@
 // ignore_for_file: unnecessary_new
 
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +66,7 @@ class DrawerMenu extends StatelessWidget {
 
             ListTile(
               title: mostrarTitulo('Home'),
-              subtitle: const Text('Pagina Inicial'),
+              subtitle: Text(Inter.current.HomePage),
               // ignore: deprecated_member_use
               trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
               // ignore: deprecated_member_use
@@ -91,8 +89,8 @@ class DrawerMenu extends StatelessWidget {
             //Gerencia
             userid == 1
                 ? ListTile(
-                    title: mostrarTitulo('Lojas'),
-                    subtitle: const Text('Cadastrar Lojas Parceiras'),
+                    title: mostrarTitulo(Inter.current.Stores),
+                    subtitle: Text(Inter.current.RegisterPartnerStores),
                     // ignore: deprecated_member_use
                     trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
                     leading: const FaIcon(FontAwesomeIcons.listCheck),
@@ -112,8 +110,8 @@ class DrawerMenu extends StatelessWidget {
 
             //configurações
             new ListTile(
-              title: mostrarTitulo('Veiculos'),
-              subtitle: const Text('Cadastrar Veiculos'),
+              title: mostrarTitulo(Inter.current.Cars),
+              subtitle: Text(Inter.current.RegisterCars),
               // ignore: deprecated_member_use
               trailing: const FaIcon(FontAwesomeIcons.chevronCircleRight),
               leading: const FaIcon(FontAwesomeIcons.car),
@@ -136,7 +134,13 @@ class DrawerMenu extends StatelessWidget {
                 state.ligthMode ? Icons.dark_mode : Icons.light_mode,
               ),
             ),
-            /* new ListTile(
+            IconButton(
+              alignment: Alignment.bottomLeft,
+              onPressed: state.toggleLanguage,
+              icon: const Icon(Icons.language
+                  //  state.language,
+                  ),
+              /* new ListTile(
               title: mostrarTitulo('idiomas'),
               subtitle: const Text('trocar idiomas'),
               // ignore: deprecated_member_use
@@ -147,6 +151,7 @@ class DrawerMenu extends StatelessWidget {
                 );
               }),
             ),*/
+            ),
           ],
         ),
       ),

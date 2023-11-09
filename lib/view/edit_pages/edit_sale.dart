@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../generated/l10n.dart';
 import '../register_pages/register_sale.dart';
 import '../utils/app_bar.dart';
 import '../utils/menu.dart';
@@ -36,82 +37,61 @@ class EditSaleSearch extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Column(children: [
-                      TextFormField(
-                        controller: state.controllername,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text('nome '),
-                          labelStyle: TextStyle(color: Colors.red),
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: state.controllername,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.name),
+                            labelStyle: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: state.controllercpf,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text('cpf '),
-                          labelStyle: TextStyle(color: Colors.red),
+                        TextFormField(
+                          controller: state.controllercpf,
+                          enabled: false,
+                          decoration: const InputDecoration(
+                            label: Text('cpf '),
+                            labelStyle: TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: state.controllersoldWhen,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text('data da venda '),
-                          labelStyle: TextStyle(color: Colors.red),
+                        TextFormField(
+                          controller: state.controllersoldWhen,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.soldWhen),
+                            labelStyle: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: state.controllerpriceSold,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text(' preço de venda '),
-                          labelStyle: TextStyle(color: Colors.red),
+                        TextFormField(
+                          controller: state.controllerpriceSold,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.priceSold),
+                            labelStyle: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: state.dealershipCut,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text(' loja '),
-                          labelStyle: TextStyle(color: Colors.red),
+                        TextFormField(
+                          controller: state.dealershipCut,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.dealershipCut),
+                            labelStyle: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      TextFormField(
-                        controller: state.businessCut,
-                        enabled: false,
-                        decoration: const InputDecoration(
-                          label: Text(' rede '),
-                          labelStyle: TextStyle(color: Colors.red),
+                        TextFormField(
+                          controller: state.businessCut,
+                          enabled: false,
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.businessCut),
+                            labelStyle: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 100,
-                      ),
-                      /*ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red.shade900),
-                          onPressed: () async {
-                            if (state.registerAtual != null) {
-                              state.editSearch;
-                              await state.update();
-                            } else {
-                              await state.insert();
-                            }
-
-                            if (context.mounted) {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SearchSale(),
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text('atualizar'),
+                        const SizedBox(
+                          height: 100,
                         ),
-                      ],*/
-                    ]),
+                      ],
+                    ),
                   ),
                 ),
               ),

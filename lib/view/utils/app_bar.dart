@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../generated/l10n.dart';
+
 /// appBar
 class BarraSuperior extends AppBar {
   /// appBar
@@ -21,7 +23,7 @@ class BarraSuperior extends AppBar {
             ),
             //titulo
             title: Text(
-              'Anderson Carros',
+              Inter.current.AndersonCars,
               style: TextStyle(color: Colors.red.shade600, fontSize: 30),
             ),
             //icone do Menu

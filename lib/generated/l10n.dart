@@ -99,6 +99,256 @@ class Inter {
       args: [],
     );
   }
+
+  /// `Password`
+  String get Password {
+    return Intl.message(
+      'Password',
+      name: 'Password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `plate`
+  String get plate {
+    return Intl.message(
+      'plate',
+      name: 'plate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `builtYear`
+  String get builtYear {
+    return Intl.message(
+      'builtYear',
+      name: 'builtYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `vehicleYear`
+  String get vehicleYear {
+    return Intl.message(
+      'vehicleYear',
+      name: 'vehicleYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `pricePaid`
+  String get pricePaid {
+    return Intl.message(
+      'pricePaid',
+      name: 'pricePaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `purchasedWhen`
+  String get purchasedWhen {
+    return Intl.message(
+      'purchasedWhen',
+      name: 'purchasedWhen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `gallery`
+  String get gallery {
+    return Intl.message(
+      'gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `brand`
+  String get brand {
+    return Intl.message(
+      'brand',
+      name: 'brand',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model`
+  String get Model {
+    return Intl.message(
+      'Model',
+      name: 'Model',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `update`
+  String get update {
+    return Intl.message(
+      'update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `name`
+  String get name {
+    return Intl.message(
+      'name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `soldWhen`
+  String get soldWhen {
+    return Intl.message(
+      'soldWhen',
+      name: 'soldWhen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `priceSold`
+  String get priceSold {
+    return Intl.message(
+      'priceSold',
+      name: 'priceSold',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `dealershipCut`
+  String get dealershipCut {
+    return Intl.message(
+      'dealershipCut',
+      name: 'dealershipCut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `businessCut`
+  String get businessCut {
+    return Intl.message(
+      'businessCut',
+      name: 'businessCut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hi Anderson, what are we going to do?`
+  String get HiAnderson {
+    return Intl.message(
+      'Hi Anderson, what are we going to do?',
+      name: 'HiAnderson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for Stores`
+  String get SearchforStores {
+    return Intl.message(
+      'Search for Stores',
+      name: 'SearchforStores',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search for Cars`
+  String get SearchforCars {
+    return Intl.message(
+      'Search for Cars',
+      name: 'SearchforCars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sales Made`
+  String get SalesMade {
+    return Intl.message(
+      'Sales Made',
+      name: 'SalesMade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HomePage`
+  String get HomePage {
+    return Intl.message(
+      'HomePage',
+      name: 'HomePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stores`
+  String get Stores {
+    return Intl.message(
+      'Stores',
+      name: 'Stores',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Partner Stores`
+  String get RegisterPartnerStores {
+    return Intl.message(
+      'Register Partner Stores',
+      name: 'RegisterPartnerStores',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cars`
+  String get Cars {
+    return Intl.message(
+      'Cars',
+      name: 'Cars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register Cars`
+  String get RegisterCars {
+    return Intl.message(
+      'Register Cars',
+      name: 'RegisterCars',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AndersonCars`
+  String get AndersonCars {
+    return Intl.message(
+      'AndersonCars',
+      name: 'AndersonCars',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Inter> {

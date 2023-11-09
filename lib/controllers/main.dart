@@ -12,7 +12,6 @@ import '../view/register_pages/register.dart';
 import '../view/register_pages/register_sale.dart';
 import '../view/search_pages/search_sale.dart';
 import '../view/utils/menu.dart';
-import '../view/utils/style.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -41,6 +40,7 @@ class MyApp extends StatelessWidget {
             home: LoginPage(state),
             debugShowCheckedModeBanner: false,
             theme: state.ligthMode ? ThemeData.light() : ThemeData.dark(),
+            locale: Locale(state.language!),
             localizationsDelegates: const [
               Inter.delegate,
               GlobalMaterialLocalizations.delegate,

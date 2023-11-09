@@ -22,11 +22,41 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "AndersonCars": MessageLookupByLibrary.simpleMessage("AndersonCarros"),
+        "Cars": MessageLookupByLibrary.simpleMessage("Carros"),
+        "HiAnderson": MessageLookupByLibrary.simpleMessage(
+            "Olá Anderson, o que vamos fazer?"),
+        "HomePage": MessageLookupByLibrary.simpleMessage("Pagina inicial"),
+        "Model": MessageLookupByLibrary.simpleMessage("Model"),
+        "Password": MessageLookupByLibrary.simpleMessage("senha"),
+        "RegisterCars":
+            MessageLookupByLibrary.simpleMessage("Cadastrar carros"),
+        "RegisterPartnerStores":
+            MessageLookupByLibrary.simpleMessage("Cadastrar lojas parceiras"),
+        "SalesMade": MessageLookupByLibrary.simpleMessage("vendas realizadas"),
+        "SearchforCars":
+            MessageLookupByLibrary.simpleMessage("buscar Veiculos"),
+        "SearchforStores": MessageLookupByLibrary.simpleMessage("buscar lojas"),
         "StoreName": MessageLookupByLibrary.simpleMessage("Nome da loja"),
+        "Stores": MessageLookupByLibrary.simpleMessage("Lojas"),
+        "brand": MessageLookupByLibrary.simpleMessage("marca"),
+        "builtYear": MessageLookupByLibrary.simpleMessage("ano de fabricação"),
+        "businessCut": MessageLookupByLibrary.simpleMessage("rede"),
+        "dealershipCut": MessageLookupByLibrary.simpleMessage("loja"),
         "documentCNPJ": MessageLookupByLibrary.simpleMessage(
             "Documento (CNPJ com 14 digitos)"),
+        "gallery": MessageLookupByLibrary.simpleMessage("galeria"),
         "generatepassword": MessageLookupByLibrary.simpleMessage("gerar senha"),
+        "name": MessageLookupByLibrary.simpleMessage("Nome"),
         "passwordStore": MessageLookupByLibrary.simpleMessage("senha"),
-        "register": MessageLookupByLibrary.simpleMessage("cadastrar")
+        "plate": MessageLookupByLibrary.simpleMessage("placa"),
+        "pricePaid":
+            MessageLookupByLibrary.simpleMessage("preço pago pela loja"),
+        "priceSold": MessageLookupByLibrary.simpleMessage("preço de venda"),
+        "purchasedWhen": MessageLookupByLibrary.simpleMessage("data da compra"),
+        "register": MessageLookupByLibrary.simpleMessage("cadastrar"),
+        "soldWhen": MessageLookupByLibrary.simpleMessage("data da venda"),
+        "update": MessageLookupByLibrary.simpleMessage("atualizar"),
+        "vehicleYear": MessageLookupByLibrary.simpleMessage("ano do veiculo")
       };
 }

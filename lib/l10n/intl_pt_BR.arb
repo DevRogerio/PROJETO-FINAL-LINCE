@@ -4,7 +4,37 @@
     "StoreName":"Nome da loja",
     "passwordStore":"senha",
     "generatepassword":"gerar senha",
-    "register":"cadastrar"
+    "register":"cadastrar",
+    "Password":"senha",
+    
+
+    "plate":"placa",
+    "builtYear":"ano de fabricação",
+    "vehicleYear":"ano do veiculo",
+    "pricePaid":"preço pago pela loja",
+    "purchasedWhen":"data da compra",
+    "gallery":"galeria",
+    "brand":"marca",
+    "Model":"Model",
+    "update":"atualizar",
+
+    "name":"Nome",
+    "soldWhen":"data da venda",
+    "priceSold":"preço de venda",
+    "dealershipCut":"loja",
+    "businessCut":"rede",
+
+    "HiAnderson":"Olá Anderson, o que vamos fazer?",
+    "SearchforStores":"buscar lojas",
+    "SearchforCars":"buscar Veiculos",
+    "SalesMade":"vendas realizadas",
+
+    "HomePage":"Pagina inicial",
+    "Stores":"Lojas",
+    "RegisterPartnerStores":"Cadastrar lojas parceiras",
+    "Cars":"Carros",
+    "RegisterCars":"Cadastrar carros",
+    "AndersonCars":"AndersonCarros"
 }
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../generated/l10n.dart';
 import '../register_pages/register.dart';
 import '../search_pages/search_register.dart';
 import '../utils/app_bar.dart';
@@ -42,9 +43,9 @@ class EditPerfilSearch extends StatelessWidget {
                       children: [
                         TextFormField(
                           controller: state.controllerName,
-                          decoration: const InputDecoration(
-                            label: Text('alterar nome'),
-                            labelStyle: TextStyle(color: Colors.red),
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.name),
+                            labelStyle: const TextStyle(color: Colors.red),
                           ),
                           validator: (value) {
                             if ((value ?? '').isEmpty) {
@@ -55,25 +56,18 @@ class EditPerfilSearch extends StatelessWidget {
                         ),
                         TextFormField(
                           controller: state.controllerPassword,
-                          decoration: const InputDecoration(
-                            label: Text('alterar senha'),
-                            labelStyle: TextStyle(color: Colors.red),
+                          decoration: InputDecoration(
+                            label: Text(Inter.current.Password),
+                            labelStyle: const TextStyle(color: Colors.red),
                           ),
                         ),
                         TextFormField(
                           controller: state.controllerCNPJ,
                           decoration: const InputDecoration(
-                            label: Text('alterar cnpj'),
+                            label: Text(' cnpj'),
                             labelStyle: TextStyle(color: Colors.red),
                           ),
                         ),
-                        /*  TextFormField(
-                          controller: state.controllerAutonomyLevelID,
-                          decoration: const InputDecoration(
-                            label: Text('alterar autonomia'),
-                            labelStyle: TextStyle(color: Colors.red),
-                          ),
-                        ),*/
                         const SizedBox(
                           height: 40,
                         ),
@@ -97,7 +91,7 @@ class EditPerfilSearch extends StatelessWidget {
                               );
                             }
                           },
-                          child: const Text('atualizar'),
+                          child: Text(Inter.current.update),
                         ),
                       ],
                     ),

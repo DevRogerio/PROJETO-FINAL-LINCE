@@ -11,6 +11,7 @@ import '../../MODEL/register_store.dart';
 import '../../MODEL/registration_vehicles.dart';
 import '../../MODEL/sales.dart';
 import '../../controllers/database.dart';
+import '../../generated/l10n.dart';
 import '../../model/autonomy_level.dart';
 import '../utils/app_bar.dart';
 import '../utils/menu.dart';
@@ -255,7 +256,7 @@ class RegisterSale extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state._controllername,
                                   decoration: InputDecoration(
-                                    labelText: 'nome',
+                                    labelText: Inter.current.name,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -267,7 +268,7 @@ class RegisterSale extends StatelessWidget {
                                 child: TextFormField(
                                   controller: state.controllercpf,
                                   decoration: InputDecoration(
-                                    labelText: 'Documento(cpf)',
+                                    labelText: Inter.current.documentCNPJ,
                                     hintText: '02652603000101',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
@@ -283,7 +284,7 @@ class RegisterSale extends StatelessWidget {
                                     MaskTextInputFormatter(mask: '##/##/####')
                                   ],
                                   decoration: InputDecoration(
-                                    labelText: 'data da venda',
+                                    labelText: Inter.current.soldWhen,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100),
                                     ),
@@ -301,7 +302,7 @@ class RegisterSale extends StatelessWidget {
                                     FilteringTextInputFormatter.digitsOnly
                                   ],
                                   decoration: InputDecoration(
-                                    labelText: 'preço de venda',
+                                    labelText: Inter.current.priceSold,
                                     hintText: '\$ 00.000',
                                     border: OutlineInputBorder(
                                         borderRadius:
@@ -347,7 +348,7 @@ class _ActionButton extends StatelessWidget {
               await state.dataAutonomy(iduser!);
               await state.insert();
             },
-            child: const Text('Registrar Venda'),
+            child: Text(Inter.current.register),
           )
         ],
       ),

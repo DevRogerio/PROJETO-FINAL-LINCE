@@ -6,6 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// key variable to save in preferences
 const appThemeModeKey = 'appThemeMode';
 
+/// Shared preferences key to the app language.
+const appLanguageKey = 'appLanguageKey';
+
 ///class responsible for taking care of user configurations
 class RegistroState extends ChangeNotifier {
   /// constructor as the init method to start preferences
@@ -19,17 +22,17 @@ class RegistroState extends ChangeNotifier {
   /// Indicates if the light mode is active.
   bool get ligthMode => _lightMode;
 
-  //  var _language = 'en';
+  var _language = 'en';
 
   /// The selected language of the app.
-/*  String get language => _language;
+  String get language => _language;
 
   /// Changes the [_language] value to the given [language].
   Future<void> toggleLanguage({required String language}) async {
     _language = language;
     await _sharedPreferences.setString(appLanguageKey, _language);
     notifyListeners();
-  }*/
+  }
 
   /// Toggles the theme between light and dark.
   Future<void> toggleTheme() async {
@@ -41,7 +44,7 @@ class RegistroState extends ChangeNotifier {
   Future<void> _init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
     _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? false;
-    // _language = _sharedPreferences.getString(appLanguageKey) ?? 'en';
+    _language = _sharedPreferences.getString(appLanguageKey) ?? 'en';
 
     notifyListeners();
   }

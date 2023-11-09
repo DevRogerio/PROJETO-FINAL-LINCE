@@ -4,6 +4,36 @@
     "StoreName":"Store Name",
     "passwordStore":"password",
     "generatepassword":"generate passoword",
-    "register":"register"
+    "register":"register",
+    "Password":"Password",
+
+    "plate":"plate",
+    "builtYear":"builtYear",
+    "vehicleYear":"vehicleYear",
+    "pricePaid":"pricePaid",
+    "purchasedWhen":"purchasedWhen",
+    "gallery":"gallery",
+    "brand":"brand",
+    "Model":"Model",
+    "update":"update",
+
+    "name":"name",
+    "soldWhen":"soldWhen",
+    "priceSold":"priceSold",
+    "dealershipCut":"dealershipCut",
+    "businessCut":"businessCut",
+
+    "HiAnderson":"Hi Anderson, what are we going to do?",
+    "SearchforStores":"Search for Stores",
+    "SearchforCars":"Search for Cars",
+    "SalesMade":"Sales Made",
+
+    "HomePage":"HomePage",
+    "Stores":"Stores",
+    "RegisterPartnerStores":"Register Partner Stores",
+    "Cars":"Cars",
+    "RegisterCars":"Register Cars",
+    "AndersonCars":"AndersonCars"
+
 }
 

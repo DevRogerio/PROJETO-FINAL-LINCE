@@ -12,6 +12,7 @@ import '../../MODEL/register_store.dart';
 import '../../MODEL/registration_vehicles.dart';
 import '../../controllers/database.dart';
 import '../../controllers/fipe_api.dart';
+import '../../generated/l10n.dart';
 import '../utils/app_bar.dart';
 import '../utils/autocomplete_.dart';
 import '../utils/menu.dart';
@@ -318,7 +319,7 @@ class RegisterVehicles extends StatelessWidget {
                               child: TextFormField(
                                 controller: state._controllerplate,
                                 decoration: InputDecoration(
-                                  labelText: 'N*Placa',
+                                  labelText: Inter.current.plate,
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
                                 ),
@@ -329,7 +330,7 @@ class RegisterVehicles extends StatelessWidget {
                               child: TextFormField(
                                 controller: state._controllerbuiltYear,
                                 decoration: InputDecoration(
-                                  labelText: 'ano de fabricação',
+                                  labelText: Inter.current.builtYear,
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
                                 ),
@@ -340,7 +341,7 @@ class RegisterVehicles extends StatelessWidget {
                               child: TextFormField(
                                 controller: state._controllervehicleYear,
                                 decoration: InputDecoration(
-                                  labelText: 'ano do veículo',
+                                  labelText: Inter.current.vehicleYear,
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
                                 ),
@@ -373,7 +374,7 @@ class RegisterVehicles extends StatelessWidget {
                                   FilteringTextInputFormatter.digitsOnly
                                 ],
                                 decoration: InputDecoration(
-                                  labelText: 'preço pago pela loja',
+                                  labelText: Inter.current.pricePaid,
                                   hintText: '\$ 00.000',
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
@@ -388,7 +389,7 @@ class RegisterVehicles extends StatelessWidget {
                                   MaskTextInputFormatter(mask: '##/##/####')
                                 ],
                                 decoration: InputDecoration(
-                                  labelText: 'data da compra',
+                                  labelText: Inter.current.purchasedWhen,
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(100)),
                                 ),
@@ -428,7 +429,7 @@ class _ActionButton extends StatelessWidget {
             onPressed: () async {
               await state.insert();
             },
-            child: const Text('cadastro'),
+            child: Text(Inter.current.register),
           )
         ],
       ),
@@ -475,7 +476,7 @@ class _ChooseOrTakePhoto extends StatelessWidget {
       children: [
         AppSmallButton(
           onPressed: state.pickImage,
-          text: 'Galeria',
+          text: Inter.current.gallery,
         ),
         AppSmallButton(
           onPressed: state.takePhoto,
