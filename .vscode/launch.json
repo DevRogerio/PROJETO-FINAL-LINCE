@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "carros_car",
-            "program": "lib/controllers/main.dart",
+            "program": "lib/main.dart",
             "request": "launch",
             "type": "dart"
         },
