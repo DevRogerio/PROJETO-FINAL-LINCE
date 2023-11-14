@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../../generated/l10n.dart';
-import '../../registerstore/register_store_screen.dart';
-import '../../registrationvehicles/registration_vehicles_screen.dart';
+import '../../screens/home.dart';
+import '../../screens/registerstore/register_store_screen.dart';
+import '../../screens/registrationvehicles/registration_vehicles_screen.dart';
 import '../../state/registerstore/register_store_state.dart';
-import '../home.dart';
 //import '../register_pages/register_vehicles.dart';
 
 /// Screen of DrawerMenu

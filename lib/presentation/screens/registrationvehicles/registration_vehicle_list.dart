@@ -1,23 +1,27 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import '../state/registerstore/register_store_state.dart';
-import '../utils/utils/app_bar.dart';
-import '../utils/utils/menu.dart';
-import 'edit_perfil_search.dart';
+import '../../state/registerstore/register_store_state.dart';
+import '../../state/registrationvehicle/registration_vehicle_state.dart';
+import '../../utils/utils/app_bar.dart';
+import '../../utils/utils/menu.dart';
+import 'edit_vehicles.dart';
 
-/// Screen of Search
-class Search extends StatelessWidget {
-  /// class of Search
-  const Search({super.key});
+/// Screen of Vehicles
+class SearchVehicles extends StatelessWidget {
+  /// Class of Vehicles
+  const SearchVehicles({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
-      create: (context) => RegistroState(),
-      child: Consumer<RegistroState>(
+      create: (context) => RegistroStateVeiculos(mainState.logUser),
+      child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(
+            backgroundColor: Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
@@ -28,29 +32,31 @@ class Search extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(25, 25, 25, 75),
-                itemCount: state.listUser.length,
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
+                itemCount: state.listvehicles.length,
                 itemBuilder: (context, index) {
-                  final registerStoreTable = state.listUser[index];
+                  final vehicle = state.listvehicles[index];
                   return Container(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 25),
-                    width: 75,
-                    height: 75,
+                        horizontal: 18, vertical: 30),
+                    width: 85,
+                    height: 85,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ListTile(
-                      leading: Text(registerStoreTable.id.toString()),
-                      title: Text(registerStoreTable.name.toString()),
-                      subtitle: Text(registerStoreTable.cnpj.toString()),
+                      leading: Image.file(
+                        File(vehicle.vehiclephoto!),
+                      ),
+                      title: Text(vehicle.model.toString()),
+                      subtitle: Text(vehicle.brand.toString()),
                       trailing: IntrinsicWidth(
                         child: Row(
                           children: [
                             IconButton(
                               onPressed: () async {
-                                await state.delete(registerStoreTable);
+                                await state.delete(vehicle);
                               },
                               icon: const Icon(
                                 Icons.delete,
@@ -59,14 +65,14 @@ class Search extends StatelessWidget {
                             ),
                             IconButton(
                               onPressed: () async {
-                                state.editSearch(registerStoreTable);
+                                state.editSearchVehicles(vehicle);
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         ChangeNotifierProvider.value(
                                       value: state,
-                                      child: const EditPerfilSearch(),
+                                      child: const EditVehicles(),
                                     ),
                                   ),
                                 );
@@ -81,14 +87,16 @@ class Search extends StatelessWidget {
                             IconButton(
                               onPressed: () async {
                                 await Navigator.of(context).pushNamed(
-                                    'Autonomyedite',
-                                    arguments: registerStoreTable);
+                                  'RegisterSale',
+                                  arguments: vehicle,
+                                );
                               },
                               icon: const Icon(
-                                Icons.edit,
-                                size: 25,
+                                FontAwesomeIcons.dollarSign,
+                                color: Colors.white,
+                                size: 35,
                               ),
-                            ),
+                            )
                           ],
                         ),
                       ),

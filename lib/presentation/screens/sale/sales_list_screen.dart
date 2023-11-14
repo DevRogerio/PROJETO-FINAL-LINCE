@@ -6,10 +6,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:provider/provider.dart';
 import 'package:share_extend/share_extend.dart';
-import '../state/registerstore/register_store_state.dart';
-import '../state/sale/sales_state.dart';
-import '../utils/utils/app_bar.dart';
-import '../utils/utils/menu.dart';
+import '../../state/registerstore/register_store_state.dart';
+import '../../state/sale/sales_state.dart';
+import '../../utils/utils/app_bar.dart';
+import '../../utils/utils/menu.dart';
 import 'edit_sale.dart';
 
 /// Screen of Sale

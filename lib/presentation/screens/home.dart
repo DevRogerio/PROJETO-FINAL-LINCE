@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../generated/l10n.dart';
-import '../registerstore/register_list_screen.dart';
-import '../registrationvehicles/registration_vehicle_list.dart';
-import '../sale/sales_list_screen.dart';
 import '../state/registerstore/register_store_state.dart';
-import 'utils/app_bar.dart';
-import 'utils/carousel.dart';
-import 'utils/menu.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/carousel.dart';
+import '../utils/utils/menu.dart';
+import 'registerstore/register_list_screen.dart';
+import 'registrationvehicles/registration_vehicle_list.dart';
+import 'sale/sales_list_screen.dart';
 
 /// Screen of Home
 class Home extends StatelessWidget {

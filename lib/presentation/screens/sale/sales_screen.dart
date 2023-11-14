@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import '../../entities/registration_vehicles.dart';
-import '../../generated/l10n.dart';
-import '../state/registerstore/register_store_state.dart';
-import '../state/sale/sales_state.dart';
-import '../utils/utils/app_bar.dart';
-import '../utils/utils/menu.dart';
+import '../../../entities/registration_vehicles.dart';
+import '../../../generated/l10n.dart';
+import '../../state/registerstore/register_store_state.dart';
+import '../../state/sale/sales_state.dart';
+import '../../utils/utils/app_bar.dart';
+import '../../utils/utils/menu.dart';
 
 /// Screen of RegisterSale
 class RegisterSale extends StatelessWidget {

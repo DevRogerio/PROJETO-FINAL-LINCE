@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import '../../generated/l10n.dart';
-import '../state/registerstore/register_store_state.dart';
-import '../state/registrationvehicle/registration_vehicle_state.dart';
-import '../utils/utils/app_bar.dart';
-import '../utils/utils/autocomplete_.dart';
-import '../utils/utils/menu.dart';
-import '../utils/utils/small_button.dart';
+import '../../../generated/l10n.dart';
+import '../../state/registerstore/register_store_state.dart';
+import '../../state/registrationvehicle/registration_vehicle_state.dart';
+import '../../utils/utils/app_bar.dart';
+import '../../utils/utils/autocomplete_.dart';
+import '../../utils/utils/menu.dart';
+import '../../utils/utils/small_button.dart';
 
 /// Screen of RegisterVehicles
 class RegisterVehicles extends StatelessWidget {

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
-import 'presentation/autonomy/autonomy_screen.dart';
-import 'presentation/registrationvehicles/edit_vehicles.dart';
-import 'presentation/sale/edit_sale.dart';
-import 'presentation/sale/sales_list_screen.dart';
-import 'presentation/sale/sales_screen.dart';
+import 'presentation/screens/autonomy/autonomy_screen.dart';
+import 'presentation/screens/login_page.dart';
+import 'presentation/screens/registrationvehicles/edit_vehicles.dart';
+import 'presentation/screens/sale/edit_sale.dart';
+import 'presentation/screens/sale/sales_list_screen.dart';
+import 'presentation/screens/sale/sales_screen.dart';
 import 'presentation/state/registerstore/register_store_state.dart';
-import 'presentation/utils/login_page.dart';
 import 'presentation/utils/utils/menu.dart';
 
 void main() async {

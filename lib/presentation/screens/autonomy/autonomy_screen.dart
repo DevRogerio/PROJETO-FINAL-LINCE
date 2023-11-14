@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../entities/register_store.dart';
-import '../state/autonomy/autonomy_level_state.dart';
-import '../utils/utils/dialog.dart';
-import '../utils/utils/form_pagelogs.dart';
-import '../utils/utils/form_validator.dart';
+import '../../../entities/register_store.dart';
+import '../../state/autonomy/autonomy_level_state.dart';
+import '../../utils/utils/dialog.dart';
+import '../../utils/utils/form_pagelogs.dart';
+import '../../utils/utils/form_validator.dart';
 
 ///class responsible for editing user autonomy
 class Autonomyedite extends StatelessWidget {
