@@ -37,20 +37,28 @@ class RegistroStateSale extends ChangeNotifier {
   Sale? _registerAtual;
   final _listAutomomydata = <AutonomyLevel>[];
 
+  /// object vehicle
   final RegistrationVehicles? vehicle;
 
   /// get from autonomy list
   List<AutonomyLevel> get listAutonomydata => _listAutomomydata;
 
+  /// get porcentage user current
   double? dealershipPercentage;
+
+  /// get porcentage from store
   double? businessPercentage;
+
+  /// get porcentage securyt box
   double? safetyPercentage;
 
   ///controller db from autonomy table
   final controllerAutonomy = AutonomyControler();
 
+  /// get dealershipCut
   TextEditingController get dealershipCut => _dealershipCut;
 
+  /// get businessCut
   TextEditingController get businessCut => _businessCut;
 
   /// Used to manage social security information [controllercpf]
@@ -179,6 +187,8 @@ class RegistroStateSale extends ChangeNotifier {
     await load(user!.id!);
   }
 
+  /// responsible for getting the autonomy level of the logged in
+  ///  user chama no botao de vender
   Future<void> dataAutonomy(int user) async {
     final list = await controllerAutonomy.select(user);
 

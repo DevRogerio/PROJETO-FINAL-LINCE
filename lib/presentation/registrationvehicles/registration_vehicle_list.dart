@@ -4,9 +4,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../state/registerstore/register_store_state.dart';
 import '../state/registrationvehicle/registration_vehicle_state.dart';
-import '../view/edit_pages/edit_vehicles.dart';
-import '../view/utils/app_bar.dart';
-import '../view/utils/menu.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/menu.dart';
+import 'edit_vehicles.dart';
 
 /// Screen of Vehicles
 class SearchVehicles extends StatelessWidget {

@@ -56,7 +56,7 @@ class LoginPage extends StatelessWidget {
                         decoration: InputDecoration(
                           labelText: 'Nome',
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red),
+                            borderSide: const BorderSide(color: Colors.red),
                             borderRadius: BorderRadius.circular(100),
                           ),
                         ),

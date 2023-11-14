@@ -29,7 +29,7 @@ class Sale {
   /// userId unique for Sale
   final int? userId;
 
-  //final int vehicleid;
+  ///final int vehicleid;
 
   final int? vehicleid;
 

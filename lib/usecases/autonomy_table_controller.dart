@@ -4,6 +4,7 @@ import '../repository/database/database.dart';
 
 ///autonomy table controller
 class AutonomyControler {
+  ///insert data into the database in the autonomy table
   Future<void> insert(
     AutonomyLevel autonomy,
   ) async {
@@ -12,6 +13,7 @@ class AutonomyControler {
     await database.insert(AutonomyLeveltable.tablename, map);
   }
 
+  /// select all autnonomy table by id
   Future<List<AutonomyLevel>> select(int personID) async {
     final database = await getDatabase();
     final List<Map<String, dynamic>> result = await database.query(
@@ -33,12 +35,14 @@ class AutonomyControler {
     return list;
   }
 
+  /// delete autonomy table by id
   Future<void> delete(AutonomyLevel autonomy) async {
     final database = await getDatabase();
     await database.delete(AutonomyLeveltable.tablename,
         where: '${AutonomyLeveltable.id} = ?', whereArgs: [autonomy.id]);
   }
 
+  /// update table by id
   Future<void> update(AutonomyLevel autonomy) async {
     final database = await getDatabase();
 

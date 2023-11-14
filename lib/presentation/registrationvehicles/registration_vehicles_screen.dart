@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 import '../../generated/l10n.dart';
 import '../state/registerstore/register_store_state.dart';
 import '../state/registrationvehicle/registration_vehicle_state.dart';
-import '../view/utils/app_bar.dart';
-import '../view/utils/autocomplete_.dart';
-import '../view/utils/menu.dart';
-import '../view/utils/small_button.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/autocomplete_.dart';
+import '../utils/utils/menu.dart';
+import '../utils/utils/small_button.dart';
 
 /// Screen of RegisterVehicles
 class RegisterVehicles extends StatelessWidget {

@@ -28,6 +28,7 @@ class SalesTable {
   /// [Sale.id] column name reference.
   static const String id = 'id';
 
+  ///[Sale.vehicleid] column name reference.
   static const String vehicleid = 'vehicleid';
 
   /// [Sale.cpf] column name reference.

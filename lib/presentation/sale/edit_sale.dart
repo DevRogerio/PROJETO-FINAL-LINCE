@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../generated/l10n.dart';
-import '../../state/sale/sales_state.dart';
-import '../utils/app_bar.dart';
-import '../utils/menu.dart';
+import '../../generated/l10n.dart';
+import '../state/sale/sales_state.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/menu.dart';
 
 /// Screen of EditSaleSearch
 class EditSaleSearch extends StatelessWidget {

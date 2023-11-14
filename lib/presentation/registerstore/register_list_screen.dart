@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../state/registerstore/register_store_state.dart';
-import '../view/edit_pages/edit_perfil_search.dart';
-import '../view/utils/app_bar.dart';
-import '../view/utils/menu.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/menu.dart';
+import 'edit_perfil_search.dart';
 
 /// Screen of Search
 class Search extends StatelessWidget {

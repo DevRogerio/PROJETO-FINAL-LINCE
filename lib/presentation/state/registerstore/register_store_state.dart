@@ -193,6 +193,7 @@ class RegistroState extends ChangeNotifier {
     await preferences.clear();
   }
 
+  ///method random password
   void gerarSenha() {
     var caracteres =
         'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

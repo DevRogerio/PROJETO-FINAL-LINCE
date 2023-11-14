@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../generated/l10n.dart';
-import '../../registrationvehicles/registration_vehicle_list.dart';
-import '../../state/registrationvehicle/registration_vehicle_state.dart';
-import '../utils/app_bar.dart';
-import '../utils/menu.dart';
+import '../../generated/l10n.dart';
+import '../state/registrationvehicle/registration_vehicle_state.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/menu.dart';
+import 'registration_vehicle_list.dart';
 
 /// Screen of EditVehicles
 class EditVehicles extends StatelessWidget {

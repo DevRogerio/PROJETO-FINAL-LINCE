@@ -6,8 +6,8 @@ import '../../entities/registration_vehicles.dart';
 import '../../generated/l10n.dart';
 import '../state/registerstore/register_store_state.dart';
 import '../state/sale/sales_state.dart';
-import '../view/utils/app_bar.dart';
-import '../view/utils/menu.dart';
+import '../utils/utils/app_bar.dart';
+import '../utils/utils/menu.dart';
 
 /// Screen of RegisterSale
 class RegisterSale extends StatelessWidget {

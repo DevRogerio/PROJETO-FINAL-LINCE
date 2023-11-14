@@ -4,46 +4,65 @@ import '../../../entities/autonomy_level.dart';
 import '../../../entities/register_store.dart';
 import '../../../usecases/autonomy_table_controller.dart';
 
+/// Controller class for managing Autonomy Levels.
 class AutonomilevelControler extends ChangeNotifier {
+  /// Creates a new AutonomilevelController for the specified person.
   AutonomilevelControler({required this.registerStore}) {
     unawaited(loadData());
   }
 
+  /// The associated person for whom autonomy levels are managed.
   RegisterStore registerStore;
 
+  /// The currently selected autonomy level.
   AutonomyLevel? _autonomyCurrent;
 
+  /// Controller for managing autonomy levels.
   final controller = AutonomyControler();
 
+  /// GlobalKey for the form widget.
   final formkey = GlobalKey<FormState>();
 
+  /// List of autonomy levels.
   final List<AutonomyLevel> _listaAutonomy = [];
 
+  /// Getter for the list of autonomy levels.
   List<AutonomyLevel> get listaAutonomy => _listaAutonomy;
 
+  /// List of complete autonomy levels.
   final List<AutonomyLevel> _listaAutonomyComplete = [];
 
+  /// Getter for the list of complete autonomy levels.
   List<AutonomyLevel> get listComplete => _listaAutonomyComplete;
 
+  /// Text controller for autonomy level name.
   final _controllerNameNivel = TextEditingController();
 
+  /// Getter for the autonomy level name text controller.
   TextEditingController get controllerNameNivel => _controllerNameNivel;
 
+  /// Text controller for network security value
   final _controllerNetworkSecurity = TextEditingController();
 
+  /// Getter for the network security text controller.
   TextEditingController get controllerNetworkSecurity =>
       _controllerNetworkSecurity;
 
+  /// Text controller for store percentage value.
   final _controllerStorePercentage = TextEditingController();
 
+  /// Getter for the store percentage text controller.
   TextEditingController get controllerStorePercentage =>
       _controllerStorePercentage;
 
+  /// Text controller for network percentage value.
   final _controllerNetworkPercentage = TextEditingController();
 
+  /// Getter for the network percentage text controller
   TextEditingController get controllerNetworkPercentage =>
       _controllerNetworkPercentage;
 
+  /// Inserts a new autonomy level for the associated person.
   Future<void> insert() async {
     try {
       if (listaAutonomy.isNotEmpty) {
@@ -73,6 +92,7 @@ class AutonomilevelControler extends ChangeNotifier {
     }
   }
 
+  /// Loads autonomy level data for the associated person.
   Future<void> loadData() async {
     final list = await controller.select(registerStore.id ?? 0);
 
@@ -82,6 +102,7 @@ class AutonomilevelControler extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates the current autonomy level with the provided data.
   void updatePerson(AutonomyLevel autonomy) {
     _controllerNameNivel.text = autonomy.name;
     _controllerNetworkPercentage.text = autonomy.networkPercentage.toString();
@@ -99,6 +120,7 @@ class AutonomilevelControler extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Updates the autonomy level with the provided data.
   Future<void> update() async {
     try {
       final autonomy = AutonomyLevel(
@@ -118,6 +140,7 @@ class AutonomilevelControler extends ChangeNotifier {
     }
   }
 
+  /// Clears the text controllers and loads autonomy level data.
   void cleanController() {
     controllerNameNivel.clear();
     controllerNetworkPercentage.clear();
@@ -127,6 +150,7 @@ class AutonomilevelControler extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Deletes the provided autonomy level.
   Future<void> delete(AutonomyLevel autonomy) async {
     try {
       await controller.delete(autonomy);

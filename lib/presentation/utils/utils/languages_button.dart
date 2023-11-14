@@ -1,4 +1,4 @@
-import 'dart:async';
+/*import 'dart:async';
 
 import 'package:flutter/material.dart';
 
@@ -17,10 +17,10 @@ class _LanguagesButtonState extends State<LanguagesButton> {
   void changeLang() {
     setState(() {
       if (isPortuguese) {
-        unawaited(Inter.load(Locale('en')));
+        unawaited(Inter.load(const Locale('en')));
         isPortuguese = false;
       } else {
-        unawaited(Inter.load(Locale('pt', 'BR')));
+        unawaited(Inter.load(const Locale('pt', 'BR')));
         isPortuguese = true;
       }
     });
@@ -38,4 +38,4 @@ class _LanguagesButtonState extends State<LanguagesButton> {
           }),
     );
   }
-}
+}*/
