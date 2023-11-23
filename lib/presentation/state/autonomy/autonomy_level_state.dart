@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../entities/autonomy_level.dart';
 import '../../../entities/register_store.dart';
-import '../../../usecases/autonomy_table_controller.dart';
+import '../../../repositories/repository/autonomy_table_repository.dart';
 
 /// Controller class for managing Autonomy Levels.
 class AutonomilevelControler extends ChangeNotifier {

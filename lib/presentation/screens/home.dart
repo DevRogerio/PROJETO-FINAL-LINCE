@@ -231,6 +231,13 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
+              /* IconButton(
+                alignment: Alignment.bottomLeft,
+                onPressed: state.toggleTheme,
+                icon: Icon(
+                  state.ligthMode ? Icons.dark_mode : Icons.light_mode,
+                ),
+              ),*/
             ],
           ),
         ),
@@ -238,38 +245,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-/*class LanguagesButton extends StatefulWidget {
-  const LanguagesButton({super.key});
-
-  @override
-  State<LanguagesButton> createState() => _LanguagesButtonState();
-}
-
-class _LanguagesButtonState extends State<LanguagesButton> {
-  bool isPortuguese = false;
-
-  void changeLang() {
-    setState(() {
-      if (isPortuguese) {
-        unawaited(Inter.load(Locale('en')));
-        isPortuguese = false;
-      } else {
-        unawaited(Inter.load(Locale('pt', 'BR')));
-        isPortuguese = true;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          changeLang();
-        },
-      ),
-    );
-  }
-}
-*/

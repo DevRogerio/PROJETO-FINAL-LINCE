@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../entities/register_store.dart';
-import '../../../repository/database/database.dart';
-import '../../../repository/database/register_store_table.dart';
-import '../../../usecases/register_store__table_controller.dart';
+import '../../../repositories/database/database.dart';
+import '../../../repositories/database/register_store_table.dart';
+import '../../../repositories/repository/register_store__table_repository.dart';
 
 /// Defines a constant variable named [appThemeModeKey] and assigns a string.
 const appThemeModeKey = 'appThemeMode';

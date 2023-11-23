@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
-import '../entities/registration_vehicles.dart';
-import '../repository/database/database.dart';
-import '../repository/database/registration_vehicle_table.dart';
+import '../../entities/registration_vehicles.dart';
+import '../database/database.dart';
+import '../database/registration_vehicle_table.dart';
 
 /// The controller for [RegistrationTable]
 class RegistrationVehiclesController {

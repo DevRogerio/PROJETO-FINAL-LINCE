@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 
-import '../entities/sales.dart';
-import '../repository/database/database.dart';
-import '../repository/database/sales_table.dart';
+import '../../entities/sales.dart';
+import '../database/database.dart';
+import '../database/sales_table.dart';
 
 /// The controller for [SalesTable]
 class SaleController {

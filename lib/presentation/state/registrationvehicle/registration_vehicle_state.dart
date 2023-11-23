@@ -4,8 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../../../entities/register_store.dart';
 import '../../../entities/registration_vehicles.dart';
-import '../../../repository/fipe_api.dart';
-import '../../../usecases/registration_vehicles_table_controller.dart';
+import '../../../repositories/fipe_api.dart';
+import '../../../repositories/repository/registration_vehicles_table_repository.dart';
 
 /// RegistroStateVeiculos Record Management
 class RegistroStateVeiculos extends ChangeNotifier {

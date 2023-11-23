@@ -1,6 +1,6 @@
-import '../entities/register_store.dart';
-import '../repository/database/database.dart';
-import '../repository/database/register_store_table.dart';
+import '../../entities/register_store.dart';
+import '../database/database.dart';
+import '../database/register_store_table.dart';
 
 /// The controller for [RegisterController]
 class RegisterController {

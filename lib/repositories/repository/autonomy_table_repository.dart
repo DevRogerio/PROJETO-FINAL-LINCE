@@ -1,6 +1,6 @@
-import '../entities/autonomy_level.dart';
-import '../repository/database/autonomy_table.dart';
-import '../repository/database/database.dart';
+import '../../entities/autonomy_level.dart';
+import '../database/autonomy_table.dart';
+import '../database/database.dart';
 
 ///autonomy table controller
 class AutonomyControler {

@@ -5,8 +5,8 @@ import '../../../entities/autonomy_level.dart';
 import '../../../entities/register_store.dart';
 import '../../../entities/registration_vehicles.dart';
 import '../../../entities/sales.dart';
-import '../../../usecases/autonomy_table_controller.dart';
-import '../../../usecases/sales_table_controller.dart';
+import '../../../repositories/repository/autonomy_table_repository.dart';
+import '../../../repositories/repository/sales_table_repository.dart';
 
 /// Sales Record Management
 class RegistroStateSale extends ChangeNotifier {
