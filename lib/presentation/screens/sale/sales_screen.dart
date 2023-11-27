@@ -30,16 +30,9 @@ class RegisterSale extends StatelessWidget {
               appBar: BarraSuperior(),
               drawer: const DrawerMenu(),
               body: Container(
-                decoration: const BoxDecoration(
-                    gradient:
-                        LinearGradient(begin: Alignment.topCenter, colors: [
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                ])),
+                decoration: BoxDecoration(
+                  color: state.ligthMode ? Colors.white : Colors.black,
+                ),
                 child: Center(
                   child: Padding(
                     padding: const EdgeInsets.all(20),
@@ -47,17 +40,10 @@ class RegisterSale extends StatelessWidget {
                       child: Form(
                         key: _formKey,
                         child: Container(
-                          decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  colors: [
-                                Colors.black,
-                                Colors.black,
-                                Colors.black,
-                                Colors.black,
-                                Colors.black,
-                                Colors.black,
-                              ])),
+                          decoration: BoxDecoration(
+                            color:
+                                state.ligthMode ? Colors.white : Colors.black,
+                          ),
                           child: Column(
                             children: [
                               Padding(

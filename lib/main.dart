@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             home: LoginPage(state),
             debugShowCheckedModeBanner: false,
             theme: state.ligthMode ? ThemeData.light() : ThemeData.dark(),
-            locale: Locale(state.language!),
+            // locale: Locale(state.language),
             localizationsDelegates: const [
               Inter.delegate,
               GlobalMaterialLocalizations.delegate,

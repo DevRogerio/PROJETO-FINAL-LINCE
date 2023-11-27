@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
 import '../../../entities/register_store.dart';
 import '../../../entities/registration_vehicles.dart';
 import '../../../repositories/fipe_api.dart';
@@ -14,6 +16,12 @@ class RegistroStateVeiculos extends ChangeNotifier {
     init();
     unawaited(load(user!.id!));
   }
+
+  final _lightMode = false;
+
+  /// Defines a getter method that allows you to access
+  /// the value of the _lightMode.
+  bool get ligthMode => _lightMode;
 
   ///user
   final RegisterStore? user;

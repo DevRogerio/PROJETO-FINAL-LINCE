@@ -15,14 +15,14 @@ class EditPerfilSearch extends StatelessWidget {
     return Consumer<RegistroState>(
       builder: (_, state, __) {
         return Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: state.ligthMode ? Colors.white : Colors.black,
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
           body: Container(
             width: 5000,
             height: 5000,
             decoration: BoxDecoration(
-              color: Colors.red.shade900,
+              color: state.ligthMode ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
@@ -32,7 +32,7 @@ class EditPerfilSearch extends StatelessWidget {
                 width: 5000,
                 height: 5000,
                 decoration: BoxDecoration(
-                  color: Colors.black,
+                  color: state.ligthMode ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: SingleChildScrollView(

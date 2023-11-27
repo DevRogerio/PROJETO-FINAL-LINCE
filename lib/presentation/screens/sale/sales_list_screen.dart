@@ -26,14 +26,14 @@ class SearchSale extends StatelessWidget {
         builder: (_, state, __) {
           final numberFormatter = NumberFormat('###,###,###.00');
           return Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: state.ligthMode ? Colors.white : Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
               width: 5000,
               height: 5000,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: state.ligthMode ? Colors.white : Colors.black,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: ListView.builder(
@@ -47,7 +47,7 @@ class SearchSale extends StatelessWidget {
                     width: 75,
                     height: 70,
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: state.ligthMode ? Colors.white : Colors.black,
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ListTile(

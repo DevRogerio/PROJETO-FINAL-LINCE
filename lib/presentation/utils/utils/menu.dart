@@ -32,28 +32,16 @@ class DrawerMenu extends StatelessWidget {
     final username = state.logUser!.name;
     return Drawer(
       child: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Colors.black,
-          Colors.black,
-          Colors.black,
-          Colors.black,
-          Colors.black,
-          Colors.black,
-        ])),
+        decoration: BoxDecoration(
+          color: state.ligthMode ? Colors.white : Colors.black,
+        ),
         child: ListView(
           children: [
             //informações do usuario
             UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                Colors.red,
-                Colors.red,
-                Colors.red,
-                Colors.red,
-                Colors.red,
-                Colors.red,
-              ])),
+              decoration: BoxDecoration(
+                color: state.ligthMode ? Colors.white : Colors.black,
+              ),
               accountName: Text(username!),
               accountEmail: Text(state.controllerPassword.text),
               currentAccountPicture: CircleAvatar(

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../entities/register_store.dart';
+import '../../../generated/l10n.dart';
 import '../../../repositories/database/database.dart';
 import '../../../repositories/database/register_store_table.dart';
 import '../../../repositories/repository/register_store__table_repository.dart';
@@ -11,7 +12,7 @@ import '../../../repositories/repository/register_store__table_repository.dart';
 const appThemeModeKey = 'appThemeMode';
 
 /// Shared preferences key to the app language.
-const appLanguageKey = 'appLanguageKey';
+const String appLanguageKey = 'appLanguageKey';
 
 /// RegistroState Record Management
 class RegistroState extends ChangeNotifier {
@@ -33,10 +34,10 @@ class RegistroState extends ChangeNotifier {
   /// in a [loading] state,
   bool loading = true;
 
-  var _language = 'en';
+  bool _language = false;
 
   /// The selected language of the app.
-  String? get language => _language;
+  bool get language => _language;
 
   RegisterStore? _logUser;
 
@@ -219,16 +220,28 @@ class RegistroState extends ChangeNotifier {
   }
 
   /// Changes the [_language] value to the given [language].
-  Future<void> toggleLanguage({String? language}) async {
-    _language = _language;
-    await _sharedPreferences.setString(appLanguageKey, _language);
+  Future<void> toggleLanguage() async {
+    _language = !_language;
+    await _sharedPreferences.setBool(appLanguageKey, _language);
+
     notifyListeners();
   }
 
   Future<void> _init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
     _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? false;
-    _language = _sharedPreferences.getString(appLanguageKey) ?? 'en';
+    _language = _sharedPreferences.getBool(appLanguageKey) ?? false;
+    await toggleLanguagee();
+
+    notifyListeners();
+  }
+
+  Future<void> toggleLanguagee() async {
+    if (_language) {
+      unawaited(Inter.load(const Locale('en')));
+    } else {
+      unawaited(Inter.load(const Locale('pt', 'BR')));
+    }
     notifyListeners();
   }
 }

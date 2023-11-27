@@ -17,7 +17,7 @@ class RegistroState extends ChangeNotifier {
   }
   late final SharedPreferences _sharedPreferences;
 
-  var _lightMode = false;
+  var _lightMode = true;
 
   /// Indicates if the light mode is active.
   bool get ligthMode => _lightMode;
@@ -28,7 +28,7 @@ class RegistroState extends ChangeNotifier {
   String get language => _language;
 
   /// Changes the [_language] value to the given [language].
-  Future<void> toggleLanguage({required String language}) async {
+  Future<void> toggleLanguagee({required String language}) async {
     _language = language;
     await _sharedPreferences.setString(appLanguageKey, _language);
     notifyListeners();
@@ -43,7 +43,7 @@ class RegistroState extends ChangeNotifier {
 
   Future<void> _init() async {
     _sharedPreferences = await SharedPreferences.getInstance();
-    _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? false;
+    _lightMode = _sharedPreferences.getBool(appThemeModeKey) ?? true;
     _language = _sharedPreferences.getString(appLanguageKey) ?? 'en';
 
     notifyListeners();

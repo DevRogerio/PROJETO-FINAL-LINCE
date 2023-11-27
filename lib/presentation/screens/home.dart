@@ -32,15 +32,9 @@ class Home extends StatelessWidget {
       //Corpo do app
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-            Colors.black,
-            Colors.black,
-            Colors.black,
-            Colors.black,
-            Colors.black,
-            Colors.black,
-          ])),
+          decoration: BoxDecoration(
+            color: state.ligthMode ? Colors.white : Colors.black,
+          ),
           child: Column(
             children: [
               const Carousel(),
@@ -48,16 +42,9 @@ class Home extends StatelessWidget {
                 height: 25,
               ),
               Container(
-                decoration: const BoxDecoration(
-                    gradient:
-                        LinearGradient(begin: Alignment.topCenter, colors: [
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                  Colors.black,
-                ])),
+                decoration: BoxDecoration(
+                  color: state.ligthMode ? Colors.white : Colors.black,
+                ),
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(25),
                 child: Column(

@@ -21,7 +21,7 @@ class SearchVehicles extends StatelessWidget {
       child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: state.ligthMode ? Colors.white : Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
@@ -42,7 +42,7 @@ class SearchVehicles extends StatelessWidget {
                     width: 85,
                     height: 85,
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: state.ligthMode ? Colors.white : Colors.black,
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ListTile(

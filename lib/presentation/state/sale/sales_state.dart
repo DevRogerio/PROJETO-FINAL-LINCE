@@ -17,6 +17,11 @@ class RegistroStateSale extends ChangeNotifier {
   ) {
     unawaited(load(user!.id!));
   }
+  final _lightMode = false;
+
+  /// Defines a getter method that allows you to access
+  /// the value of the _lightMode.
+  bool get ligthMode => _lightMode;
 
   /// user
   final RegisterStore? user;

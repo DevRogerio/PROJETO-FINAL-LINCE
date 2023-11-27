@@ -24,7 +24,7 @@ class Search extends StatelessWidget {
               width: 5000,
               height: 5000,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: state.ligthMode ? Colors.white : Colors.black,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: ListView.builder(
@@ -38,7 +38,7 @@ class Search extends StatelessWidget {
                     width: 75,
                     height: 75,
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: state.ligthMode ? Colors.white : Colors.black,
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: ListTile(
@@ -71,10 +71,12 @@ class Search extends StatelessWidget {
                                   ),
                                 );
                               },
-                              icon: const Icon(
+                              icon: Icon(
                                 // ignore: deprecated_member_use
                                 FontAwesomeIcons.chevronCircleRight,
-                                color: Colors.white,
+                                color: state.ligthMode
+                                    ? Colors.black
+                                    : Colors.white,
                                 size: 35,
                               ),
                             ),
