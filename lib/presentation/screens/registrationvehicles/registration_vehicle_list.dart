@@ -15,21 +15,23 @@ class SearchVehicles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateTheme = Provider.of<RegistroState>(context);
+    final size = MediaQuery.of(context).size;
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
       create: (context) => RegistroStateVeiculos(mainState.logUser),
       child: Consumer<RegistroStateVeiculos>(
         builder: (_, state, __) {
           return Scaffold(
-            backgroundColor: state.ligthMode ? Colors.white : Colors.black,
+            backgroundColor: stateTheme.ligthMode ? Colors.white : Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
-              width: 5000,
-              height: 5000,
+              width: size.width,
+              height: size.height,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100),
+                color: stateTheme.ligthMode ? Colors.white : Colors.black,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: ListView.builder(
                 padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
@@ -37,67 +39,73 @@ class SearchVehicles extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final vehicle = state.listvehicles[index];
                   return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 18, vertical: 30),
-                    width: 85,
-                    height: 85,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
+                    width: size.width,
+                    height: size.height * 0.15,
                     decoration: BoxDecoration(
-                      color: state.ligthMode ? Colors.white : Colors.black,
-                      borderRadius: BorderRadius.circular(100),
+                      color: stateTheme.ligthMode ? Colors.white : Colors.black,
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: ListTile(
-                      leading: Image.file(
-                        File(vehicle.vehiclephoto!),
-                      ),
-                      title: Text(vehicle.model.toString()),
-                      subtitle: Text(vehicle.brand.toString()),
-                      trailing: IntrinsicWidth(
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () async {
-                                await state.delete(vehicle);
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                size: 25,
+                    child: Card(
+                      color: Colors.blue.shade900,
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.file(
+                            File(vehicle.vehiclephoto!),
+                          ),
+                        ),
+                        title: Text(vehicle.model.toString()),
+                        subtitle: Text(vehicle.brand.toString()),
+                        trailing: IntrinsicWidth(
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () async {
+                                  await state.delete(vehicle);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  size: 25,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () async {
-                                state.editSearchVehicles(vehicle);
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChangeNotifierProvider.value(
-                                      value: state,
-                                      child: const EditVehicles(),
+                              IconButton(
+                                onPressed: () async {
+                                  state.editSearchVehicles(vehicle);
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ChangeNotifierProvider.value(
+                                        value: state,
+                                        child: const EditVehicles(),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              icon: const Icon(
-                                // ignore: deprecated_member_use
-                                FontAwesomeIcons.chevronCircleRight,
-                                color: Colors.white,
-                                size: 35,
+                                  );
+                                },
+                                icon: const Icon(
+                                  // ignore: deprecated_member_use
+                                  FontAwesomeIcons.chevronCircleRight,
+                                  // color: Colors.white,
+                                  size: 35,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () async {
-                                await Navigator.of(context).pushNamed(
-                                  'RegisterSale',
-                                  arguments: vehicle,
-                                );
-                              },
-                              icon: const Icon(
-                                FontAwesomeIcons.dollarSign,
-                                color: Colors.white,
-                                size: 35,
-                              ),
-                            )
-                          ],
+                              IconButton(
+                                onPressed: () async {
+                                  await Navigator.of(context).pushNamed(
+                                    'RegisterSale',
+                                    arguments: vehicle,
+                                  );
+                                },
+                                icon: const Icon(
+                                  FontAwesomeIcons.dollarSign,
+                                  // color: Colors.white,
+                                  size: 35,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

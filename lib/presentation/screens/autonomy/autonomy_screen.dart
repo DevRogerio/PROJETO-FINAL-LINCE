@@ -253,7 +253,7 @@ class _DropdownState extends State<_Dropdown> {
                   }).toList();
                 },
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 20,
                 ),
                 onChanged: (value) {

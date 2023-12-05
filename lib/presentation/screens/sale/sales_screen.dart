@@ -18,6 +18,7 @@ class RegisterSale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateTheme = Provider.of<RegistroState>(context);
     final vehicle =
         ModalRoute.of(context)!.settings.arguments as RegistrationVehicles?;
     final mainState = Provider.of<RegistroState>(context);
@@ -31,7 +32,7 @@ class RegisterSale extends StatelessWidget {
               drawer: const DrawerMenu(),
               body: Container(
                 decoration: BoxDecoration(
-                  color: state.ligthMode ? Colors.white : Colors.black,
+                  color: stateTheme.ligthMode ? Colors.white : Colors.black,
                 ),
                 child: Center(
                   child: Padding(
@@ -41,8 +42,9 @@ class RegisterSale extends StatelessWidget {
                         key: _formKey,
                         child: Container(
                           decoration: BoxDecoration(
-                            color:
-                                state.ligthMode ? Colors.white : Colors.black,
+                            color: stateTheme.ligthMode
+                                ? Colors.white
+                                : Colors.black,
                           ),
                           child: Column(
                             children: [

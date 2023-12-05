@@ -20,6 +20,7 @@ class RegisterVehicles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final stateTheme = Provider.of<RegistroState>(context);
     final mainState = Provider.of<RegistroState>(context);
     return ChangeNotifierProvider(
       create: (context) => RegistroStateVeiculos(mainState.logUser),
@@ -31,8 +32,8 @@ class RegisterVehicles extends StatelessWidget {
               drawer: const DrawerMenu(),
               body: Container(
                 decoration: BoxDecoration(
-                  color: state.ligthMode ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.circular(100),
+                  color: stateTheme.ligthMode ? Colors.white : Colors.black,
+                  // borderRadius: BorderRadius.circular(2),
                 ),
                 child: Center(
                   child: Padding(
@@ -40,105 +41,120 @@ class RegisterVehicles extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Form(
                         key: _formKey,
-                        child: Column(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                top: 8,
-                                bottom: 8,
-                              ),
-                              child: _BrandTextField(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: stateTheme.ligthMode
+                                ? Colors.white
+                                : Colors.black,
+                            borderRadius: BorderRadius.circular(
+                              2,
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                top: 8,
-                                bottom: 8,
+                          ),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: _BrandTextField(),
                               ),
-                              child: _ModelTextField(),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: state.controllerplate,
-                                decoration: InputDecoration(
-                                  labelText: Inter.current.plate,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: _ModelTextField(),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllerplate,
+                                  decoration: InputDecoration(
+                                    labelText: Inter.current.plate,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: state.controllerbuiltYear,
-                                decoration: InputDecoration(
-                                  labelText: Inter.current.builtYear,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllerbuiltYear,
+                                  decoration: InputDecoration(
+                                    labelText: Inter.current.builtYear,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: state.controllervehicleYear,
-                                decoration: InputDecoration(
-                                  labelText: Inter.current.vehicleYear,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllervehicleYear,
+                                  decoration: InputDecoration(
+                                    labelText: Inter.current.vehicleYear,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 8,
-                                bottom: 8,
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: state.controllervehiclephoto != null
+                                    ? const _PhotosList()
+                                    : Container(),
                               ),
-                              child: state.controllervehiclephoto != null
-                                  ? const _PhotosList()
-                                  : Container(),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                top: 8,
-                                bottom: 8,
+                              const Padding(
+                                padding: EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: _ChooseOrTakePhoto(),
                               ),
-                              child: _ChooseOrTakePhoto(),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: state.controllerpricePaid,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp(r'[0-9]')),
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                decoration: InputDecoration(
-                                  labelText: Inter.current.pricePaid,
-                                  hintText: '\$ 00.000',
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllerpricePaid,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp(r'[0-9]')),
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  decoration: InputDecoration(
+                                    labelText: Inter.current.pricePaid,
+                                    hintText: '\$ 00.000',
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: TextFormField(
-                                controller: state.controllerpurchasedWhen,
-                                inputFormatters: [
-                                  MaskTextInputFormatter(mask: '##/##/####')
-                                ],
-                                decoration: InputDecoration(
-                                  labelText: Inter.current.purchasedWhen,
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(100)),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: state.controllerpurchasedWhen,
+                                  inputFormatters: [
+                                    MaskTextInputFormatter(mask: '##/##/####')
+                                  ],
+                                  decoration: InputDecoration(
+                                    labelText: Inter.current.purchasedWhen,
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                  ),
                                 ),
                               ),
-                            ),
-                            const _ActionButton(),
-                          ],
+                              const _ActionButton(),
+                            ],
+                          ),
                         ),
                       ),
                     ),

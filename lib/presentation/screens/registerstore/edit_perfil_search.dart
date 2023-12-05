@@ -12,6 +12,7 @@ class EditPerfilSearch extends StatelessWidget {
   const EditPerfilSearch({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Consumer<RegistroState>(
       builder: (_, state, __) {
         return Scaffold(
@@ -19,8 +20,8 @@ class EditPerfilSearch extends StatelessWidget {
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
           body: Container(
-            width: 5000,
-            height: 5000,
+            width: size.width,
+            height: size.height,
             decoration: BoxDecoration(
               color: state.ligthMode ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(100),
@@ -29,8 +30,8 @@ class EditPerfilSearch extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: Container(
                 padding: const EdgeInsets.all(16),
-                width: 5000,
-                height: 5000,
+                width: size.width,
+                height: size.height,
                 decoration: BoxDecoration(
                   color: state.ligthMode ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(100),

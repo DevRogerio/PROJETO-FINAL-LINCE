@@ -127,9 +127,10 @@ class DrawerMenu extends StatelessWidget {
             IconButton(
               alignment: Alignment.bottomLeft,
               onPressed: state.toggleLanguage,
-              icon: const Icon(Icons.language
-                  //  state.language,
-                  ),
+              icon: const Icon(
+                Icons.language,
+                //  state.language,
+              ),
               /* new ListTile(
               title: mostrarTitulo('idiomas'),
               subtitle: const Text('trocar idiomas'),

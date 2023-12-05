@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final state = Provider.of<RegistroState>(
       context,
     );
@@ -61,8 +62,8 @@ class Home extends StatelessWidget {
                     const SizedBox(height: 45),
 
                     SizedBox(
-                      height: 250,
-                      width: 700,
+                      width: size.width * 0.90,
+                      height: size.height * 0.50,
                       child: Image.asset('assets/img/loogo.jpg'),
                     ),
                     const SizedBox(height: 10),
@@ -84,16 +85,17 @@ class Home extends StatelessWidget {
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(100),
+                                      borderRadius: BorderRadius.circular(8),
                                       side: const BorderSide(
-                                          width: 15, color: Colors.white),
+                                          width: 15, color: Colors.black),
                                     ),
                                   ),
                                 ),
                                 child: Container(
-                                  width: 300,
+                                  width: size.width / 1.3,
+                                  height: size.height / 5,
                                   padding: const EdgeInsets.all(25),
-                                  color: Colors.black,
+                                  color: const Color.fromARGB(255, 4, 39, 92),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -124,9 +126,6 @@ class Home extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         return ElevatedButton(
-                          // style: ElevatedButton.styleFrom(
-                          // ignore: deprecated_member_use
-                          //  primary: Colors.red.shade900),
                           onPressed: () async {
                             await Navigator.push(
                               context,
@@ -138,16 +137,17 @@ class Home extends StatelessWidget {
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(8),
                                 side: const BorderSide(
-                                    width: 15, color: Colors.white),
+                                    width: 15, color: Colors.black),
                               ),
                             ),
                           ),
                           child: Container(
-                            width: 300,
+                            width: size.width / 1.3,
+                            height: size.height / 5,
                             padding: const EdgeInsets.all(25),
-                            color: Colors.black,
+                            color: const Color.fromARGB(255, 4, 39, 92),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -185,16 +185,17 @@ class Home extends StatelessWidget {
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100),
+                                borderRadius: BorderRadius.circular(8),
                                 side: const BorderSide(
-                                    width: 15, color: Colors.white),
+                                    width: 15, color: Colors.black),
                               ),
                             ),
                           ),
                           child: Container(
-                            width: 300,
+                            width: size.width / 1.3,
+                            height: size.height / 5,
                             padding: const EdgeInsets.all(25),
-                            color: Colors.black,
+                            color: const Color.fromARGB(255, 4, 39, 92),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -218,13 +219,6 @@ class Home extends StatelessWidget {
                   ],
                 ),
               ),
-              /* IconButton(
-                alignment: Alignment.bottomLeft,
-                onPressed: state.toggleTheme,
-                icon: Icon(
-                  state.ligthMode ? Icons.dark_mode : Icons.light_mode,
-                ),
-              ),*/
             ],
           ),
         ),

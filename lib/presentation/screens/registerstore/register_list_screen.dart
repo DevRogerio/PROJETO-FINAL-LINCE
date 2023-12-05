@@ -13,85 +13,90 @@ class Search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return ChangeNotifierProvider(
       create: (context) => RegistroState(),
       child: Consumer<RegistroState>(
         builder: (_, state, __) {
           return Scaffold(
+            backgroundColor: state.ligthMode ? Colors.white : Colors.black,
             appBar: BarraSuperior(),
             drawer: const DrawerMenu(),
             body: Container(
-              width: 5000,
-              height: 5000,
+              width: size.width,
+              height: size.height,
               decoration: BoxDecoration(
                 color: state.ligthMode ? Colors.white : Colors.black,
-                borderRadius: BorderRadius.circular(100),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(25, 25, 25, 75),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 75),
                 itemCount: state.listUser.length,
                 itemBuilder: (context, index) {
                   final registerStoreTable = state.listUser[index];
                   return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 25),
-                    width: 75,
-                    height: 75,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
+                    width: size.width,
+                    height: size.height * 0.15,
                     decoration: BoxDecoration(
                       color: state.ligthMode ? Colors.white : Colors.black,
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: ListTile(
-                      leading: Text(registerStoreTable.id.toString()),
-                      title: Text(registerStoreTable.name.toString()),
-                      subtitle: Text(registerStoreTable.cnpj.toString()),
-                      trailing: IntrinsicWidth(
-                        child: Row(
-                          children: [
-                            IconButton(
-                              onPressed: () async {
-                                await state.delete(registerStoreTable);
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                size: 25,
+                    child: Card(
+                      color: Colors.blue.shade900,
+                      child: ListTile(
+                        leading: Text(registerStoreTable.id.toString()),
+                        title: Text(registerStoreTable.name.toString()),
+                        subtitle: Text(registerStoreTable.cnpj.toString()),
+                        trailing: IntrinsicWidth(
+                          child: Row(
+                            children: [
+                              IconButton(
+                                onPressed: () async {
+                                  await state.delete(registerStoreTable);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  size: 25,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () async {
-                                state.editSearch(registerStoreTable);
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChangeNotifierProvider.value(
-                                      value: state,
-                                      child: const EditPerfilSearch(),
+                              IconButton(
+                                onPressed: () async {
+                                  state.editSearch(registerStoreTable);
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          ChangeNotifierProvider.value(
+                                        value: state,
+                                        child: const EditPerfilSearch(),
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              icon: Icon(
-                                // ignore: deprecated_member_use
-                                FontAwesomeIcons.chevronCircleRight,
-                                color: state.ligthMode
-                                    ? Colors.black
-                                    : Colors.white,
-                                size: 35,
+                                  );
+                                },
+                                icon: Icon(
+                                  // ignore: deprecated_member_use
+                                  FontAwesomeIcons.chevronCircleRight,
+                                  color: state.ligthMode
+                                      ? Colors.black
+                                      : Colors.white,
+                                  size: 35,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () async {
-                                await Navigator.of(context).pushNamed(
-                                    'Autonomyedite',
-                                    arguments: registerStoreTable);
-                              },
-                              icon: const Icon(
-                                Icons.edit,
-                                size: 25,
+                              IconButton(
+                                onPressed: () async {
+                                  await Navigator.of(context).pushNamed(
+                                      'Autonomyedite',
+                                      arguments: registerStoreTable);
+                                },
+                                icon: const Icon(
+                                  Icons.edit,
+                                  size: 25,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

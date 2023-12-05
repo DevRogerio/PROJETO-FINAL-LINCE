@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../generated/l10n.dart';
+import '../../state/registerstore/register_store_state.dart';
 import '../../state/sale/sales_state.dart';
 import '../../utils/utils/app_bar.dart';
 import '../../utils/utils/menu.dart';
@@ -11,27 +12,29 @@ class EditSaleSearch extends StatelessWidget {
   const EditSaleSearch({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final stateTheme = Provider.of<RegistroState>(context);
     return Consumer<RegistroStateSale>(
       builder: (_, state, __) {
         return Scaffold(
-          backgroundColor: state.ligthMode ? Colors.white : Colors.black,
+          backgroundColor: stateTheme.ligthMode ? Colors.white : Colors.black,
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
           body: Container(
-            width: 5000,
-            height: 5000,
+            width: size.width,
+            height: size.height,
             decoration: BoxDecoration(
-              color: state.ligthMode ? Colors.white : Colors.black,
+              color: stateTheme.ligthMode ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
                 padding: const EdgeInsets.all(16),
-                width: 5000,
-                height: 5000,
+                width: size.width,
+                height: size.height,
                 decoration: BoxDecoration(
-                  color: state.ligthMode ? Colors.white : Colors.black,
+                  color: stateTheme.ligthMode ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(100),
                 ),
                 child: SingleChildScrollView(

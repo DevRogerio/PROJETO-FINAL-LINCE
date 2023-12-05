@@ -27,7 +27,7 @@ class Register extends StatelessWidget {
               body: Container(
                 decoration: BoxDecoration(
                   color: state.ligthMode ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
                   child: Padding(
@@ -39,7 +39,7 @@ class Register extends StatelessWidget {
                           decoration: BoxDecoration(
                             color:
                                 state.ligthMode ? Colors.white : Colors.black,
-                            borderRadius: BorderRadius.circular(100),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                           child: Column(
                             children: [

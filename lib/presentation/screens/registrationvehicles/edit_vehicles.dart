@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../generated/l10n.dart';
+import '../../state/registerstore/register_store_state.dart';
 import '../../state/registrationvehicle/registration_vehicle_state.dart';
 import '../../utils/utils/app_bar.dart';
 import '../../utils/utils/menu.dart';
@@ -13,28 +14,30 @@ class EditVehicles extends StatelessWidget {
   const EditVehicles({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final stateTheme = Provider.of<RegistroState>(context);
+    final size = MediaQuery.of(context).size;
     return Consumer<RegistroStateVeiculos>(
       builder: (_, state, __) {
         return Scaffold(
-          backgroundColor: state.ligthMode ? Colors.white : Colors.black,
+          backgroundColor: stateTheme.ligthMode ? Colors.white : Colors.black,
           appBar: BarraSuperior(),
           drawer: const DrawerMenu(),
           body: Container(
-            width: 5000,
-            height: 5000,
+            width: size.width,
+            height: size.height,
             decoration: BoxDecoration(
-              color: Colors.red.shade900,
+              color: stateTheme.ligthMode ? Colors.white : Colors.black,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
                 padding: const EdgeInsets.all(16),
-                width: 5000,
-                height: 5000,
+                width: size.width,
+                height: size.height,
                 decoration: BoxDecoration(
-                  color: state.ligthMode ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.circular(100),
+                  color: stateTheme.ligthMode ? Colors.white : Colors.black,
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: SingleChildScrollView(
                   child: Padding(
@@ -101,7 +104,7 @@ class EditVehicles extends StatelessWidget {
                         ),
                         FormField(builder: (field) {
                           return SizedBox(
-                            height: 600,
+                            height: size.height,
                             child: Image.file(
                               File(state.controllervehiclephoto!),
                             ),

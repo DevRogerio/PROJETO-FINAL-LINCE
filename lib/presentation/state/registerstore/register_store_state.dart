@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../entities/register_store.dart';
+
 import '../../../generated/l10n.dart';
 import '../../../repositories/database/database.dart';
 import '../../../repositories/database/register_store_table.dart';
@@ -223,7 +225,7 @@ class RegistroState extends ChangeNotifier {
   Future<void> toggleLanguage() async {
     _language = !_language;
     await _sharedPreferences.setBool(appLanguageKey, _language);
-
+    await toggleLanguagee();
     notifyListeners();
   }
 
@@ -236,6 +238,7 @@ class RegistroState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Logic used for language switching
   Future<void> toggleLanguagee() async {
     if (_language) {
       unawaited(Inter.load(const Locale('en')));
