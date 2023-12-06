@@ -23,10 +23,13 @@ class EditSaleSearch extends StatelessWidget {
           body: Container(
             width: size.width,
             height: size.height,
-            decoration: BoxDecoration(
-              color: stateTheme.ligthMode ? Colors.white : Colors.black,
-              borderRadius: BorderRadius.circular(100),
-            ),
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 211, 202, 192),
+                Color.fromARGB(255, 163, 16, 16),
+              ],
+            )),
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
@@ -35,7 +38,7 @@ class EditSaleSearch extends StatelessWidget {
                 height: size.height,
                 decoration: BoxDecoration(
                   color: stateTheme.ligthMode ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 child: SingleChildScrollView(
                   child: Padding(

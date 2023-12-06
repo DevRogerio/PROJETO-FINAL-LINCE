@@ -43,68 +43,80 @@ class SearchVehicles extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
                     width: size.width,
                     height: size.height * 0.15,
-                    decoration: BoxDecoration(
-                      color: stateTheme.ligthMode ? Colors.white : Colors.black,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 214, 165, 115),
+                        Color(0xFFDA2323),
+                      ],
+                    )),
                     child: Card(
-                      color: Colors.blue.shade900,
-                      child: ListTile(
-                        leading: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: Image.file(
-                            File(vehicle.vehiclephoto!),
+                      elevation: 50,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 214, 165, 115),
+                            Color(0xFFDA2323),
+                          ],
+                        )),
+                        child: ListTile(
+                          leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.file(
+                              File(vehicle.vehiclephoto!),
+                            ),
                           ),
-                        ),
-                        title: Text(vehicle.model.toString()),
-                        subtitle: Text(vehicle.brand.toString()),
-                        trailing: IntrinsicWidth(
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  await state.delete(vehicle);
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 25,
+                          title: Text(vehicle.model.toString()),
+                          subtitle: Text(vehicle.brand.toString()),
+                          trailing: IntrinsicWidth(
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    await state.delete(vehicle);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 25,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  state.editSearchVehicles(vehicle);
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ChangeNotifierProvider.value(
-                                        value: state,
-                                        child: const EditVehicles(),
+                                IconButton(
+                                  onPressed: () async {
+                                    state.editSearchVehicles(vehicle);
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ChangeNotifierProvider.value(
+                                          value: state,
+                                          child: const EditVehicles(),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                icon: const Icon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.chevronCircleRight,
-                                  // color: Colors.white,
-                                  size: 35,
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    // ignore: deprecated_member_use
+                                    FontAwesomeIcons.chevronCircleRight,
+                                    // color: Colors.white,
+                                    size: 35,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  await Navigator.of(context).pushNamed(
-                                    'RegisterSale',
-                                    arguments: vehicle,
-                                  );
-                                },
-                                icon: const Icon(
-                                  FontAwesomeIcons.dollarSign,
-                                  // color: Colors.white,
-                                  size: 35,
-                                ),
-                              )
-                            ],
+                                IconButton(
+                                  onPressed: () async {
+                                    await Navigator.of(context).pushNamed(
+                                      'RegisterSale',
+                                      arguments: vehicle,
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    FontAwesomeIcons.dollarSign,
+                                    // color: Colors.white,
+                                    size: 35,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),

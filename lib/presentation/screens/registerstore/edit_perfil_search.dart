@@ -22,10 +22,13 @@ class EditPerfilSearch extends StatelessWidget {
           body: Container(
             width: size.width,
             height: size.height,
-            decoration: BoxDecoration(
-              color: state.ligthMode ? Colors.white : Colors.black,
-              borderRadius: BorderRadius.circular(100),
-            ),
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+              colors: [
+                Color(0xffF99E43),
+                Color(0xFFDA2323),
+              ],
+            )),
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Container(
@@ -34,7 +37,7 @@ class EditPerfilSearch extends StatelessWidget {
                 height: size.height,
                 decoration: BoxDecoration(
                   color: state.ligthMode ? Colors.white : Colors.black,
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 child: SingleChildScrollView(
                   child: Padding(

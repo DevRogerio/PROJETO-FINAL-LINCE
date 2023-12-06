@@ -48,69 +48,81 @@ class SearchSale extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
                     width: size.width,
                     height: size.height * 0.15,
-                    decoration: BoxDecoration(
-                      color: stateTheme.ligthMode ? Colors.white : Colors.black,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 211, 202, 192),
+                        Color.fromARGB(255, 163, 16, 16),
+                      ],
+                    )),
                     child: Card(
-                      color: Colors.blue.shade900,
-                      child: ListTile(
-                        leading: Text(salesTable.name.toString()),
-                        title: Text(
-                          'R\$${numberFormatter.format(salesTable.priceSold)}',
-                        ),
-                        subtitle: Text(salesTable.cpf.toString()),
-                        trailing: IntrinsicWidth(
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  await state.delete(salesTable);
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 25,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  state.editSearch(salesTable);
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ChangeNotifierProvider.value(
-                                        value: state,
-                                        child: const EditSaleSearch(),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                icon: const Icon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.chevronCircleRight,
-
-                                  size: 35,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                                width: 10,
-                              ),
-                              ElevatedButton.icon(
-                                  onPressed: () {
-                                    _gerarPDF(
-                                        salesTable.businessCut.toString(),
-                                        salesTable.dealershipCut.toString(),
-                                        salesTable.cpf.toString(),
-                                        salesTable.name.toString(),
-                                        salesTable.soldWhen.toString(),
-                                        salesTable.priceSold.toString());
+                      elevation: 50,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color.fromARGB(255, 211, 202, 192),
+                            Color.fromARGB(255, 163, 16, 16),
+                          ],
+                        )),
+                        child: ListTile(
+                          leading: Text(salesTable.name.toString()),
+                          title: Text(
+                            'R\$${numberFormatter.format(salesTable.priceSold)}',
+                          ),
+                          subtitle: Text(salesTable.cpf.toString()),
+                          trailing: IntrinsicWidth(
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    await state.delete(salesTable);
                                   },
                                   icon: const Icon(
-                                      size: 2, Icons.picture_as_pdf_outlined),
-                                  label: const Text('PDF'))
-                            ],
+                                    Icons.delete,
+                                    size: 25,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () async {
+                                    state.editSearch(salesTable);
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ChangeNotifierProvider.value(
+                                          value: state,
+                                          child: const EditSaleSearch(),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  icon: const Icon(
+                                    // ignore: deprecated_member_use
+                                    FontAwesomeIcons.chevronCircleRight,
+
+                                    size: 35,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                  width: 10,
+                                ),
+                                ElevatedButton.icon(
+                                    onPressed: () {
+                                      _gerarPDF(
+                                          salesTable.businessCut.toString(),
+                                          salesTable.dealershipCut.toString(),
+                                          salesTable.cpf.toString(),
+                                          salesTable.name.toString(),
+                                          salesTable.soldWhen.toString(),
+                                          salesTable.priceSold.toString());
+                                    },
+                                    icon: const Icon(
+                                        size: 2, Icons.picture_as_pdf_outlined),
+                                    label: const Text('PDF'))
+                              ],
+                            ),
                           ),
                         ),
                       ),

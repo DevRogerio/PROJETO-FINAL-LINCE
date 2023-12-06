@@ -39,63 +39,75 @@ class Search extends StatelessWidget {
                         const EdgeInsets.symmetric(horizontal: 1, vertical: 25),
                     width: size.width,
                     height: size.height * 0.15,
-                    decoration: BoxDecoration(
-                      color: state.ligthMode ? Colors.white : Colors.black,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                      colors: [
+                        Color(0xffF99E43),
+                        Color(0xFFDA2323),
+                      ],
+                    )),
                     child: Card(
-                      color: Colors.blue.shade900,
-                      child: ListTile(
-                        leading: Text(registerStoreTable.id.toString()),
-                        title: Text(registerStoreTable.name.toString()),
-                        subtitle: Text(registerStoreTable.cnpj.toString()),
-                        trailing: IntrinsicWidth(
-                          child: Row(
-                            children: [
-                              IconButton(
-                                onPressed: () async {
-                                  await state.delete(registerStoreTable);
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 25,
+                      elevation: 50,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                          colors: [
+                            Color(0xffF99E43),
+                            Color(0xFFDA2323),
+                          ],
+                        )),
+                        child: ListTile(
+                          leading: Text(registerStoreTable.id.toString()),
+                          title: Text(registerStoreTable.name.toString()),
+                          subtitle: Text(registerStoreTable.cnpj.toString()),
+                          trailing: IntrinsicWidth(
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    await state.delete(registerStoreTable);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 25,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  state.editSearch(registerStoreTable);
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ChangeNotifierProvider.value(
-                                        value: state,
-                                        child: const EditPerfilSearch(),
+                                IconButton(
+                                  onPressed: () async {
+                                    state.editSearch(registerStoreTable);
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ChangeNotifierProvider.value(
+                                          value: state,
+                                          child: const EditPerfilSearch(),
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                },
-                                icon: Icon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.chevronCircleRight,
-                                  color: state.ligthMode
-                                      ? Colors.black
-                                      : Colors.white,
-                                  size: 35,
+                                    );
+                                  },
+                                  icon: Icon(
+                                    // ignore: deprecated_member_use
+                                    FontAwesomeIcons.chevronCircleRight,
+                                    color: state.ligthMode
+                                        ? Colors.black
+                                        : Colors.white,
+                                    size: 35,
+                                  ),
                                 ),
-                              ),
-                              IconButton(
-                                onPressed: () async {
-                                  await Navigator.of(context).pushNamed(
-                                      'Autonomyedite',
-                                      arguments: registerStoreTable);
-                                },
-                                icon: const Icon(
-                                  Icons.edit,
-                                  size: 25,
+                                IconButton(
+                                  onPressed: () async {
+                                    await Navigator.of(context).pushNamed(
+                                        'Autonomyedite',
+                                        arguments: registerStoreTable);
+                                  },
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    size: 25,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

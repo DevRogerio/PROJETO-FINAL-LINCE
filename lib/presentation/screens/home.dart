@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -61,11 +62,6 @@ class Home extends StatelessWidget {
                         : Container(),
                     const SizedBox(height: 45),
 
-                    SizedBox(
-                      width: size.width * 0.90,
-                      height: size.height * 0.50,
-                      child: Image.asset('assets/img/loogo.jpg'),
-                    ),
                     const SizedBox(height: 10),
 
                     //botao ver lojas
@@ -85,33 +81,45 @@ class Home extends StatelessWidget {
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all(
                                     RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(30),
                                       side: const BorderSide(
-                                          width: 15, color: Colors.black),
+                                        width: 16,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                child: Container(
-                                  width: size.width / 1.3,
-                                  height: size.height / 5,
-                                  padding: const EdgeInsets.all(25),
-                                  color: const Color.fromARGB(255, 4, 39, 92),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const FaIcon(
-                                        // ignore: deprecated_member_use
-                                        FontAwesomeIcons.search,
-                                        color: Colors.white,
-                                        size: 24,
-                                      ),
-                                      Text(
-                                        Inter.current.SearchforStores,
-                                        style: const TextStyle(
-                                            color: Colors.white, fontSize: 24),
-                                      )
-                                    ],
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(28),
+                                  child: Container(
+                                    width: size.width * 0.70,
+                                    height: size.height * 0.30,
+                                    decoration: const BoxDecoration(
+                                        gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xffF99E43),
+                                        Color(0xFFDA2323),
+                                      ],
+                                    )),
+                                    padding: const EdgeInsets.all(35),
+                                    margin: const EdgeInsets.all(1),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const FaIcon(
+                                          // ignore: deprecated_member_use
+                                          FontAwesomeIcons.search,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                        Text(
+                                          Inter.current.SearchforStores,
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
@@ -137,32 +145,44 @@ class Home extends StatelessWidget {
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(30),
                                 side: const BorderSide(
-                                    width: 15, color: Colors.black),
+                                  width: 16,
+                                ),
                               ),
                             ),
                           ),
-                          child: Container(
-                            width: size.width / 1.3,
-                            height: size.height / 5,
-                            padding: const EdgeInsets.all(25),
-                            color: const Color.fromARGB(255, 4, 39, 92),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const FaIcon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.car,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
-                                Text(
-                                  Inter.current.SearchforCars,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                )
-                              ],
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(28),
+                            child: Container(
+                              width: size.width * 0.70,
+                              height: size.height * 0.30,
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 214, 165, 115),
+                                  Color(0xFFDA2323),
+                                ],
+                              )),
+                              padding: const EdgeInsets.all(25),
+                              margin: const EdgeInsets.all(1),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const FaIcon(
+                                    // ignore: deprecated_member_use
+                                    FontAwesomeIcons.car,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                  Text(
+                                    Inter.current.SearchforCars,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 24),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -185,32 +205,44 @@ class Home extends StatelessWidget {
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(30),
                                 side: const BorderSide(
-                                    width: 15, color: Colors.black),
+                                  width: 16,
+                                ),
                               ),
                             ),
                           ),
-                          child: Container(
-                            width: size.width / 1.3,
-                            height: size.height / 5,
-                            padding: const EdgeInsets.all(25),
-                            color: const Color.fromARGB(255, 4, 39, 92),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const FaIcon(
-                                  // ignore: deprecated_member_use
-                                  FontAwesomeIcons.dollarSign,
-                                  color: Colors.white,
-                                  size: 24,
-                                ),
-                                Text(
-                                  Inter.current.SalesMade,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 24),
-                                )
-                              ],
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(28),
+                            child: Container(
+                              width: size.width * 0.70,
+                              height: size.height * 0.30,
+                              decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 211, 202, 192),
+                                  Color.fromARGB(255, 163, 16, 16),
+                                ],
+                              )),
+                              padding: const EdgeInsets.all(25),
+                              margin: const EdgeInsets.all(1),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const FaIcon(
+                                    // ignore: deprecated_member_use
+                                    FontAwesomeIcons.dollarSign,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ),
+                                  Text(
+                                    Inter.current.SalesMade,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 24),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -222,6 +254,24 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: state.ligthMode ? Colors.white : Colors.black,
+        animationDuration: const Duration(milliseconds: 700),
+        items: [
+          Icon(
+            Icons.home,
+            color: Colors.deepOrange.shade900,
+          ),
+          Icon(
+            Icons.directions_car,
+            color: Colors.amber.shade900,
+          ),
+          Icon(
+            Icons.settings,
+            color: Colors.indigo.shade900,
+          ),
+        ],
       ),
     );
   }
